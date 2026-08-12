@@ -1,596 +1,869 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
+import { 
+  LayoutDashboard, 
+  ShoppingBag, 
+  CalendarDays, 
+  UtensilsCrossed, 
+  Store, 
+  Users, 
+  Gift, 
+  Megaphone, 
+  Percent, 
+  Star, 
+  Package, 
+  ShoppingCart, 
+  Truck, 
+  BookOpen, 
+  Trash2, 
+  UserCheck, 
+  BarChart3, 
+  Wallet, 
+  Settings, 
+  Puzzle, 
+  HelpCircle, 
+  CheckCircle2, 
+  ArrowRight, 
+  Sparkles, 
+  ShieldCheck, 
+  Zap, 
+  Globe,
+  Smartphone,
+  Monitor
+} from 'lucide-react';
 
 const translations = {
     en: {
-        nav_platform: "Platform",
-        nav_solutions: "Solutions",
+        nav_platform: "Ecosystem",
+        nav_modules: "All 20+ Modules",
+        nav_architecture: "Architecture",
         nav_ai: "AI Intelligence",
         nav_pricing: "Pricing",
-        nav_resources: "Resources",
         login: "Login",
         start_trial: "Start Free Trial",
-        badge_top: "#1 Restaurant Operating System",
-        hero_title_1: "Run Your Restaurant.",
-        hero_title_2: "Grow Your Business.",
-        hero_desc: "The all-in-one operating system combining POS, Inventory, KDS, CRM, Staff HR, and AI Insights. Everything your restaurant needs in one powerful platform.",
-        hero_btn_1: "Start Your Free 30-Day Trial →",
-        hero_btn_2: "Explore Architecture",
-        perk_1: "✓ 30-Day Free Trial",
-        perk_2: "✓ No credit card required",
-        perk_3: "✓ Cancel Anytime",
-        metric_rev: "Revenue",
-        metric_orders: "Orders",
-        metric_staff: "Active Staff",
-        metric_inv: "Inventory",
-        preview_ops: "⚡ Operations: 42 Reservations | 18 Active Kitchen Orders",
-        preview_ai: "\"Chicken inventory may run low by tomorrow peak hours. Purchase recommendation prepared.\"",
-        trusted_text: "Designed for modern restaurants of every size",
-        arch_badge: "Unified Architecture",
-        arch_title: "One Platform. Every Restaurant Operation.",
-        arch_desc: "A complete ecosystem connecting your front-of-house, back-of-house, and intelligence layers.",
-        layer_operate: "Operate",
-        layer_operate_desc: "POS, Tables, Orders, Reservations, KDS, Stations, Printer Routing.",
-        layer_manage: "Manage",
-        layer_manage_desc: "QR Menu, Modifiers, Inventory, Purchasing, Recipes, Costing, Staff HR.",
-        layer_grow: "Grow",
-        layer_grow_desc: "Customer 360, Loyalty, Cashback, Campaigns, Happy Hour, Push Notifications.",
-        layer_understand: "Understand",
-        layer_understand_desc: "Advanced Analytics, Reports, Forecasting, AI Business Coach Insights.",
-        rewards_badge: "Viral Customer Acquisition",
-        rewards_title: "Turn Everyday Customer Actions Into Rewards",
-        rewards_desc: "Supercharge retention and word-of-mouth marketing with automated social sharing, reviews, and birthday triggers built right into the platform.",
-        rew_ig_title: "📸 Instagram Story Rewards",
-        rew_ig_desc: "Customers get instant cashback when they tag your restaurant in their stories.",
-        rew_google_title: "⭐ Google Review Rewards",
-        rew_google_desc: "Drive 5-star ratings automatically by offering discounts on verified feedback.",
-        rew_bday_title: "🎂 Birthday & Referral Programs",
-        rew_bday_desc: "Automated birthday treats and referral bonuses that fill tables on weekdays.",
-        rew_cash_title: "🎁 Cashback & Tiers",
-        rew_cash_desc: "Customizable loyalty points and cashback tiers to keep regulars coming back.",
-        ai_badge: "Artificial Intelligence Core",
-        ai_section_title: "Your Restaurant Has an AI Business Assistant",
-        ai_section_desc: "AIOR doesn’t just store data; it works for you. From predicting stock shortages and analyzing staff productivity to creating automated campaigns.",
-        ai_bullet_1: "✓ Automated Revenue & Demand Forecasting",
-        ai_bullet_2: "✓ Smart Inventory Waste Prediction",
-        ai_bullet_3: "✓ Customer Churn Detection & VIP Alerts",
-        ai_log_title: "AIOR_COACH_FEED // LIVE LOGS",
-        ai_log_1: "\"Your Tuesday lunch campaign generated 32% more returning customers. Consider extending it.\"",
-        ai_log_2: "\"Sarah hasn't visited in 45 days. Automatic cashback reward generated to drive re-engagement.\"",
-        pricing_title: "Choose the plan that’s right for you",
-        pricing_desc: "Simple, transparent pricing. Start with a 30-day free trial.",
+        badge_top: "The Ultimate 20-in-1 Restaurant Operating System",
+        hero_title_1: "Replace Every Legacy Software With",
+        hero_title_2: "One Intelligent AI Powerhouse.",
+        hero_desc: "From Waiter POS and live kitchen orders, real-time P&L, smart inventory, recipe costing, waste tracking, to HR, supplier chains, and customer loyalty. Everything your restaurant needs in one masterpiece.",
+        hero_btn_1: "Start Free 30-Day Trial →",
+        hero_btn_2: "Explore All 20+ Modules",
+        perk_1: "✓ 20+ Native Admin Modules",
+        perk_2: "✓ Multi-Language (EN, AR, FR, ES)",
+        perk_3: "✓ Instant Setup & Zero Hardware Cost",
+        
+        tab_b2b: "🏢 Admin OS & Waiter POS (Desktop)",
+        tab_b2c: "📱 Customer QR App & Loyalty (Mobile)",
+        
+        metric_rev: "NET REVENUE",
+        metric_profit: "P&L PROFIT MARGIN",
+        metric_staff: "ACTIVE WORK LOGS",
+        metric_inv: "SMART INVENTORY",
+        
+        customer_view_title: "AIOR Immersive Customer Experience",
+        customer_view_desc: "Customers auto-detect their location, scan table QR codes, browse gorgeous visual menus, order instantly, and collect rewards automatically.",
+        sample_dish_1: "Truffle Wagyu Burger & Fries",
+        sample_dish_2: "Artisan Wood-Fired Truffle Pizza",
+        sample_points: "Earn 150 VIP Loyalty Points",
+        scan_qr_btn: "Simulate Table QR Experience",
+
+        ai_alert_title: "AI ENTERPRISE FINANCIAL & STOCK ADVISOR",
+        ai_alert_text: "Food cost rose by 2.4% on poultry items. Recommended action: Auto-reallocate supplier orders to Supplier B, saving $340/mo instantly.",
+        ai_action_btn: "Execute Smart AI Optimization",
+        ai_action_progress: "Analyzing 14 Suppliers & Recalculating P&L...",
+        ai_action_done: "✓ Optimized Successfully (Saved $340/mo & Zero Waste)",
+        
+        modules_section_title: "Every Single Tool Your Restaurant Will Ever Need",
+        modules_section_desc: "No plugins. No third-party friction. 20 powerful modules engineered to work together in absolute harmony.",
+        
+        mod_1_title: "Live Dashboard & Analytics",
+        mod_1_desc: "Instant overview of hourly sales, top dishes, and performance metrics.",
+        mod_2_title: "Advanced Order Management",
+        mod_2_desc: "Track dine-in, delivery, and pickup orders in real-time.",
+        mod_3_title: "Table Reservations",
+        mod_3_desc: "Manage floor plans, guest seating, and peak hours effortlessly.",
+        mod_4_title: "Interactive Digital Menu",
+        mod_4_desc: "Update categories, items, modifiers, and prices instantly.",
+        mod_5_title: "Lightning POS & Waiter Terminal",
+        mod_5_desc: "Ultra-fast checkout and table-side ordering for waiters.",
+        mod_6_title: "Customer CRM",
+        mod_6_desc: "Build comprehensive database of guest preferences and history.",
+        mod_7_title: "Loyalty & Rewards Program",
+        mod_7_desc: "Keep customers returning with points, tiers, and wallet passes.",
+        mod_8_title: "Automated Marketing",
+        mod_8_desc: "Launch SMS & email campaigns targeting inactive or VIP guests.",
+        mod_9_title: "Offers & Campaigns",
+        mod_9_desc: "Create flash sales, happy hours, and promo codes seamlessly.",
+        mod_10_title: "Customer Reviews & Ratings",
+        mod_10_desc: "Monitor feedback and turn reviews into brand reputation.",
+        mod_11_title: "Smart Inventory Control",
+        mod_11_desc: "Real-time stock deduction with low-level automated alerts.",
+        mod_12_title: "Purchases & Stock Receiving",
+        mod_12_desc: "Manage purchase orders, invoices, and stock deliveries.",
+        mod_13_title: "Supplier Management Hub",
+        mod_13_desc: "Compare supplier prices, contacts, and delivery performance.",
+        mod_14_title: "Recipe Costing & Engineering",
+        mod_14_desc: "Calculate exact food cost percentage per dish automatically.",
+        mod_15_title: "Waste Management",
+        mod_15_desc: "Track kitchen spoilage and waste to protect your profit margin.",
+        mod_16_title: "Staff Attendance & HR",
+        mod_16_desc: "Work log-in/out, shift scheduling, and payroll tracking.",
+        mod_17_title: "Financials & P&L Reports",
+        mod_17_desc: "Automated profit and loss statements, cash flow, and tax logs.",
+        mod_18_title: "Integrations Hub",
+        mod_18_desc: "Connect payment gateways, delivery aggregators, and accounting.",
+        mod_19_title: "Granular Settings",
+        mod_19_desc: "Configure tax rates, currencies, operating hours, and taxes.",
+        mod_20_title: "24/7 Help & Support",
+        mod_20_desc: "Instant AI assistance and priority human support whenever needed.",
+
+        arch_main_title: "Unified Multi-Device Architecture",
+        arch_main_desc: "Desktop power for management and mobile elegance for customers and floor staff.",
+        
+        pricing_title: "Predictable, Transparent Pricing",
+        pricing_desc: "One simple plan unlocking all 20+ modules for single locations or global franchises.",
         plan_monthly: "Monthly Plan",
-        per_month: "/month",
-        p_f1: "✓ All Core Features & POS",
-        p_f2: "✓ AI Insights Included",
-        p_f3: "✓ 30-Day Free Trial",
-        plan_yearly: "Yearly Plan",
-        per_year: "/year",
-        py_f1: "✓ All Core & Enterprise Features",
-        py_f2: "✓ Advanced AI Forecasting & Coach",
-        py_f3: "✓ Priority Support 24/7",
-        py_f4: "✓ 2 Months Free + 30-Day Trial",
-        most_popular: "Most Popular",
-        get_started: "Get Started",
-        footer_prod: "Product",
-        f_pos: "POS & KDS",
-        f_menu: "QR Menu",
-        f_inv: "Inventory",
-        f_loyalty: "Loyalty & CRM",
-        footer_comp: "Company",
-        f_about: "About Us",
-        f_careers: "Careers",
-        f_contact: "Contact",
-        footer_res: "Resources",
-        f_docs: "Documentation",
-        f_help: "Help Center",
-        f_blog: "Blog",
-        footer_legal: "Legal",
-        f_privacy: "Privacy Policy",
-        f_terms: "Terms of Service",
-        f_security: "Security",
-        copyright: "© 2026 AIOR — All In One Restaurant. All rights reserved."
+        per_month: "/ location / month",
+        plan_yearly: "Annual Plan",
+        per_year: "/ location / month (Billed annually)",
+        save_badge: "Save $78/year — 2 Months Free",
+
+        footer_tagline: "The world's most advanced AI Restaurant Operating System. Replacing legacy fragmentation with absolute unity.",
+        copyright: "© 2026 AIOR Inc. All rights reserved.",
     },
     fr: {
-        nav_platform: "Plateforme",
-        nav_solutions: "Solutions",
+        nav_platform: "Écosystème",
+        nav_modules: "Les 20+ Modules",
+        nav_architecture: "Architecture",
         nav_ai: "Intelligence IA",
         nav_pricing: "Tarifs",
-        nav_resources: "Ressources",
         login: "Connexion",
         start_trial: "Essai Gratuit",
-        badge_top: "#1 Système d'Exploitation pour Restaurant",
-        hero_title_1: "Gérez Votre Restaurant.",
-        hero_title_2: "Développez Votre Entreprise.",
-        hero_desc: "Le système d'exploitation tout-en-un combinant POS, Inventaire, KDS, CRM, RH et IA. Tout ce dont votre restaurant a besoin sur une seule plateforme.",
+        badge_top: "Le Système d'Exploitation Ultime Tout-en-Un",
+        hero_title_1: "Remplacez tout logiciel obsolète par",
+        hero_title_2: "Un Moteur IA Ultra-Puissant.",
+        hero_desc: "Du POS serveur aux commandes en direct, P&L en temps réel, inventaire intelligent, coûts des recettes, gestion du gaspillage, RH et fidélité client. Tout en un.",
         hero_btn_1: "Essai gratuit de 30 jours →",
-        hero_btn_2: "Explorer l'architecture",
-        perk_1: "✓ Essai gratuit de 30 jours",
-        perk_2: "✓ Aucune carte de crédit requise",
-        perk_3: "✓ Annulation à tout moment",
-        metric_rev: "Revenus",
-        metric_orders: "Commandes",
-        metric_staff: "Personnel Actif",
-        metric_inv: "Inventaire",
-        preview_ops: "⚡ Opérations : 42 Réservations | 18 Commandes cuisine en direct",
-        preview_ai: "\"L'inventaire du poulet pourrait baisser demain. Recommandation d'achat préparée.\"",
-        trusted_text: "Conçu pour les restaurants modernes de toutes tailles",
-        arch_badge: "Architecture Unifiée",
-        arch_title: "Une Plateforme. Chaque Opération de Restaurant.",
-        arch_desc: "Un écosystème complet connectant votre salle, votre cuisine et vos couches d'intelligence.",
-        layer_operate: "Opérer",
-        layer_operate_desc: "POS, Tables, Commandes, Réservations, KDS, Postes, Routage imprimantes.",
-        layer_manage: "Gérer",
-        layer_manage_desc: "Menu QR, Modificateurs, Inventaire, Achats, Recettes, Coûts, RH.",
-        layer_grow: "Croître",
-        layer_grow_desc: "Client 360, Fidélité, Cashback, Campagnes, Happy Hour, Notifications push.",
-        layer_understand: "Comprendre",
-        layer_understand_desc: "Analytique avancée, Rapports, Prévisions, Insights du Coach IA.",
-        rewards_badge: "Acquisition Virale de Clients",
-        rewards_title: "Transformez les Actions Quotidiennes en Récompenses",
-        rewards_desc: "Optimisez la fidélisation et le marketing de bouche-à-oreille grâce au partage social automatisé et aux anniversaires.",
-        rew_ig_title: "📸 Récompenses Story Instagram",
-        rew_ig_desc: "Les clients reçoivent du cashback instantané lorsqu'ils taguent votre restaurant.",
-        rew_google_title: "⭐ Récompenses Avis Google",
-        rew_google_desc: "Obtenez des notes 5 étoiles en offrant des réductions sur avis vérifiés.",
-        rew_bday_title: "🎂 Anniversaires & Parrainage",
-        rew_bday_desc: "Cadeaux d'anniversaire automatisés et bonus de parrainage pour remplir les tables.",
-        rew_cash_title: "🎁 Cashback & Paliers",
-        rew_cash_desc: "Points de fidélité personnalisables pour faire revenir vos habitués.",
-        ai_badge: "Cœur d'Intelligence Artificielle",
-        ai_section_title: "Votre Restaurant a un Assistant Commercial IA",
-        ai_section_desc: "AIOR ne stocke pas seulement des données ; il travaille pour vous. De la prévision des pénuries à l'analyse de productivité.",
-        ai_bullet_1: "✓ Prévision automatisée des revenus et de la demande",
-        ai_bullet_2: "✓ Prédiction intelligente du gaspillage",
-        ai_bullet_3: "✓ Détection du taux d'attrition et alertes VIP",
-        ai_log_title: "AIOR_COACH_FEED // JOURNAUX EN DIRECT",
-        ai_log_1: "\"Votre campagne du mardi a généré 32% de clients récurrents en plus. Prolongez-la.\"",
-        ai_log_2: "\"Sarah n'est pas venue depuis 45 jours. Récompense de cashback générée.\"",
-        pricing_title: "Choisissez le plan qui vous convient",
-        pricing_desc: "Tarifs simples et transparents. Commencez par un essai de 30 jours.",
+        hero_btn_2: "Explorer les 20+ modules",
+        perk_1: "✓ 20+ Modules Admin Natifs",
+        perk_2: "✓ Multilingue (FR, EN, AR, ES)",
+        perk_3: "✓ Configuration instantanée",
+        
+        tab_b2b: "🏢 Admin OS & POS Serveur (Desktop)",
+        tab_b2c: "📱 App Client & Fidélité (Mobile)",
+        
+        metric_rev: "REVENU NET",
+        metric_profit: "MARGE P&L",
+        metric_staff: "JOURNAUX ACTIFS",
+        metric_inv: "INVENTAIRE INTELLIGENT",
+        
+        customer_view_title: "Expérience Client Immersive AIOR",
+        customer_view_desc: "Les clients détectent leur position, scannent le QR code, parcourent le menu visuel et gagnent des récompenses instantanément.",
+        sample_dish_1: "Burger Wagyu Truffé & Frites",
+        sample_dish_2: "Pizza Artisanale au Feu de Bois",
+        sample_points: "Gagnez 150 Points VIP",
+        scan_qr_btn: "Simuler le Scan QR à Table",
+
+        ai_alert_title: "CONSEILLER FINANCIER & STOCK IA",
+        ai_alert_text: "Le coût des aliments a augmenté de 2.4%. Action recommandée : Réaffecter automatiquement les commandes au Fournisseur B, économie de 340$/mois.",
+        ai_action_btn: "Exécuter l'Optimisation IA",
+        ai_action_progress: "Analyse de 14 fournisseurs et recalcul du P&L...",
+        ai_action_done: "✓ Optimisé avec succès (Économie 340$/mois)",
+        
+        modules_section_title: "Tous les Outils Dont Votre Restaurant Aura Jamais Besoin",
+        modules_section_desc: "Pas de plugins tiers. 20 modules puissants conçus pour fonctionner en parfaite harmonie.",
+        
+        mod_1_title: "Tableau de Bord & Analytique",
+        mod_1_desc: "Aperçu instantané des ventes horaires et des performances.",
+        mod_2_title: "Gestion Avancée des Commandes",
+        mod_2_desc: "Suivez sur place, en livraison et à emporter en temps réel.",
+        mod_3_title: "Réservations de Tables",
+        mod_3_desc: "Gérez les plans de salle, les invités et les heures de pointe.",
+        mod_4_title: "Menu Numérique Interactif",
+        mod_4_desc: "Mettez à jour les catégories, plats et prix instantanément.",
+        mod_5_title: "POS Éclair & Terminal Serveur",
+        mod_5_desc: "Encaissement ultra-rapide et prise de commande à table.",
+        mod_6_title: "CRM Client",
+        mod_6_desc: "Base de données complète des préférences et historique.",
+        mod_7_title: "Programme de Fidélité",
+        mod_7_desc: "Fidélisez avec des points, des niveaux et un portefeuille.",
+        mod_8_title: "Marketing Automatisé",
+        mod_8_desc: "Lancez des campagnes SMS/Email ciblées.",
+        mod_9_title: "Offres & Campagnes",
+        mod_9_desc: "Créez des ventes flash, happy hours et codes promo.",
+        mod_10_title: "Avis & Notes Clients",
+        mod_10_desc: "Surveillez les retours et renforcez votre réputation.",
+        mod_11_title: "Contrôle Intelligent des Stocks",
+        mod_11_desc: "Déduction en temps réel et alertes de stock bas.",
+        mod_12_title: "Achats & Réception",
+        mod_12_desc: "Gérez bons de commande, factures et livraisons.",
+        mod_13_title: "Hub Fournisseurs",
+        mod_13_desc: "Comparez les prix et performances des fournisseurs.",
+        mod_14_title: "Coûts & Ingénierie des Recettes",
+        mod_14_desc: "Calculez le coût alimentaire exact par plat automatiquement.",
+        mod_15_title: "Gestion du Gaspillage",
+        mod_15_desc: "Suivez les pertes en cuisine pour protéger vos marges.",
+        mod_16_title: "Présence & RH",
+        mod_16_desc: "Pointage, plannings et suivi de la paie.",
+        mod_17_title: "Rapports Financiers & P&L",
+        mod_17_desc: "États de profits et pertes automatisés et flux de trésorerie.",
+        mod_18_title: "Hub d'Intégrations",
+        mod_18_desc: "Connectez paiements, agrégateurs de livraison et compta.",
+        mod_19_title: "Paramètres Avancés",
+        mod_19_desc: "Configurez taxes, devises, horaires et rôles.",
+        mod_20_title: "Support 24/7",
+        mod_20_desc: "Assistance IA instantanée et support prioritaire.",
+
+        arch_main_title: "Architecture Multi-Appareils Unifiée",
+        arch_main_desc: "Puissance desktop pour la gestion et élégance mobile pour clients et serveurs.",
+        
+        pricing_title: "Tarification Transparente et Prévisible",
+        pricing_desc: "Un plan unique débloquant les 20+ modules pour un ou plusieurs établissements.",
         plan_monthly: "Plan Mensuel",
-        per_month: "/mois",
-        p_f1: "✓ Toutes les fonctionnalités et POS",
-        p_f2: "✓ Insights IA inclus",
-        p_f3: "✓ Essai gratuit de 30 jours",
+        per_month: "/ établissement / mois",
         plan_yearly: "Plan Annuel",
-        per_year: "/an",
-        py_f1: "✓ Fonctionnalités Core & Enterprise",
-        py_f2: "✓ Prévisions IA avancées",
-        py_f3: "✓ Support prioritaire 24/7",
-        py_f4: "✓ 2 mois offerts + Essai de 30 jours",
-        most_popular: "Le plus populaire",
-        get_started: "Commencer",
-        footer_prod: "Produit",
-        f_pos: "POS & KDS",
-        f_menu: "Menu QR",
-        f_inv: "Inventaire",
-        f_loyalty: "Fidélité & CRM",
-        footer_comp: "Entreprise",
-        f_about: "À propos",
-        f_careers: "Carrières",
-        f_contact: "Contact",
-        footer_res: "Ressources",
-        f_docs: "Documentation",
-        f_help: "Centre d'aide",
-        f_blog: "Blog",
-        footer_legal: "Légal",
-        f_privacy: "Politique de confidentialité",
-        f_terms: "Conditions d'utilisation",
-        f_security: "Sécurité",
-        copyright: "© 2026 AIOR — All In One Restaurant. Tous droits réservés."
+        per_year: "/ établissement / mois (Facturé an)",
+        save_badge: "Économisez 78$ / an — 2 Mois Gratuits",
+
+        footer_tagline: "Le système d'exploitation IA le plus avancé au monde pour restaurants.",
+        copyright: "© 2026 AIOR Inc. Tous droits réservés.",
     },
     es: {
-        nav_platform: "Plataforma",
-        nav_solutions: "Soluciones",
+        nav_platform: "Ecosistema",
+        nav_modules: "Los 20+ Módulos",
+        nav_architecture: "Arquitectura",
         nav_ai: "Inteligencia IA",
         nav_pricing: "Precios",
-        nav_resources: "Recursos",
         login: "Iniciar Sesión",
         start_trial: "Prueba Gratuita",
-        badge_top: "#1 Sistema Operativo para Restaurantes",
-        hero_title_1: "Gestiona Tu Restaurante.",
-        hero_title_2: "Haz Crecer Tu Negocio.",
-        hero_desc: "El sistema operativo todo en uno que combina TPV, Inventario, KDS, CRM, RRHH y análisis de IA. Todo lo que tu restaurante necesita.",
+        badge_top: "El Sistema Operativo Todo en Uno Definitivo",
+        hero_title_1: "Reemplaza cualquier software obsoleto con",
+        hero_title_2: "Un Motor de IA Ultra-Potente.",
+        hero_desc: "Desde TPV de camareros y pedidos en vivo, P&L en tiempo real, inventario inteligente, costos de recetas, gestión de desperdicios, RRHH y lealtad. Todo en uno.",
         hero_btn_1: "Prueba gratis de 30 días →",
-        hero_btn_2: "Explorar arquitectura",
-        perk_1: "✓ Prueba gratuita de 30 días",
-        perk_2: "✓ Sin tarjeta de crédito requerida",
-        perk_3: "✓ Cancela en cualquier momento",
-        metric_rev: "Ingresos",
-        metric_orders: "Pedidos",
-        metric_staff: "Personal Activo",
-        metric_inv: "Inventario",
-        preview_ops: "⚡ Operaciones: 42 Reservas | 18 Pedidos de cocina activos",
-        preview_ai: "\"El inventario de pollo puede bajar mañana. Recomendación de compra preparada.\"",
-        trusted_text: "Diseñado para restaurantes modernos de todos los tamaños",
-        arch_badge: "Arquitectura Unificada",
-        arch_title: "Una Plataforma. Cada Operación de Restaurante.",
-        arch_desc: "Un ecosistema completo que conecta tu sala, cocina y capas de inteligencia.",
-        layer_operate: "Operar",
-        layer_operate_desc: "TPV, Mesas, Pedidos, Reservas, KDS, Estaciones, Enrutamiento de impresoras.",
-        layer_manage: "Gestionar",
-        layer_manage_desc: "Menú QR, Modificadores, Inventario, Compras, Recetas, Costos, RRHH.",
-        layer_grow: "Crecer",
-        layer_grow_desc: "Cliente 360, Lealtad, Cashback, Campañas, Hora feliz, Notificaciones push.",
-        layer_understand: "Comprender",
-        layer_understand_desc: "Analítica avanzada, Informes, Pronósticos, Insights del Entrenador IA.",
-        rewards_badge: "Adquisición Viral de Clientes",
-        rewards_title: "Convierte Acciones Cotidianas en Recompensas",
-        rewards_desc: "Potencia la retención y el marketing boca a boca con compartir social automatizado y cumpleaños.",
-        rew_ig_title: "📸 Recompensas Story Instagram",
-        rew_ig_desc: "Los clientes obtienen cashback instantáneo cuando etiquetan tu restaurante.",
-        rew_google_title: "⭐ Recompensas Reseña Google",
-        rew_google_desc: "Consigue valoraciones de 5 estrellas ofreciendo descuentos por feedback verificado.",
-        rew_bday_title: "🎂 Cumpleaños y Referidos",
-        rew_bday_desc: "Regalos de cumpleaños automatizados y bonos de referidos para llenar mesas.",
-        rew_cash_title: "🎁 Cashback y Niveles",
-        rew_cash_desc: "Puntos de lealtad personalizables para mantener a tus clientes habituales.",
-        ai_badge: "Núcleo de Inteligencia Artificial",
-        ai_section_title: "Tu Restaurante Tiene un Asistente Comercial de IA",
-        ai_section_desc: "AIOR no solo almacena datos; trabaja para ti. Desde predecir escasez de stock hasta analizar la productividad del personal.",
-        ai_bullet_1: "✓ Pronóstico automatizado de ingresos y demanda",
-        ai_bullet_2: "✓ Predicción inteligente de mermas e inventario",
-        ai_bullet_3: "✓ Detección de abandono y alertas VIP",
-        ai_log_title: "AIOR_COACH_FEED // REGISTROS EN VIVO",
-        ai_log_1: "\"Tu campaña del martes generó un 32% más de clientes recurrentes. Considere ampliarla.\"",
-        ai_log_2: "\"Sarah no ha visitado en 45 días. Recompensa de cashback generada para re-engagement.\"",
-        pricing_title: "Elige el plan adecuado para ti",
-        pricing_desc: "Precios simples y transparentes. Comienza con una prueba de 30 días.",
+        hero_btn_2: "Explorar los 20+ módulos",
+        perk_1: "✓ 20+ Módulos Admin Nativos",
+        perk_2: "✓ Multilingüe (ES, EN, AR, FR)",
+        perk_3: "✓ Configuración instantánea",
+        
+        tab_b2b: "🏢 Admin OS & TPV Camareros (Desktop)",
+        tab_b2c: "📱 App Clientes & Lealtad (Mobile)",
+        
+        metric_rev: "INGRESOS NETOS",
+        metric_profit: "MARGEN P&L",
+        metric_staff: "TURNOS ACTIVOS",
+        metric_inv: "INVENTARIO INTELIGENTE",
+        
+        customer_view_title: "Experiencia de Cliente Inmersiva AIOR",
+        customer_view_desc: "Los clientes detectan su ubicación, escanean el QR, ven el menú visual y ganan recompensas al instante.",
+        sample_dish_1: "Hamburguesa Wagyu Trufada y Patatas",
+        sample_dish_2: "Pizza Artesanal al Horno de Leña",
+        sample_points: "Gana 150 Puntos VIP",
+        scan_qr_btn: "Simular Escaneo QR en Mesa",
+
+        ai_alert_title: "ASESOR FINANCIERO Y DE STOCK IA",
+        ai_alert_text: "El costo de alimentos subió un 2.4%. Acción recomendada: Reasignar pedidos al Proveedor B automáticamente, ahorrando $340/mes.",
+        ai_action_btn: "Ejecutar Optimización IA",
+        ai_action_progress: "Analizando 14 proveedores y recalculando P&L...",
+        ai_action_done: "✓ Optimizado con éxito (Ahorro $340/mes)",
+        
+        modules_section_title: "Todas las Herramientas que Tu Restaurante Necesitará",
+        modules_section_desc: "Sin plugins de terceros. 20 potentes módulos diseñados para trabajar en perfecta armonía.",
+        
+        mod_1_title: "Panel y Analítica en Vivo",
+        mod_1_desc: "Resumen instantáneo de ventas por hora y métricas.",
+        mod_2_title: "Gestión Avanzada de Pedidos",
+        mod_2_desc: "Sigue pedidos en sala, para llevar y delivery en tiempo real.",
+        mod_3_title: "Reservas de Mesas",
+        mod_3_desc: "Gestiona planos de sala y horas pico sin esfuerzo.",
+        mod_4_title: "Menú Digital Interactivo",
+        mod_4_desc: "Actualiza categorías, platos y precios al instante.",
+        mod_5_title: "TPV Rápido y Terminal de Camarero",
+        mod_5_desc: "Cobro ultrarrápido y toma de pedidos en mesa.",
+        mod_6_title: "CRM de Clientes",
+        mod_6_desc: "Base de datos completa de preferencias e historial.",
+        mod_7_title: "Programa de Lealtad",
+        mod_7_desc: "Retén clientes con puntos, niveles y monedero digital.",
+        mod_8_title: "Marketing Automatizado",
+        mod_8_desc: "Lanza campañas de SMS y correo electrónico segmentadas.",
+        mod_9_title: "Ofertas y Campañas",
+        mod_9_desc: "Crea ventas flash, happy hours y códigos promocionales.",
+        mod_10_title: "Reseñas y Calificaciones",
+        mod_10_desc: "Monitorea opiniones y potencia tu reputación de marca.",
+        mod_11_title: "Control Inteligente de Inventario",
+        mod_11_desc: "Deducción de stock en tiempo real y alertas automáticas.",
+        mod_12_title: "Compras y Recepción de Stock",
+        mod_12_desc: "Gestiona órdenes de compra, facturas y entregas.",
+        mod_13_title: "Centro de Proveedores",
+        mod_13_desc: "Compara precios, contactos y rendimiento de proveedores.",
+        mod_14_title: "Costos e Ingeniería de Recetas",
+        mod_14_desc: "Calcula el costo exacto de alimentos por plato automáticamente.",
+        mod_15_title: "Gestión de Desperdicios",
+        mod_15_desc: "Rastrea mermas en cocina para proteger tus márgenes.",
+        mod_16_title: "Asistencia y RRHH",
+        mod_16_desc: "Registro de turnos, horarios y control de nómina.",
+        mod_17_title: "Informes Financieros y P&L",
+        mod_17_desc: "Estados de pérdidas y ganancias automatizados y flujo de caja.",
+        mod_18_title: "Centro de Integraciones",
+        mod_18_desc: "Conecta pasarelas de pago, delivery y contabilidad.",
+        mod_19_title: "Ajustes Granulares",
+        mod_19_desc: "Configura tasas de impuestos, monedas y horarios.",
+        mod_20_title: "Soporte 24/7",
+        mod_20_desc: "Asistencia de IA instantánea y soporte humano prioritario.",
+
+        arch_main_title: "Arquitectura Multi-Dispositivo Unificada",
+        arch_main_desc: "Poder de escritorio para la gerencia y elegancia móvil para clientes y personal.",
+        
+        pricing_title: "Precios Transparentes y Predecibles",
+        pricing_desc: "Un plan simple que desbloquea los 20+ módulos para locales únicos o franquicias.",
         plan_monthly: "Plan Mensual",
-        per_month: "/mes",
-        p_f1: "✓ Todas las funciones y TPV",
-        p_f2: "✓ Insights de IA incluidos",
-        p_f3: "✓ Prueba gratuita de 30 días",
+        per_month: "/ local / mes",
         plan_yearly: "Plan Anual",
-        per_year: "/año",
-        py_f1: "✓ Funciones Core y Enterprise",
-        py_f2: "✓ Pronósticos de IA avanzados",
-        py_f3: "✓ Soporte prioritario 24/7",
-        py_f4: "✓ 2 meses gratis + Prueba de 30 días",
-        most_popular: "Más Popular",
-        get_started: "Empezar",
-        footer_prod: "Producto",
-        f_pos: "TPV y KDS",
-        f_menu: "Menú QR",
-        f_inv: "Inventario",
-        f_loyalty: "Lealtad y CRM",
-        footer_comp: "Empresa",
-        f_about: "Sobre Nosotros",
-        f_careers: "Carreras",
-        f_contact: "Contacto",
-        footer_res: "Recursos",
-        f_docs: "Documentación",
-        f_help: "Centro de Ayuda",
-        f_blog: "Blog",
-        footer_legal: "Legal",
-        f_privacy: "Política de Privacidad",
-        f_terms: "Términos de Servicio",
-        f_security: "Seguridad",
-        copyright: "© 2026 AIOR — All In One Restaurant. Todos los derechos reservados."
+        per_year: "/ local / mes (Facturación anual)",
+        save_badge: "Ahorra $78/año — 2 Meses Gratis",
+
+        footer_tagline: "El sistema operativo de IA para restaurantes más avanzado del mundo.",
+        copyright: "© 2026 AIOR Inc. Todos los derechos reservados.",
+    },
+    ar: {
+        nav_platform: "النظام المتكامل",
+        nav_modules: "جميع الوحدات (20+)",
+        nav_architecture: "هيكلية النظام",
+        nav_ai: "الذكاء الاصطناعي",
+        nav_pricing: "الأسعار",
+        login: "تسجيل الدخول",
+        start_trial: "ابدأ تجربة مجانية",
+        badge_top: "النظام الشامل والأقوى عالمياً لإدارة المطاعم (20 نظاماً في منصة واحدة)",
+        hero_title_1: "استبدل كل البرامج القديمة والمشتتة بـ",
+        hero_title_2: "محرك ذكاء اصطناعي واحد خارق.",
+        hero_desc: "من نقاط البيع (POS) ونقاط النادل، تقارير الأرباح والخسائر (P&L) لحظياً، المخزون الذكي، تكلفة الوصفات ودقيقها، إدارة الهدر، الموارد البشرية، الموردين، وحتى ولاء العملاء. كل ما يحتاجه مطعمك في أداة واحدة تحبس الأنفاس.",
+        hero_btn_1: "ابدأ تجربتك المجانية لمدة 30 يوماً ←",
+        hero_btn_2: "استكشف جميع الوحدات الـ 20+",
+        perk_1: "✓ أكثر من 20 وحدة تشغيلية أساسية",
+        perk_2: "✓ يدعم العربية، الفرنسية، الإسبانية والإنجليزية",
+        perk_3: "✓ إعداد فوري دون الحاجة لأجهزة معقدة",
+        
+        tab_b2b: "🏢 لوحة الآدمن ونقاط البيع POS (كمبيوتر Desktop)",
+        tab_b2c: "📱 تطبيق الزبون وقوائم QR والولاء (هاتف Mobile)",
+        
+        metric_rev: "صافي الإيرادات اليومية",
+        metric_profit: "هامش أرباح P&L",
+        metric_staff: "سجلات الموظفين النشطة",
+        metric_inv: "المخزون الذكي المؤتمت",
+        
+        customer_view_title: "تجربة الزبون الاستثنائية مع AIOR",
+        customer_view_desc: "يتعرف الزبائن على موقعهم تلقائياً، يمسحون كود الـ QR على الطاولة، يتصفحون المنيو المرئي الفاخر، يطلبون بلمسة، ويكسبون نقاط الولاء والمكافآت فوراً.",
+        sample_dish_1: "برجر واغيو بالكمأة والبطاطس المقرمشة",
+        sample_dish_2: "بيتزا إيطالية أصلية بالحطب والكمأة",
+        sample_points: "اكسب 150 نقطة ولاء VIP فوراً",
+        scan_qr_btn: "محاكاة مسح كود الطاولة QR",
+
+        ai_alert_title: "مستشار الذكاء الاصطناعي المالي والمخزوني المؤسسي",
+        ai_alert_text: "ارتفعت تكلفة الدواجن بنسبة 2.4% هذا الأسبوع. الإجراء المقترح من الذكاء الاصطناعي: تحويل طلبات التوريد تلقائياً إلى المورد البديل لتوفير 340$ شهرياً فوراً.",
+        ai_action_btn: "تنفيذ التحسين الذكي الشامل",
+        ai_action_progress: "جارٍ تحليل أسعار 14 مورداً وإعادة حساب تقارير P&L...",
+        ai_action_done: "✓ تمت الأتمتة بنجاح (تم توفير 340$ شهرياً وبدون أي هدر)",
+        
+        modules_section_title: "كل أداة سيحتاجها مطعمك على الإطلاق — مجتمعة في مكان واحد",
+        modules_section_desc: "لا توجد برامج خارجية متفرقة ولا تكاليف إضافية. 20 وحدة برمجية فائقة التطور مصممة لتعمل معاً بتناغم مطلق.",
+        
+        mod_1_title: "لوحة التحكم والتحليلات الحية",
+        mod_1_desc: "نظرة شاملة فورية للمبيعات بالساعة، الأطباق الأكثر طلباً، ومؤشرات الأداء.",
+        mod_2_title: "إدارة الطلبات المتقدمة",
+        mod_2_desc: "تتبع طلبات الصالة، التوصيل الخارجي، والاستلام في منصة واحدة وبدقة فائقة.",
+        mod_3_title: "إدارة الحجوزات والطاولات",
+        mod_3_desc: "تنظيم مخطط الصالة، حجوزات الزبائن، والتحكم بأوقات الذروة باحترافية.",
+        mod_4_title: "قائمة الطعام الرقمية (المنيو)",
+        mod_4_desc: "تحديث الأقسام، الأصناف، الإضافات، والأسعار في كافة الفروع بضغطة زر.",
+        mod_5_title: "نقاط البيع السريعة وواجهة النادل",
+        mod_5_desc: "سرعة فائقة في إتمام المدفوعات وطلب النادل مباشرة من الطاولة.",
+        mod_6_title: "إدارة علاقات العملاء CRM",
+        mod_6_desc: "قاعدة بيانات ضخمة تفصيلية لتوثيق تفضيلات الزبائن وزياراتهم السابقة.",
+        mod_7_title: "برامج الولاء والمكافآت",
+        mod_7_desc: "نظام نقاط ومستويات ومحفظة رقمية تضمن عودة الزبائن مراراً وتكراراً.",
+        mod_8_title: "التسويق والحملات الآلية",
+        mod_8_desc: "إطلاق حملات رسائل نصية وبريد إلكتروني مستهدفة للزبائن غير النشطين أو الـ VIP.",
+        mod_9_title: "العروض والحملات الترويجية",
+        mod_9_desc: "إنشاء عروض لفترة محدودة، ساعات سعيدة، وأكواد خصم مخصصة بكل سهولة.",
+        mod_10_title: "إدارة التقييمات والآراء",
+        mod_10_desc: "مراقبة آراء الزبائن وتحويل التقييمات الإيجابية لشهرة واسعة لعلامتك.",
+        mod_11_title: "إدارة المخزون الذكية",
+        mod_11_desc: "خصم تلقائي للمكونات مع تنبيهات فورية عند قرب نفاد أي صنف.",
+        mod_12_title: "إدارة المشتريات والاستلام",
+        mod_12_desc: "متابعة أوامر الشراء، فواتير الموردين، وإدخال البضائع للمخازن بدقة.",
+        mod_13_title: "منصة إدارة الموردين",
+        mod_13_desc: "مقارنة أسعار الموردين، تقييم سرعة التوريد، والاحتفاظ ببيانات الاتصال.",
+        mod_14_title: "حساب تكاليف الوصفات (Recipe Costing)",
+        mod_14_desc: "معرفة نسبة تكلفة الطعام (Food Cost) لكل طبق بدقة ملليمترية لتعظيم الأرباح.",
+        mod_15_title: "إدارة الهدر وتقليل الخسائر",
+        mod_15_desc: "تسجيل المفقودات والتالف في المطبخ لحماية هوامش الربح بدقة.",
+        mod_16_title: "الموظفون والموارد البشرية HR",
+        mod_16_desc: "تسجيل الحضور والانصراف (Work Logs)، الجداول الزمنية، وحساب الرواتب.",
+        mod_17_title: "المالية وتقارير الأرباح P&L",
+        mod_17_desc: "قوائم الدخل والأرباح والخسائر التلقائية، التدفق النقدي، والتقارير الضريبية.",
+        mod_18_title: "منصة التكاملات الشاملة",
+        mod_18_desc: "الربط مع بوابات الدفع، تطبيقات التوصيل الشهيرة، وأنظمة المحاسبة.",
+        mod_19_title: "الإعدادات المتقدمة والشاملة",
+        mod_19_desc: "ضبط الضرائب، العملات، أوقات العمل، وصلاحيات الموظفين بدقة تامة.",
+        mod_20_title: "المساعدة والدعم الفني 24/7",
+        mod_20_desc: "مساعد ذكي فوري ودعم بشري فني على مدار الساعة لخدمة أعمالك دون انقطاع.",
+
+        arch_main_title: "هيكلية متكاملة تدعم جميع الأجهزة",
+        arch_main_desc: "قوة الحاسوب لإدارة المؤسسة، وأناقة الهواتف الذكية للزبائن وفرق الخدمة في الصالة.",
+        
+        pricing_title: "خطط أسعار شفافة مصممة للنمو السريع",
+        pricing_desc: "باقة واحدة شاملة تفتح لك جميع الوحدات الـ 20+ سواء كنت مطعماً منفرداً أو مجموعة عالمية.",
+        plan_monthly: "الباقة الشهرية الشاملة",
+        per_month: "/ الفرع / شهرياً",
+        plan_yearly: "الباقة السنوية (الأكثر توفيراً)",
+        per_year: "/ الفرع / شهرياً (تُدفع سنوياً)",
+        save_badge: "وفر 78$ سنوياً — شهران مجاناً تماماً",
+
+        footer_tagline: "نظام التشغيل الذكي الأقوى عالمياً للمطاعم. نجمع المالية، نقاط البيع، المخزون، والذكاء الاصطناعي في منصة واحدة أسطورية.",
+        copyright: "© 2026 AIOR Inc. جميع الحقوق محفوظة.",
     }
 };
 
-export default function Home() {
-  const [lang, setLang] = useState('en');
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+type Language = 'en' | 'fr' | 'es' | 'ar';
+type TranslationKey = keyof typeof translations.en;
 
-  const t = (key) => {
+export default function Home() {
+  const [lang, setLang] = useState<Language>('en');
+  const [aiState, setAiState] = useState<'idle' | 'processing' | 'done'>('idle');
+  const [previewTab, setPreviewTab] = useState<'b2b' | 'b2c'>('b2b');
+
+  const t = (key: TranslationKey): string => {
     return translations[lang]?.[key] || translations['en'][key] || key;
   };
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
+  const handleAiAction = () => {
+    setAiState('processing');
+    setTimeout(() => {
+      setAiState('done');
+    }, 1200);
   };
 
+  const isRtl = lang === 'ar';
+
+  // أيقونات الـ 20 موديلاً محاطة بخلفيات وتدرجات لونية مميزة وفاخرة
+  const moduleIcons = [
+    <LayoutDashboard className="w-6 h-6 text-indigo-400 group-hover:scale-110 transition-transform duration-300" />,
+    <ShoppingBag className="w-6 h-6 text-purple-400 group-hover:scale-110 transition-transform duration-300" />,
+    <CalendarDays className="w-6 h-6 text-blue-400 group-hover:scale-110 transition-transform duration-300" />,
+    <UtensilsCrossed className="w-6 h-6 text-emerald-400 group-hover:scale-110 transition-transform duration-300" />,
+    <Store className="w-6 h-6 text-amber-400 group-hover:scale-110 transition-transform duration-300" />,
+    <Users className="w-6 h-6 text-pink-400 group-hover:scale-110 transition-transform duration-300" />,
+    <Gift className="w-6 h-6 text-rose-400 group-hover:scale-110 transition-transform duration-300" />,
+    <Megaphone className="w-6 h-6 text-cyan-400 group-hover:scale-110 transition-transform duration-300" />,
+    <Percent className="w-6 h-6 text-violet-400 group-hover:scale-110 transition-transform duration-300" />,
+    <Star className="w-6 h-6 text-yellow-400 group-hover:scale-110 transition-transform duration-300" />,
+    <Package className="w-6 h-6 text-teal-400 group-hover:scale-110 transition-transform duration-300" />,
+    <ShoppingCart className="w-6 h-6 text-indigo-300 group-hover:scale-110 transition-transform duration-300" />,
+    <Truck className="w-6 h-6 text-orange-400 group-hover:scale-110 transition-transform duration-300" />,
+    <BookOpen className="w-6 h-6 text-emerald-300 group-hover:scale-110 transition-transform duration-300" />,
+    <Trash2 className="w-6 h-6 text-red-400 group-hover:scale-110 transition-transform duration-300" />,
+    <UserCheck className="w-6 h-6 text-sky-400 group-hover:scale-110 transition-transform duration-300" />,
+    <BarChart3 className="w-6 h-6 text-fuchsia-400 group-hover:scale-110 transition-transform duration-300" />,
+    <Puzzle className="w-6 h-6 text-lime-400 group-hover:scale-110 transition-transform duration-300" />,
+    <Settings className="w-6 h-6 text-slate-300 group-hover:scale-110 transition-transform duration-300" />,
+    <HelpCircle className="w-6 h-6 text-amber-300 group-hover:scale-110 transition-transform duration-300" />,
+  ];
+
   return (
-    <div className="bg-white text-gray-900 font-sans antialiased">
-      {/* HEADER / NAVBAR */}
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
+    <div 
+      dir={isRtl ? 'rtl' : 'ltr'} 
+      className="bg-[#030305] text-gray-100 font-sans antialiased selection:bg-indigo-600 selection:text-white relative overflow-x-hidden"
+    >
+      {/* خلفية جمالية مضيئة ومتدرجة (Mesh Gradients) */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-indigo-600/10 blur-[180px] rounded-full pointer-events-none"></div>
+      
+      {/* NAVBAR */}
+      <header className="sticky top-0 z-50 bg-[#030305]/80 backdrop-blur-2xl border-b border-white/[0.08] transition-all">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <span className="text-2xl font-black tracking-tight text-black">AIOR</span>
-            <span className="hidden sm:inline-block text-[10px] uppercase tracking-widest text-gray-500 border-l pl-2 border-gray-300">Restaurant OS</span>
+          <div className="flex items-center space-x-3 rtl:space-x-reverse">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 p-0.5 shadow-lg shadow-indigo-500/20 flex items-center justify-center">
+              <div className="w-full h-full bg-[#030305] rounded-[14px] flex items-center justify-center">
+                <span className="text-xl font-black tracking-tighter bg-gradient-to-r from-white via-indigo-200 to-purple-400 bg-clip-text text-transparent">AI</span>
+              </div>
+            </div>
+            <span className="text-2xl font-black tracking-tighter text-white">AIOR</span>
+            <span className="hidden sm:inline-block text-[10px] uppercase font-extrabold tracking-widest text-indigo-400 border-l rtl:border-r rtl:border-l-0 pl-3 rtl:pr-3 border-white/10 bg-indigo-500/10 py-1 rounded-md">Restaurant OS</span>
           </div>
 
-          <nav className="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-600">
-            <a href="#platform" className="hover:text-black transition">{t('nav_platform')}</a>
-            <a href="#solutions" className="hover:text-black transition">{t('nav_solutions')}</a>
-            <a href="#ai-section" className="hover:text-brandPrimary transition font-semibold text-brandPrimary">{t('nav_ai')}</a>
-            <a href="#pricing" className="hover:text-black transition">{t('nav_pricing')}</a>
-            <a href="#resources" className="hover:text-black transition">{t('nav_resources')}</a>
+          <nav className="hidden lg:flex items-center space-x-8 rtl:space-x-reverse text-xs font-bold text-gray-400">
+            <a href="#platform" className="hover:text-white transition-colors">{t('nav_platform')}</a>
+            <a href="#modules" className="hover:text-white transition-colors">{t('nav_modules')}</a>
+            <a href="#architecture" className="hover:text-white transition-colors">{t('nav_architecture')}</a>
+            <a href="#ai-section" className="hover:text-indigo-400 transition-colors flex items-center gap-1.5 bg-indigo-950/40 px-3 py-1.5 rounded-full border border-indigo-500/30">
+              <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
+              {t('nav_ai')}
+            </a>
+            <a href="#pricing" className="hover:text-white transition-colors">{t('nav_pricing')}</a>
           </nav>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3 rtl:space-x-reverse">
             <select 
               value={lang} 
-              onChange={(e) => setLang(e.target.value)} 
-              className="bg-gray-50 border border-gray-200 text-gray-700 text-xs rounded-lg px-2.5 py-1.5 focus:outline-none focus:ring-1 focus:ring-brandPrimary"
+              onChange={(e) => setLang(e.target.value as Language)} 
+              className="bg-gray-900/90 border border-white/10 text-gray-200 text-xs font-bold rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 cursor-pointer shadow-inner backdrop-blur-md"
             >
-              <option value="en">English</option>
-              <option value="fr">Français</option>
-              <option value="es">Español</option>
+              <option value="en">🇺🇸 English</option>
+              <option value="fr">🇫🇷 Français</option>
+              <option value="es">🇪🇸 Español</option>
+              <option value="ar">🇸🇦 العربية</option>
             </select>
 
-            <a href="#" className="hidden sm:inline-block text-sm font-semibold text-gray-700 hover:text-black">{t('login')}</a>
-            <a href="#" className="hidden lg:inline-block bg-brandPrimary text-white px-4 py-2.5 rounded-xl text-sm font-semibold shadow-md hover:opacity-90 transition">{t('start_trial')}</a>
-
-            <button onClick={toggleMobileMenu} className="md:hidden p-2 text-gray-600 hover:text-black focus:outline-none">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        <div className={`md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-3 ${isMobileMenuOpen ? 'block' : 'hidden'}`}>
-          <a href="#platform" onClick={toggleMobileMenu} className="block text-sm font-medium text-gray-700 hover:text-black py-1">{t('nav_platform')}</a>
-          <a href="#solutions" onClick={toggleMobileMenu} className="block text-sm font-medium text-gray-700 hover:text-black py-1">{t('nav_solutions')}</a>
-          <a href="#ai-section" onClick={toggleMobileMenu} className="block text-sm font-semibold text-brandPrimary py-1">{t('nav_ai')}</a>
-          <a href="#pricing" onClick={toggleMobileMenu} className="block text-sm font-medium text-gray-700 hover:text-black py-1">{t('nav_pricing')}</a>
-          <a href="#resources" onClick={toggleMobileMenu} className="block text-sm font-medium text-gray-700 hover:text-black py-1">{t('nav_resources')}</a>
-          <div className="pt-4 flex flex-col space-y-2">
-            <a href="#" className="text-center text-sm font-semibold text-gray-700 py-2 border border-gray-200 rounded-xl">{t('login')}</a>
-            <a href="#" className="text-center bg-brandPrimary text-white py-2.5 rounded-xl text-sm font-semibold shadow-md">{t('start_trial')}</a>
+            <Link 
+              href="/login" 
+              className="hidden sm:inline-block text-xs font-bold text-gray-300 hover:text-white transition-colors px-3 py-2"
+            >
+              {t('login')}
+            </Link>
+            
+            <Link 
+              href="/register" 
+              className="bg-gradient-to-r from-indigo-600 via-indigo-500 to-purple-600 text-white px-5 py-2.5 rounded-xl text-xs font-black shadow-lg shadow-indigo-600/30 hover:shadow-indigo-600/50 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+            >
+              {t('start_trial')}
+            </Link>
           </div>
         </div>
       </header>
 
       {/* HERO SECTION */}
-      <section className="relative pt-12 pb-20 overflow-hidden bg-gradient-to-b from-slate-50/60 to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <section className="relative pt-24 pb-32 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          
+          <div className="text-center max-w-4xl mx-auto space-y-6 mb-12">
+            <div className="inline-flex items-center space-x-2 rtl:space-x-reverse bg-gradient-to-r from-indigo-950/80 via-purple-950/50 to-gray-900 border border-indigo-500/30 px-5 py-2 rounded-full text-xs font-black text-indigo-300 shadow-2xl backdrop-blur-xl">
+              <Sparkles className="w-4 h-4 text-indigo-400 animate-spin" />
+              <span>{t('badge_top')}</span>
+            </div>
             
-            <div className="lg:col-span-5 space-y-6 text-left">
-              <div className="inline-flex items-center space-x-2 bg-purple-50 border border-purple-200/60 px-3 py-1 rounded-full text-xs font-semibold text-brandPrimary">
-                <span>{t('badge_top')}</span>
-              </div>
-              
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 leading-[1.1]">
-                <span>{t('hero_title_1')}</span> <br />
-                <span className="text-brandPrimary">{t('hero_title_2')}</span>
-              </h1>
-              
-              <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
-                {t('hero_desc')}
-              </p>
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.08]">
+              <span>{t('hero_title_1')}</span> <br />
+              <span className="bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400 bg-clip-text text-transparent drop-shadow-sm">{t('hero_title_2')}</span>
+            </h1>
+            
+            <p className="text-base sm:text-lg text-gray-400 leading-relaxed max-w-3xl mx-auto font-medium">
+              {t('hero_desc')}
+            </p>
 
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 pt-2">
-                <a href="#" className="bg-brandPrimary text-white text-center px-7 py-3.5 rounded-xl font-semibold shadow-lg hover:opacity-90 transition">
-                  {t('hero_btn_1')}
-                </a>
-                <a href="#architecture" className="border border-gray-300 text-center px-7 py-3.5 rounded-xl font-semibold text-gray-700 hover:bg-gray-50 transition">
-                  {t('hero_btn_2')}
-                </a>
-              </div>
-
-              <div className="pt-6 grid grid-cols-3 gap-4 border-t border-gray-200/60 text-xs text-gray-500 font-medium">
-                <div>{t('perk_1')}</div>
-                <div>{t('perk_2')}</div>
-                <div>{t('perk_3')}</div>
-              </div>
+            <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-4 rtl:sm:space-x-reverse pt-4">
+              <Link href="/register" className="w-full sm:w-auto text-center bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-4 rounded-2xl font-black text-sm shadow-2xl shadow-indigo-600/40 hover:shadow-indigo-600/60 hover:scale-105 transition-all flex items-center justify-center gap-2">
+                {t('hero_btn_1')}
+              </Link>
+              <a href="#modules" className="w-full sm:w-auto text-center border border-white/10 bg-white/[0.03] px-8 py-4 rounded-2xl font-bold text-sm text-gray-200 hover:bg-white/[0.08] hover:border-white/20 transition-all shadow-sm backdrop-blur-md">
+                {t('hero_btn_2')}
+              </a>
             </div>
 
-            <div className="lg:col-span-7">
-              <div className="relative bg-gray-900 rounded-2xl p-5 shadow-2xl border border-gray-800 text-white">
-                <div className="flex items-center justify-between pb-3 border-b border-gray-800 text-xs text-gray-400">
-                  <span className="font-bold text-white flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500"></span> AIOR Restaurant OS — Dashboard Preview
+            <div className="flex flex-wrap justify-center items-center gap-6 text-xs text-gray-400 font-bold pt-4">
+              <span className="flex items-center gap-1.5"><Zap className="w-3.5 h-3.5 text-indigo-400" /> {t('perk_1')}</span>
+              <span className="text-white/20">•</span>
+              <span className="flex items-center gap-1.5"><Globe className="w-3.5 h-3.5 text-purple-400" /> {t('perk_2')}</span>
+              <span className="text-white/20">•</span>
+              <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-emerald-400" /> {t('perk_3')}</span>
+            </div>
+          </div>
+
+          {/* INTERACTIVE PREVIEW TABS */}
+          <div className="flex justify-center mb-6">
+            <div className="bg-gray-900/80 p-1.5 rounded-2xl border border-white/10 flex items-center gap-2 shadow-2xl backdrop-blur-xl">
+              <button 
+                onClick={() => setPreviewTab('b2b')}
+                className={`px-5 py-2.5 rounded-xl text-xs font-black transition-all cursor-pointer flex items-center gap-2 ${previewTab === 'b2b' ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-600/30' : 'text-gray-400 hover:text-white'}`}
+              >
+                <Monitor className="w-4 h-4" /> {t('tab_b2b')}
+              </button>
+              <button 
+                onClick={() => setPreviewTab('b2c')}
+                className={`px-5 py-2.5 rounded-xl text-xs font-black transition-all cursor-pointer flex items-center gap-2 ${previewTab === 'b2c' ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-600/30' : 'text-gray-400 hover:text-white'}`}
+              >
+                <Smartphone className="w-4 h-4" /> {t('tab_b2c')}
+              </button>
+            </div>
+          </div>
+
+          {/* COMMAND CENTER PREVIEW */}
+          <div id="platform" className="relative bg-[#07070F]/90 rounded-[32px] p-6 sm:p-10 shadow-2xl shadow-indigo-950/50 border border-white/10 text-white max-w-6xl mx-auto backdrop-blur-2xl">
+            
+            {previewTab === 'b2b' && (
+              <div>
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 border-b border-white/10 text-xs text-gray-400 gap-3">
+                  <span className="font-black text-white flex items-center gap-2.5 text-sm">
+                    <span className="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></span> 
+                    AIOR RESTAURANT ADMIN & WAITER POS (DESKTOP SUITE)
                   </span>
-                  <span className="bg-purple-500/20 text-purple-300 px-2.5 py-0.5 rounded text-[10px]">AI Coach Active</span>
-                </div>
-                
-                <div className="grid grid-cols-4 gap-2 my-4 text-center">
-                  <div className="bg-gray-800/80 p-2.5 rounded-xl border border-gray-700/50">
-                    <p className="text-[9px] text-gray-400">{t('metric_rev')}</p>
-                    <p className="text-xs font-bold text-emerald-400">$32,540</p>
-                  </div>
-                  <div className="bg-gray-800/80 p-2.5 rounded-xl border border-gray-700/50">
-                    <p className="text-[9px] text-gray-400">{t('metric_orders')}</p>
-                    <p className="text-xs font-bold text-white">1,248</p>
-                  </div>
-                  <div className="bg-gray-800/80 p-2.5 rounded-xl border border-gray-700/50">
-                    <p className="text-[9px] text-gray-400">{t('metric_staff')}</p>
-                    <p className="text-xs font-bold text-blue-400">24 On Duty</p>
-                  </div>
-                  <div className="bg-gray-800/80 p-2.5 rounded-xl border border-gray-700/50">
-                    <p className="text-[9px] text-gray-400">{t('metric_inv')}</p>
-                    <p className="text-xs font-bold text-amber-400">86% Optimal</p>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1 rounded-lg text-[10px] font-black">● 20 MODULES SYNCED</span>
+                    <span className="bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 px-3 py-1 rounded-lg text-[10px] font-black">P&L & POS LIVE</span>
                   </div>
                 </div>
 
-                <div className="space-y-2 mt-4">
-                  <div className="bg-gray-800/50 p-3 rounded-xl border border-gray-700/50 flex items-center justify-between text-xs">
-                    <span className="text-gray-300">⚡ Operations: <strong>42 Reservations</strong> | <strong>18 Active Kitchen Orders</strong></span>
-                    <span className="text-emerald-400 font-semibold">+14%</span>
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 my-6">
+                  <div className="bg-white/[0.02] hover:bg-white/[0.04] transition-all p-5 rounded-2xl border border-white/[0.08]">
+                    <p className="text-[10px] text-gray-400 font-black uppercase tracking-wider">{t('metric_rev')}</p>
+                    <div className="flex items-baseline justify-between mt-2">
+                      <p className="text-xl sm:text-2xl font-black text-emerald-400">$48,250.00</p>
+                      <span className="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded font-bold">+28.4%</span>
+                    </div>
                   </div>
-                  <div className="bg-brandPrimary/15 border border-brandPrimary/30 p-3 rounded-xl text-xs text-purple-200 flex items-start space-x-2">
-                    <span className="text-brandPrimary font-bold">🤖 AI:</span>
-                    <span>{t('preview_ai')}</span>
+                  <div className="bg-white/[0.02] hover:bg-white/[0.04] transition-all p-5 rounded-2xl border border-white/[0.08]">
+                    <p className="text-[10px] text-gray-400 font-black uppercase tracking-wider">{t('metric_profit')}</p>
+                    <div className="flex items-baseline justify-between mt-2">
+                      <p className="text-xl sm:text-2xl font-black text-white">31.2% Net</p>
+                      <span className="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded font-bold">Optimal P&L</span>
+                    </div>
+                  </div>
+                  <div className="bg-white/[0.02] hover:bg-white/[0.04] transition-all p-5 rounded-2xl border border-white/[0.08]">
+                    <p className="text-[10px] text-gray-400 font-black uppercase tracking-wider">{t('metric_staff')}</p>
+                    <div className="flex items-baseline justify-between mt-2">
+                      <p className="text-xl sm:text-2xl font-black text-blue-400">18 Staff Active</p>
+                      <span className="text-[10px] text-purple-300 bg-purple-500/10 px-2 py-0.5 rounded font-bold">HR Logged</span>
+                    </div>
+                  </div>
+                  <div className="bg-white/[0.02] hover:bg-white/[0.04] transition-all p-5 rounded-2xl border border-white/[0.08]">
+                    <p className="text-[10px] text-gray-400 font-black uppercase tracking-wider">{t('metric_inv')}</p>
+                    <div className="flex items-baseline justify-between mt-2">
+                      <p className="text-xl sm:text-2xl font-black text-amber-400">Zero Waste</p>
+                      <span className="text-[10px] text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded font-bold">Auto-Stock</span>
+                    </div>
                   </div>
                 </div>
+
+                <div id="ai-section" className="bg-gradient-to-r from-indigo-950/60 via-purple-950/50 to-gray-900 border border-indigo-500/40 p-6 rounded-2xl text-xs sm:text-sm text-purple-100 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 shadow-2xl backdrop-blur-xl">
+                  <div className="flex items-start space-x-4 rtl:space-x-reverse">
+                    <span className="bg-gradient-to-tr from-indigo-600 to-purple-600 text-white font-black p-3.5 rounded-2xl text-sm shadow-lg shadow-indigo-600/30 mt-0.5 flex items-center justify-center">🤖</span>
+                    <div>
+                      <h4 className="font-black text-white text-xs uppercase tracking-widest mb-1">{t('ai_alert_title')}</h4>
+                      <p className="text-gray-300 text-xs sm:text-sm leading-relaxed font-medium">{t('ai_alert_text')}</p>
+                    </div>
+                  </div>
+                  <button 
+                    onClick={handleAiAction}
+                    disabled={aiState !== 'idle'}
+                    className={`whitespace-nowrap px-6 py-3.5 rounded-xl font-black text-xs transition-all shadow-xl cursor-pointer ${
+                      aiState === 'done' 
+                        ? 'bg-emerald-600 text-white cursor-default shadow-emerald-600/30' 
+                        : aiState === 'processing'
+                        ? 'bg-purple-800 text-white animate-pulse cursor-wait'
+                        : 'bg-white text-gray-900 hover:bg-gray-100 hover:scale-105'
+                    }`}
+                  >
+                    {aiState === 'idle' && t('ai_action_btn')}
+                    {aiState === 'processing' && t('ai_action_progress')}
+                    {aiState === 'done' && t('ai_action_done')}
+                  </button>
+                </div>
               </div>
-            </div>
+            )}
+
+            {previewTab === 'b2c' && (
+              <div>
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 border-b border-white/10 text-xs text-gray-400 gap-3">
+                  <span className="font-black text-white flex items-center gap-2.5 text-sm">
+                    <span className="w-3 h-3 rounded-full bg-indigo-500 animate-ping"></span> 
+                    {t('customer_view_title')}
+                  </span>
+                  <span className="bg-purple-500/20 text-purple-300 border border-purple-500/30 px-3 py-1 rounded-lg text-[10px] font-black">GPS LOCATION & TABLE QR SCAN</span>
+                </div>
+
+                <div className="my-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="bg-white/[0.02] p-5 rounded-2xl border border-white/[0.08] flex items-center justify-between hover:border-indigo-500/40 transition-all">
+                    <div>
+                      <span className="text-[10px] text-indigo-400 font-black uppercase">Best Seller</span>
+                      <h5 className="font-black text-sm text-white mt-1">{t('sample_dish_1')}</h5>
+                      <span className="text-xs text-emerald-400 font-bold mt-1 block">$18.50</span>
+                    </div>
+                    <span className="bg-indigo-600/20 text-indigo-400 border border-indigo-500/30 p-2.5 rounded-xl text-xs font-black">+ Order</span>
+                  </div>
+                  <div className="bg-white/[0.02] p-5 rounded-2xl border border-white/[0.08] flex items-center justify-between hover:border-indigo-500/40 transition-all">
+                    <div>
+                      <span className="text-[10px] text-indigo-400 font-black uppercase">Chef Special</span>
+                      <h5 className="font-black text-sm text-white mt-1">{t('sample_dish_2')}</h5>
+                      <span className="text-xs text-emerald-400 font-bold mt-1 block">$22.00</span>
+                    </div>
+                    <span className="bg-indigo-600/20 text-indigo-400 border border-indigo-500/30 p-2.5 rounded-xl text-xs font-black">+ Order</span>
+                  </div>
+                  <div className="bg-gradient-to-br from-purple-950/60 to-gray-900 p-5 rounded-2xl border border-purple-500/40 flex flex-col justify-center shadow-lg">
+                    <p className="text-[10px] text-purple-300 font-black uppercase">VIP Loyalty Wallet</p>
+                    <p className="text-base font-black text-white mt-1">{t('sample_points')}</p>
+                    <span className="text-[10px] text-gray-400 mt-1 font-medium">Redeemable instantly at all branches</span>
+                  </div>
+                </div>
+
+                <div className="bg-white/[0.02] border border-white/[0.08] p-5 rounded-2xl text-xs text-gray-300 flex flex-col sm:flex-row items-center justify-between gap-4 font-medium">
+                  <p>{t('customer_view_desc')}</p>
+                  <span className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-black px-5 py-2.5 rounded-xl shadow-lg text-xs whitespace-nowrap">⚡ Mobile Native Experience</span>
+                </div>
+              </div>
+            )}
 
           </div>
+
         </div>
       </section>
 
-      {/* TRUSTED TEXT */}
-      <section className="py-10 border-y border-gray-100 bg-gray-50/50 text-center">
-        <p className="text-xs uppercase tracking-widest text-gray-400 font-semibold">{t('trusted_text')}</p>
+      {/* ALL 20 MODULES SECTION */}
+      <section id="modules" className="py-28 bg-[#040408] border-t border-white/[0.08] relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">{t('modules_section_title')}</h2>
+            <p className="text-gray-400 text-base sm:text-lg mt-4 font-medium">{t('modules_section_desc')}</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { title: t('mod_1_title'), desc: t('mod_1_desc') },
+              { title: t('mod_2_title'), desc: t('mod_2_desc') },
+              { title: t('mod_3_title'), desc: t('mod_3_desc') },
+              { title: t('mod_4_title'), desc: t('mod_4_desc') },
+              { title: t('mod_5_title'), desc: t('mod_5_desc') },
+              { title: t('mod_6_title'), desc: t('mod_6_desc') },
+              { title: t('mod_7_title'), desc: t('mod_7_desc') },
+              { title: t('mod_8_title'), desc: t('mod_8_desc') },
+              { title: t('mod_9_title'), desc: t('mod_9_desc') },
+              { title: t('mod_10_title'), desc: t('mod_10_desc') },
+              { title: t('mod_11_title'), desc: t('mod_11_desc') },
+              { title: t('mod_12_title'), desc: t('mod_12_desc') },
+              { title: t('mod_13_title'), desc: t('mod_13_desc') },
+              { title: t('mod_14_title'), desc: t('mod_14_desc') },
+              { title: t('mod_15_title'), desc: t('mod_15_desc') },
+              { title: t('mod_16_title'), desc: t('mod_16_desc') },
+              { title: t('mod_17_title'), desc: t('mod_17_desc') },
+              { title: t('mod_18_title'), desc: t('mod_18_desc') },
+              { title: t('mod_19_title'), desc: t('mod_19_desc') },
+              { title: t('mod_20_title'), desc: t('mod_20_desc') },
+            ].map((mod, idx) => (
+              <div key={idx} className="bg-gradient-to-b from-white/[0.03] to-white/[0.01] p-6 rounded-3xl border border-white/[0.08] hover:border-indigo-500/50 hover:bg-white/[0.05] transition-all duration-300 group hover:-translate-y-1.5 shadow-xl">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-950/80 to-purple-950/40 border border-indigo-500/30 flex items-center justify-center mb-5 group-hover:bg-indigo-600 group-hover:border-indigo-400 transition-all shadow-inner">
+                  {moduleIcons[idx]}
+                </div>
+                <h3 className="text-base font-black text-white mb-2 group-hover:text-indigo-300 transition-colors">{mod.title}</h3>
+                <p className="text-xs text-gray-400 leading-relaxed font-medium">{mod.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* ARCHITECTURE SECTION */}
-      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" id="architecture">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-brandPrimary font-semibold text-xs uppercase tracking-widest bg-brandPrimary/10 px-3 py-1 rounded-full">{t('arch_badge')}</span>
-          <h2 className="text-3xl font-extrabold text-gray-900 tracking-tight mt-3">{t('arch_title')}</h2>
-          <p className="text-gray-600 text-sm mt-2">{t('arch_desc')}</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-3">
-            <div className="w-8 h-8 rounded-lg bg-blue-100 text-blue-700 font-bold flex items-center justify-center text-xs">01</div>
-            <h3 className="font-bold text-gray-900">{t('layer_operate')}</h3>
-            <p className="text-xs text-gray-600">{t('layer_operate_desc')}</p>
-          </div>
-          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-3">
-            <div className="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-700 font-bold flex items-center justify-center text-xs">02</div>
-            <h3 className="font-bold text-gray-900">{t('layer_manage')}</h3>
-            <p className="text-xs text-gray-600">{t('layer_manage_desc')}</p>
-          </div>
-          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-3">
-            <div className="w-8 h-8 rounded-lg bg-rose-100 text-rose-700 font-bold flex items-center justify-center text-xs">03</div>
-            <h3 className="font-bold text-gray-900">{t('layer_grow')}</h3>
-            <p className="text-xs text-gray-600">{t('layer_grow_desc')}</p>
-          </div>
-          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-3">
-            <div className="w-8 h-8 rounded-lg bg-purple-100 text-purple-700 font-bold flex items-center justify-center text-xs">04</div>
-            <h3 className="font-bold text-gray-900">{t('layer_understand')}</h3>
-            <p className="text-xs text-gray-600">{t('layer_understand_desc')}</p>
-          </div>
-        </div>
-      </section>
-
-      {/* HIGHLIGHT REWARDS SECTION */}
-      <section className="py-20 bg-gray-50 border-y border-gray-200/60" id="platform">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-5 space-y-6">
-              <span className="text-rose-600 font-semibold text-xs uppercase tracking-widest bg-rose-50 border border-rose-200 px-3 py-1 rounded-full">{t('rewards_badge')}</span>
-              <h2 className="text-3xl font-extrabold text-gray-900 tracking-tight">{t('rewards_title')}</h2>
-              <p className="text-gray-600 text-sm leading-relaxed">{t('rewards_desc')}</p>
+      <section id="architecture" className="py-28 bg-[#030305] border-t border-white/[0.08]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">{t('arch_main_title')}</h2>
+          <p className="text-gray-400 text-base sm:text-lg mt-4 max-w-2xl mx-auto font-medium">{t('arch_main_desc')}</p>
+          
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto text-left rtl:text-right">
+            <div className="bg-gradient-to-b from-white/[0.03] to-white/[0.01] p-8 rounded-3xl border border-white/[0.08] hover:border-indigo-500/40 transition-all">
+              <span className="text-indigo-400 font-black text-xs uppercase tracking-widest bg-indigo-500/10 px-3 py-1 rounded-md">01 / Management</span>
+              <h3 className="text-white font-black text-xl mt-4 mb-3">Restaurant Admin OS</h3>
+              <p className="text-gray-400 text-xs leading-relaxed font-medium">Full desktop administrative control over P&L, inventory, HR, suppliers, recipes, and global store settings.</p>
             </div>
-            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
-                <div className="text-rose-600 font-bold text-sm mb-1">{t('rew_ig_title')}</div>
-                <p className="text-xs text-gray-600">{t('rew_ig_desc')}</p>
-              </div>
-              <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
-                <div className="text-amber-600 font-bold text-sm mb-1">{t('rew_google_title')}</div>
-                <p className="text-xs text-gray-600">{t('rew_google_desc')}</p>
-              </div>
-              <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
-                <div className="text-purple-600 font-bold text-sm mb-1">{t('rew_bday_title')}</div>
-                <p className="text-xs text-gray-600">{t('rew_bday_desc')}</p>
-              </div>
-              <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
-                <div className="text-blue-600 font-bold text-sm mb-1">{t('rew_cash_title')}</div>
-                <p className="text-xs text-gray-600">{t('rew_cash_desc')}</p>
-              </div>
+            <div className="bg-gradient-to-b from-white/[0.03] to-white/[0.01] p-8 rounded-3xl border border-white/[0.08] hover:border-purple-500/40 transition-all">
+              <span className="text-purple-400 font-black text-xs uppercase tracking-widest bg-purple-500/10 px-3 py-1 rounded-md">02 / Floor Staff</span>
+              <h3 className="text-white font-black text-xl mt-4 mb-3">Waiter POS & Work Logs</h3>
+              <p className="text-gray-400 text-xs leading-relaxed font-medium">Rapid table-side ordering terminal for waiters and instant attendance punch-in/out for HR.</p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* AI INTELLIGENCE SECTION */}
-      <section className="py-20 bg-gray-900 text-white" id="ai-section">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-6 space-y-6">
-              <span className="text-brandPrimary font-semibold text-xs uppercase tracking-widest bg-brandPrimary/10 px-3 py-1 rounded-full">{t('ai_badge')}</span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">{t('ai_section_title')}</h2>
-              <p className="text-gray-400 text-sm sm:text-base leading-relaxed">{t('ai_section_desc')}</p>
-              <ul className="space-y-3 text-sm text-gray-300">
-                <li>{t('ai_bullet_1')}</li>
-                <li>{t('ai_bullet_2')}</li>
-                <li>{t('ai_bullet_3')}</li>
-              </ul>
-            </div>
-            <div className="lg:col-span-6 bg-gray-800 p-6 rounded-2xl border border-gray-700 shadow-xl space-y-4">
-              <div className="text-xs text-gray-400 font-mono">{t('ai_log_title')}</div>
-              <div className="bg-gray-900 p-4 rounded-xl border border-gray-800 text-xs text-purple-300">{t('ai_log_1')}</div>
-              <div className="bg-gray-900 p-4 rounded-xl border border-gray-800 text-xs text-amber-300">{t('ai_log_2')}</div>
+            <div className="bg-gradient-to-b from-white/[0.03] to-white/[0.01] p-8 rounded-3xl border border-white/[0.08] hover:border-emerald-500/40 transition-all">
+              <span className="text-emerald-400 font-black text-xs uppercase tracking-widest bg-emerald-500/10 px-3 py-1 rounded-md">03 / Customers</span>
+              <h3 className="text-white font-black text-xl mt-4 mb-3">Mobile QR Experience</h3>
+              <p className="text-gray-400 text-xs leading-relaxed font-medium">GPS branch discovery, interactive visual menus, instant table ordering, and loyalty wallet rewards.</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* PRICING SECTION */}
-      <section className="py-20 bg-white border-t border-gray-100" id="pricing">
+      <section id="pricing" className="py-28 bg-[#040408] border-t border-white/[0.08]">
         <div className="max-w-7xl mx-auto px-4 text-center mb-16">
-          <h2 className="text-3xl font-extrabold text-gray-900">{t('pricing_title')}</h2>
-          <p className="text-gray-600 text-sm mt-2">{t('pricing_desc')}</p>
+          <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">{t('pricing_title')}</h2>
+          <p className="text-gray-400 text-base sm:text-lg mt-4 font-medium">{t('pricing_desc')}</p>
         </div>
 
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
-          <div className="bg-gray-50 p-8 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
+        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
+          <div className="bg-white/[0.02] p-8 sm:p-10 rounded-3xl border border-white/[0.08] flex flex-col justify-between shadow-xl">
             <div>
-              <h3 className="text-lg font-bold text-gray-900">{t('plan_monthly')}</h3>
-              <div className="my-4">
-                <span className="text-4xl font-extrabold">$29</span> <span className="text-gray-500 text-sm">{t('per_month')}</span>
+              <h3 className="text-2xl font-black text-white">{t('plan_monthly')}</h3>
+              <div className="my-6">
+                <span className="text-5xl font-black tracking-tight text-white">$39</span> 
+                <span className="text-gray-400 text-xs font-bold block mt-1">{t('per_month')}</span>
               </div>
-              <ul className="space-y-3 text-sm text-gray-600 mb-8">
-                <li>{t('p_f1')}</li>
-                <li>{t('p_f2')}</li>
-                <li>{t('p_f3')}</li>
+              <ul className="space-y-3.5 text-xs text-gray-300 mb-6 font-bold">
+                <li>✓ All 20+ Admin & POS Modules Included</li>
+                <li>✓ Real-time P&L & Financial Suite</li>
+                <li>✓ Smart Inventory & Recipe Costing</li>
+                <li>✓ Staff HR, Attendance & Work Logs</li>
               </ul>
             </div>
-            <a href="#" className="w-full bg-gray-200 text-gray-900 text-center font-semibold py-3 rounded-xl hover:bg-gray-300 transition">{t('get_started')}</a>
+            <Link href="/register" className="w-full text-center bg-white/10 hover:bg-white/20 text-white font-black py-3.5 rounded-2xl text-xs transition-all">
+              Choose Monthly Plan
+            </Link>
           </div>
 
-          <div className="bg-gray-50 p-8 rounded-2xl border-2 border-brandPrimary shadow-lg relative flex flex-col justify-between">
-            <span className="absolute -top-3 right-8 bg-brandPrimary text-white text-xs font-bold px-3 py-1 rounded-full uppercase">{t('most_popular')}</span>
+          <div className="bg-gradient-to-b from-indigo-950/60 via-purple-950/30 to-white/[0.02] p-8 sm:p-10 rounded-3xl border-2 border-indigo-500/60 shadow-2xl relative flex flex-col justify-between">
+            <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-wider shadow-md">
+              Most Popular
+            </div>
             <div>
-              <h3 className="text-lg font-bold text-gray-900">{t('plan_yearly')}</h3>
-              <div className="my-4">
-                <span className="text-4xl font-extrabold">$290</span> <span className="text-gray-500 text-sm">{t('per_year')}</span>
+              <h3 className="text-2xl font-black text-white">{t('plan_yearly')}</h3>
+              <div className="my-6">
+                <span className="text-5xl font-black tracking-tight text-white">$32.50</span> 
+                <span className="text-gray-400 text-xs font-bold block mt-1">{t('per_year')}</span>
+                <span className="inline-block bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[11px] font-black px-3 py-1 rounded-xl mt-3">{t('save_badge')}</span>
               </div>
-              <ul className="space-y-3 text-sm text-gray-600 mb-8">
-                <li>{t('py_f1')}</li>
-                <li>{t('py_f2')}</li>
-                <li>{t('py_f3')}</li>
-                <li className="text-brandPrimary font-semibold">{t('py_f4')}</li>
+              <ul className="space-y-3.5 text-xs text-gray-300 mb-6 font-bold">
+                <li>✓ Everything in Monthly Plan</li>
+                <li>✓ Advanced AI P&L Forecasting & Advisor</li>
+                <li>✓ Dedicated Priority 24/7 Support</li>
+                <li>✓ Free Menu Digitization & Data Migration</li>
               </ul>
             </div>
-            <a href="#" className="w-full bg-brandPrimary text-white text-center font-semibold py-3 rounded-xl hover:opacity-90 transition">{t('get_started')}</a>
+            <Link href="/register" className="w-full text-center bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-black py-3.5 rounded-2xl text-xs shadow-xl shadow-indigo-600/40 transition-all">
+              Choose Annual Plan (Save Big)
+            </Link>
           </div>
         </div>
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-white border-t border-gray-200 py-12 text-sm text-gray-500">
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+      <footer className="bg-[#030305] border-t border-white/[0.08] pt-20 pb-12 text-sm text-gray-400">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-5 gap-8 mb-16">
+          <div className="col-span-2 space-y-4">
+            <span className="text-3xl font-black tracking-tighter text-white">AIOR</span>
+            <p className="text-xs text-gray-400 leading-relaxed max-w-sm font-medium">{t('footer_tagline')}</p>
+          </div>
           <div>
-            <h4 className="font-bold text-gray-900 mb-4">{t('footer_prod')}</h4>
-            <ul className="space-y-2 text-xs">
-              <li><a href="#" className="hover:text-black">{t('f_pos')}</a></li>
-              <li><a href="#" className="hover:text-black">{t('f_menu')}</a></li>
-              <li><a href="#" className="hover:text-black">{t('f_inv')}</a></li>
-              <li><a href="#" className="hover:text-black">{t('f_loyalty')}</a></li>
+            <h4 className="text-xs font-black text-white uppercase tracking-wider mb-4">Product Modules</h4>
+            <ul className="space-y-2.5 text-xs font-bold">
+              <li><a href="#modules" className="hover:text-white transition-colors">Admin POS & P&L</a></li>
+              <li><a href="#modules" className="hover:text-white transition-colors">Inventory & Recipes</a></li>
+              <li><a href="#modules" className="hover:text-white transition-colors">Staff HR & Attendance</a></li>
             </ul>
           </div>
           <div>
-            <h4 className="font-bold text-gray-900 mb-4">{t('footer_comp')}</h4>
-            <ul className="space-y-2 text-xs">
-              <li><a href="#" className="hover:text-black">{t('f_about')}</a></li>
-              <li><a href="#" className="hover:text-black">{t('f_careers')}</a></li>
-              <li><a href="#" className="hover:text-black">{t('f_contact')}</a></li>
+            <h4 className="text-xs font-black text-white uppercase tracking-wider mb-4">Architecture</h4>
+            <ul className="space-y-2.5 text-xs font-bold">
+              <li><a href="#architecture" className="hover:text-white transition-colors">Restaurant OS (Desktop)</a></li>
+              <li><a href="#architecture" className="hover:text-white transition-colors">Customer QR App (Mobile)</a></li>
+              <li><a href="#ai-section" className="hover:text-white transition-colors">AI Intelligence Engine</a></li>
             </ul>
           </div>
           <div>
-            <h4 className="font-bold text-gray-900 mb-4">{t('footer_res')}</h4>
-            <ul className="space-y-2 text-xs">
-              <li><a href="#" className="hover:text-black">{t('f_docs')}</a></li>
-              <li><a href="#" className="hover:text-black">{t('f_help')}</a></li>
-              <li><a href="#" className="hover:text-black">{t('f_blog')}</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-bold text-gray-900 mb-4">{t('footer_legal')}</h4>
-            <ul className="space-y-2 text-xs">
-              <li><a href="#" className="hover:text-black">{t('f_privacy')}</a></li>
-              <li><a href="#" className="hover:text-black">{t('f_terms')}</a></li>
-              <li><a href="#" className="hover:text-black">{t('f_security')}</a></li>
+            <h4 className="text-xs font-black text-white uppercase tracking-wider mb-4">Company</h4>
+            <ul className="space-y-2.5 text-xs font-bold">
+              <li><a href="#" className="hover:text-white transition-colors">About AIOR</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Privacy & Terms</a></li>
+              <li><a href="#pricing" className="hover:text-white transition-colors">Global Pricing</a></li>
             </ul>
           </div>
         </div>
-        <div className="max-w-7xl mx-auto px-4 pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center text-xs">
-          <div>{t('copyright')}</div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-white/[0.05] text-center text-xs text-gray-600 font-bold">
+          <p>{t('copyright')}</p>
         </div>
       </footer>
+
     </div>
   );
 }
