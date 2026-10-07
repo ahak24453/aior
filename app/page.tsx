@@ -48,7 +48,6 @@ import {
   Zap
 } from 'lucide-react';
 
-// القاموس الموحد الشامل للغات الخمس (الإنجليزية، الفرنسية، الروسية، العربية، الإسبانية) مع جميع الوحدات والميزات
 const translations = {
   en: {
     brand_tag: "The Ultimate 20-in-1 Restaurant Operating System",
@@ -594,7 +593,7 @@ const translations = {
     
     pricing_title: "Precios Transparentes y Predecibles",
     pricing_desc: "Un plan simple que desbloquea los 20+ módulos para locales únicos o franquicias.",
-    plan_monthly: "Plan Mensual",
+    plan_monthly: "Plan Mensuel",
     per_month: "/ local / mes",
     plan_yearly: "Plan Anual",
     per_year: "/ local / mes (Facturación anual)",
@@ -632,14 +631,12 @@ export default function UltimateRestaurantPlatform() {
   const [previewTab, setPreviewTab] = useState<'b2b' | 'b2c'>('b2b');
   const [aiState, setAiState] = useState<'idle' | 'processing' | 'done'>('idle');
 
-  // States لحقول التسجيل المتقدمة
   const [accountType, setAccountType] = useState<'restaurant' | 'client'>('restaurant');
   const [userIdCode, setUserIdCode] = useState('');
   const [copied, setCopied] = useState(false);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  // توليد كود معرف مستخدم فريد عند فتح نافذة التسجيل
   useEffect(() => {
     if (authModal === 'signup') {
       const randomId = 'USR-' + Math.floor(100000 + Math.random() * 900000);
@@ -679,7 +676,6 @@ export default function UltimateRestaurantPlatform() {
     setAuthModal('none');
   };
 
-  // أيقونات الـ 20 موديلاً
   const moduleIcons = [
     <LayoutDashboard className="w-6 h-6 text-indigo-400 group-hover:scale-110 transition-transform duration-300" />,
     <ShoppingBag className="w-6 h-6 text-purple-400 group-hover:scale-110 transition-transform duration-300" />,
@@ -706,15 +702,15 @@ export default function UltimateRestaurantPlatform() {
   return (
     <div dir={isRtl ? 'rtl' : 'ltr'} className="bg-[#030305] text-gray-100 font-sans min-h-screen selection:bg-indigo-600 selection:text-white relative overflow-x-hidden">
       
-      {/* خلفية جمالية متدرجة */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-indigo-600/10 blur-[180px] rounded-full pointer-events-none"></div>
+      {/* خلفية جمالية متدرجة حديثة */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[600px] bg-gradient-to-tr from-indigo-600/20 via-purple-600/15 to-transparent blur-[160px] rounded-full pointer-events-none"></div>
 
       {/* الهيدر العلوي */}
-      <header className="sticky top-0 z-40 bg-[#030305]/90 backdrop-blur-2xl border-b border-white/[0.08]">
+      <header className="sticky top-0 z-40 bg-[#030305]/80 backdrop-blur-xl border-b border-white/[0.08]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           
           <div className="flex items-center space-x-3 rtl:space-x-reverse">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 p-0.5 shadow-lg shadow-indigo-500/20 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 p-0.5 shadow-xl shadow-indigo-500/20 flex items-center justify-center">
               <div className="w-full h-full bg-[#030305] rounded-[14px] flex items-center justify-center">
                 <span className="text-xl font-black tracking-tighter bg-gradient-to-r from-white via-indigo-200 to-purple-400 bg-clip-text text-transparent">AI</span>
               </div>
@@ -729,7 +725,7 @@ export default function UltimateRestaurantPlatform() {
             <a href="#platform" className="hover:text-white transition-colors">{t('nav_platform')}</a>
             <a href="#modules" className="hover:text-white transition-colors">{t('nav_modules')}</a>
             <a href="#architecture" className="hover:text-white transition-colors">{t('nav_architecture')}</a>
-            <a href="#ai-section" className="hover:text-indigo-400 transition-colors flex items-center gap-1.5 bg-indigo-950/40 px-3 py-1.5 rounded-full border border-indigo-500/30">
+            <a href="#ai-section" className="hover:text-indigo-400 transition-colors flex items-center gap-1.5 bg-indigo-950/40 px-3.5 py-2 rounded-full border border-indigo-500/30 shadow-inner">
               <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
               {t('nav_ai')}
             </a>
@@ -740,7 +736,7 @@ export default function UltimateRestaurantPlatform() {
             <select 
               value={lang} 
               onChange={(e) => setLang(e.target.value as Language)}
-              className="bg-gray-900 border border-white/10 text-gray-200 text-xs font-bold rounded-xl px-3 py-2.5 focus:outline-none focus:border-indigo-500 cursor-pointer"
+              className="bg-gray-900/90 border border-white/15 text-gray-200 text-xs font-bold rounded-xl px-3 py-2.5 focus:outline-none focus:border-indigo-500 cursor-pointer shadow-sm"
             >
               <option value="en">🇺🇸 EN</option>
               <option value="fr">🇫🇷 FR</option>
@@ -773,7 +769,7 @@ export default function UltimateRestaurantPlatform() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-gray-900 border-b border-white/10 px-6 py-4 space-y-3">
+          <div className="lg:hidden bg-gray-900 border-b border-white/10 px-6 py-4 space-y-3 shadow-2xl">
             <a href="#platform" onClick={() => setMobileMenuOpen(false)} className="block text-xs font-bold text-gray-300 hover:text-white py-1">{t('nav_platform')}</a>
             <a href="#modules" onClick={() => setMobileMenuOpen(false)} className="block text-xs font-bold text-gray-300 hover:text-white py-1">{t('nav_modules')}</a>
             <a href="#architecture" onClick={() => setMobileMenuOpen(false)} className="block text-xs font-bold text-gray-300 hover:text-white py-1">{t('nav_architecture')}</a>
@@ -787,7 +783,7 @@ export default function UltimateRestaurantPlatform() {
       <section className="relative pt-24 pb-32 overflow-hidden px-4">
         <div className="max-w-7xl mx-auto text-center space-y-6 relative z-10">
           
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-950/80 via-purple-950/50 to-gray-900 border border-indigo-500/30 px-5 py-2 rounded-full text-xs font-black text-indigo-300 shadow-2xl backdrop-blur-xl">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-950/80 via-purple-950/50 to-gray-900 border border-indigo-500/40 px-5 py-2 rounded-full text-xs font-black text-indigo-300 shadow-2xl backdrop-blur-xl">
             <Sparkles className="w-4 h-4 text-indigo-400 animate-spin" />
             <span>{t('badge_top')}</span>
           </div>
@@ -806,7 +802,7 @@ export default function UltimateRestaurantPlatform() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4 max-w-md mx-auto sm:max-w-none">
             <button 
               onClick={() => setAuthModal('signup')}
-              className="w-full sm:w-auto bg-gradient-to-r from-indigo-600 to-purple-600 hover:scale-105 active:scale-95 text-white px-8 py-4 rounded-2xl font-black text-xs sm:text-sm shadow-2xl shadow-indigo-600/40 transition-all flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full sm:w-auto bg-gradient-to-r from-indigo-600 via-indigo-500 to-purple-600 hover:scale-105 active:scale-95 text-white px-8 py-4 rounded-2xl font-black text-xs sm:text-sm shadow-2xl shadow-indigo-600/40 transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
               <span>{t('hero_btn_1')}</span>
             </button>
@@ -829,7 +825,7 @@ export default function UltimateRestaurantPlatform() {
 
         {/* تبويبات المعاينة التفاعلية B2B / B2C */}
         <div className="flex justify-center my-8">
-          <div className="bg-gray-900/80 p-1.5 rounded-2xl border border-white/10 flex items-center gap-2 shadow-2xl backdrop-blur-xl">
+          <div className="bg-gray-900/90 p-1.5 rounded-2xl border border-white/15 flex items-center gap-2 shadow-2xl backdrop-blur-xl">
             <button 
               onClick={() => setPreviewTab('b2b')}
               className={`px-5 py-2.5 rounded-xl text-xs font-black transition-all cursor-pointer flex items-center gap-2 ${previewTab === 'b2b' ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-600/30' : 'text-gray-400 hover:text-white'}`}
@@ -846,8 +842,9 @@ export default function UltimateRestaurantPlatform() {
         </div>
 
         {/* لوحة العرض الحية */}
-        <div id="platform" className="max-w-6xl mx-auto bg-[#07070F]/90 rounded-[32px] p-6 sm:p-10 shadow-2xl shadow-indigo-950/50 border border-white/10 text-white backdrop-blur-2xl">
-          
+        <div id="platform" className="max-w-6xl mx-auto bg-[#07070F]/95 rounded-[32px] p-6 sm:p-10 shadow-2xl shadow-indigo-950/80 border border-white/10 text-white backdrop-blur-2xl relative overflow-hidden">
+          <div className="absolute -right-20 -top-20 w-60 h-60 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
           {previewTab === 'b2b' && (
             <div>
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 border-b border-white/10 text-xs text-gray-400 gap-3">
@@ -856,30 +853,30 @@ export default function UltimateRestaurantPlatform() {
                   AIOR ADMIN OS & WAITER POS
                 </span>
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1 rounded-lg text-[10px] font-black">● 20 MODULES SYNCED</span>
+                  <span className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3.5 py-1.5 rounded-xl text-[10px] font-black">● 20 MODULES SYNCED</span>
                 </div>
               </div>
 
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 my-6">
-                <div className="bg-white/[0.02] p-5 rounded-2xl border border-white/[0.08]">
+                <div className="bg-white/[0.02] p-5 rounded-2xl border border-white/[0.08] hover:border-indigo-500/30 transition-all">
                   <p className="text-[10px] text-gray-400 font-black uppercase tracking-wider">{t('metric_rev')}</p>
                   <p className="text-xl sm:text-2xl font-black text-emerald-400 mt-2">$48,250.00</p>
                 </div>
-                <div className="bg-white/[0.02] p-5 rounded-2xl border border-white/[0.08]">
+                <div className="bg-white/[0.02] p-5 rounded-2xl border border-white/[0.08] hover:border-indigo-500/30 transition-all">
                   <p className="text-[10px] text-gray-400 font-black uppercase tracking-wider">{t('metric_profit')}</p>
                   <p className="text-xl sm:text-2xl font-black text-white mt-2">31.2% Net</p>
                 </div>
-                <div className="bg-white/[0.02] p-5 rounded-2xl border border-white/[0.08]">
+                <div className="bg-white/[0.02] p-5 rounded-2xl border border-white/[0.08] hover:border-indigo-500/30 transition-all">
                   <p className="text-[10px] text-gray-400 font-black uppercase tracking-wider">{t('metric_staff')}</p>
                   <p className="text-xl sm:text-2xl font-black text-blue-400 mt-2">18 Staff Active</p>
                 </div>
-                <div className="bg-white/[0.02] p-5 rounded-2xl border border-white/[0.08]">
+                <div className="bg-white/[0.02] p-5 rounded-2xl border border-white/[0.08] hover:border-indigo-500/30 transition-all">
                   <p className="text-[10px] text-gray-400 font-black uppercase tracking-wider">{t('metric_inv')}</p>
                   <p className="text-xl sm:text-2xl font-black text-amber-400 mt-2">Zero Waste</p>
                 </div>
               </div>
 
-              <div id="ai-section" className="bg-gradient-to-r from-indigo-950/60 via-purple-950/50 to-gray-900 border border-indigo-500/40 p-6 rounded-2xl text-xs sm:text-sm text-purple-100 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 shadow-2xl">
+              <div id="ai-section" className="bg-gradient-to-r from-indigo-950/70 via-purple-950/60 to-gray-900 border border-indigo-500/40 p-6 rounded-2xl text-xs sm:text-sm text-purple-100 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 shadow-2xl">
                 <div className="flex items-start space-x-4 rtl:space-x-reverse">
                   <span className="bg-gradient-to-tr from-indigo-600 to-purple-600 text-white font-black p-3.5 rounded-2xl text-sm shadow-lg">🤖</span>
                   <div>
@@ -963,7 +960,7 @@ export default function UltimateRestaurantPlatform() {
               { title: t('mod_19_title'), desc: t('mod_19_desc') },
               { title: t('mod_20_title'), desc: t('mod_20_desc') },
             ].map((mod, idx) => (
-              <div key={idx} className="bg-gradient-to-b from-white/[0.03] to-white/[0.01] p-6 rounded-3xl border border-white/[0.08] hover:border-indigo-500/50 transition-all group shadow-xl">
+              <div key={idx} className="bg-gradient-to-b from-white/[0.04] to-white/[0.01] p-6 rounded-3xl border border-white/[0.08] hover:border-indigo-500/50 hover:-translate-y-1 transition-all duration-300 group shadow-xl">
                 <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-950/80 to-purple-950/40 border border-indigo-500/30 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
                   {moduleIcons[idx]}
                 </div>
@@ -981,18 +978,18 @@ export default function UltimateRestaurantPlatform() {
           <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">{t('arch_main_title')}</h2>
           <p className="text-gray-400 text-base sm:text-lg mt-4 max-w-2xl mx-auto font-medium">{t('arch_main_desc')}</p>
           
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto text-left rtl:text-right">
-            <div className="bg-white/[0.02] p-8 rounded-3xl border border-white/[0.08]">
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto text-start">
+            <div className="bg-white/[0.02] p-8 rounded-3xl border border-white/[0.08] hover:border-indigo-500/30 transition-all">
               <span className="text-indigo-400 font-black text-xs uppercase bg-indigo-500/10 px-3 py-1 rounded-md">01 / Management</span>
               <h3 className="text-white font-black text-xl mt-4 mb-3">Restaurant Admin OS</h3>
               <p className="text-gray-400 text-xs leading-relaxed font-medium">Full desktop administrative control over P&L, inventory, HR, suppliers, recipes, and global store settings.</p>
             </div>
-            <div className="bg-white/[0.02] p-8 rounded-3xl border border-white/[0.08]">
+            <div className="bg-white/[0.02] p-8 rounded-3xl border border-white/[0.08] hover:border-purple-500/30 transition-all">
               <span className="text-purple-400 font-black text-xs uppercase bg-purple-500/10 px-3 py-1 rounded-md">02 / Floor Staff</span>
               <h3 className="text-white font-black text-xl mt-4 mb-3">Waiter POS & Work Logs</h3>
               <p className="text-gray-400 text-xs leading-relaxed font-medium">Rapid table-side ordering terminal for waiters and instant attendance punch-in/out for HR.</p>
             </div>
-            <div className="bg-white/[0.02] p-8 rounded-3xl border border-white/[0.08]">
+            <div className="bg-white/[0.02] p-8 rounded-3xl border border-white/[0.08] hover:border-emerald-500/30 transition-all">
               <span className="text-emerald-400 font-black text-xs uppercase bg-emerald-500/10 px-3 py-1 rounded-md">03 / Customers</span>
               <h3 className="text-white font-black text-xl mt-4 mb-3">Mobile QR Experience</h3>
               <p className="text-gray-400 text-xs leading-relaxed font-medium">GPS branch discovery, interactive visual menus, instant table ordering, and loyalty wallet rewards.</p>
@@ -1027,7 +1024,7 @@ export default function UltimateRestaurantPlatform() {
             </button>
           </div>
 
-          <div className="bg-gradient-to-b from-indigo-950/60 to-white/[0.02] p-8 rounded-3xl border-2 border-indigo-500/60 shadow-2xl relative flex flex-col justify-between">
+          <div className="bg-gradient-to-b from-indigo-950/70 to-white/[0.02] p-8 rounded-3xl border-2 border-indigo-500/60 shadow-2xl relative flex flex-col justify-between">
             <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-1 rounded-full text-[10px] font-black uppercase">
               Most Popular
             </div>
@@ -1036,7 +1033,7 @@ export default function UltimateRestaurantPlatform() {
               <div className="my-6">
                 <span className="text-5xl font-black text-white">$32.50</span> 
                 <span className="text-gray-400 text-xs font-bold block mt-1">{t('per_year')}</span>
-                <span className="inline-block bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[11px] font-black px-3 py-1 rounded-xl mt-3">{t('save_badge')}</span>
+                <span className="inline-block bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[11px] font-black px-3.5 py-1.5 rounded-xl mt-3">{t('save_badge')}</span>
               </div>
               <ul className="space-y-3.5 text-xs text-gray-300 mb-6 font-bold">
                 <li>✓ Everything in Monthly Plan</li>
@@ -1051,18 +1048,18 @@ export default function UltimateRestaurantPlatform() {
         </div>
       </section>
 
-      {/* نافذة تسجيل الدخول / التسجيل المنبثقة المتقدمة (Auth Modal) */}
+      {/* نافذة تسجيل الدخول / التسجيل المنبثقة (Auth Modal) مع تصحيح الاتجاهات RTL */}
       {authModal !== 'none' && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-gray-900 border border-white/10 rounded-3xl max-w-md w-full p-6 sm:p-8 relative shadow-2xl max-h-[90vh] overflow-y-auto">
             <button 
               onClick={() => setAuthModal('none')}
-              className="absolute top-4 left-4 text-gray-400 hover:text-white bg-gray-800 w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold cursor-pointer"
+              className="absolute top-4 start-4 text-gray-400 hover:text-white bg-gray-800 w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold cursor-pointer"
             >
               <X className="w-4 h-4" />
             </button>
 
-            <h3 className="text-lg sm:text-xl font-black text-white mb-2">
+            <h3 className="text-lg sm:text-xl font-black text-white mb-2 mt-4 sm:mt-0">
               {authModal === 'login' ? t('modal_login_title') : t('modal_signup_title')}
             </h3>
             <p className="text-xs text-gray-400 mb-6">
@@ -1071,15 +1068,14 @@ export default function UltimateRestaurantPlatform() {
 
             <form onSubmit={handleSubmit} className="space-y-4">
               
-              {/* اختيار اللغة المفضلة */}
               <div>
                 <label className="block text-[11px] font-bold text-gray-300 mb-1">{t('preferred_lang_label')}</label>
                 <div className="relative">
-                  <Globe className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                  <Globe className="absolute start-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
                   <select 
                     value={lang} 
                     onChange={(e) => setLang(e.target.value as Language)}
-                    className="w-full bg-gray-950 border border-white/10 rounded-xl py-3 pr-10 pl-4 text-xs text-white focus:outline-none focus:border-indigo-500 cursor-pointer"
+                    className="w-full bg-gray-950 border border-white/10 rounded-xl py-3 ps-10 pe-4 text-xs text-white focus:outline-none focus:border-indigo-500 cursor-pointer"
                   >
                     <option value="en">🇺🇸 English</option>
                     <option value="fr">🇫🇷 Français</option>
@@ -1090,7 +1086,6 @@ export default function UltimateRestaurantPlatform() {
                 </div>
               </div>
 
-              {/* نوع الحساب في الـ Signup */}
               {authModal === 'signup' && (
                 <div>
                   <label className="block text-[11px] font-bold text-gray-300 mb-1">{t('account_type_label')}</label>
@@ -1121,8 +1116,8 @@ export default function UltimateRestaurantPlatform() {
                 <div>
                   <label className="block text-[11px] font-bold text-gray-300 mb-1">{t('name_label')}</label>
                   <div className="relative">
-                    <Store className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
-                    <input type="text" required placeholder="La Table d'Or Restaurant" className="w-full bg-gray-950 border border-white/10 rounded-xl py-3 pr-10 pl-4 text-xs text-white focus:outline-none focus:border-indigo-500" />
+                    <Store className="absolute start-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                    <input type="text" required placeholder="La Table d'Or Restaurant" className="w-full bg-gray-950 border border-white/10 rounded-xl py-3 ps-10 pe-4 text-xs text-white focus:outline-none focus:border-indigo-500" />
                   </div>
                 </div>
               )}
@@ -1131,8 +1126,8 @@ export default function UltimateRestaurantPlatform() {
                 <div>
                   <label className="block text-[11px] font-bold text-gray-300 mb-1">{t('fullname_label')}</label>
                   <div className="relative">
-                    <User className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
-                    <input type="text" required placeholder="John Doe" className="w-full bg-gray-950 border border-white/10 rounded-xl py-3 pr-10 pl-4 text-xs text-white focus:outline-none focus:border-indigo-500" />
+                    <User className="absolute start-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                    <input type="text" required placeholder="John Doe" className="w-full bg-gray-950 border border-white/10 rounded-xl py-3 ps-10 pe-4 text-xs text-white focus:outline-none focus:border-indigo-500" />
                   </div>
                 </div>
               )}
@@ -1140,8 +1135,8 @@ export default function UltimateRestaurantPlatform() {
               <div>
                 <label className="block text-[11px] font-bold text-gray-300 mb-1">{t('email_label')}</label>
                 <div className="relative">
-                  <Mail className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
-                  <input type="email" required placeholder="user@example.com" className="w-full bg-gray-950 border border-white/10 rounded-xl py-3 pr-10 pl-4 text-xs text-white focus:outline-none focus:border-indigo-500" />
+                  <Mail className="absolute start-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                  <input type="email" required placeholder="user@example.com" className="w-full bg-gray-950 border border-white/10 rounded-xl py-3 ps-10 pe-4 text-xs text-white focus:outline-none focus:border-indigo-500" />
                 </div>
               </div>
 
@@ -1149,28 +1144,27 @@ export default function UltimateRestaurantPlatform() {
                 <div>
                   <label className="block text-[11px] font-bold text-gray-300 mb-1">{t('mobile_label')}</label>
                   <div className="relative">
-                    <Phone className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
-                    <input type="tel" required placeholder="+1 (555) 000-0000" className="w-full bg-gray-950 border border-white/10 rounded-xl py-3 pr-10 pl-4 text-xs text-white focus:outline-none focus:border-indigo-500" />
+                    <Phone className="absolute start-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                    <input type="tel" required placeholder="+1 (555) 000-0000" className="w-full bg-gray-950 border border-white/10 rounded-xl py-3 ps-10 pe-4 text-xs text-white focus:outline-none focus:border-indigo-500" />
                   </div>
                 </div>
               )}
 
-              {/* كود معرف المستخدم التلقائي مع زر النسخ */}
               {authModal === 'signup' && (
                 <div>
                   <label className="block text-[11px] font-bold text-gray-300 mb-1">{t('userid_label')}</label>
                   <div className="relative flex items-center">
-                    <KeyRound className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                    <KeyRound className="absolute start-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
                     <input 
                       type="text" 
                       readOnly 
                       value={userIdCode} 
-                      className="w-full bg-gray-950 border border-white/10 rounded-xl py-3 pr-20 pl-4 text-xs text-indigo-400 font-mono font-bold focus:outline-none" 
+                      className="w-full bg-gray-950 border border-white/10 rounded-xl py-3 ps-10 pe-24 text-xs text-indigo-400 font-mono font-bold focus:outline-none" 
                     />
                     <button
                       type="button"
                       onClick={handleCopyCode}
-                      className="absolute left-2 bg-indigo-600/20 hover:bg-indigo-600/40 text-indigo-300 border border-indigo-500/30 px-2.5 py-1.5 rounded-lg text-[10px] font-bold flex items-center gap-1 transition-all cursor-pointer"
+                      className="absolute end-2 bg-indigo-600/20 hover:bg-indigo-600/40 text-indigo-300 border border-indigo-500/30 px-3 py-1.5 rounded-lg text-[10px] font-bold flex items-center gap-1 transition-all cursor-pointer"
                     >
                       {copied ? (
                         <>
@@ -1191,14 +1185,14 @@ export default function UltimateRestaurantPlatform() {
               <div>
                 <label className="block text-[11px] font-bold text-gray-300 mb-1">{t('pass_label')}</label>
                 <div className="relative">
-                  <Lock className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                  <Lock className="absolute start-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
                   <input 
                     type="password" 
                     required 
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••" 
-                    className="w-full bg-gray-950 border border-white/10 rounded-xl py-3 pr-10 pl-4 text-xs text-white focus:outline-none focus:border-indigo-500" 
+                    className="w-full bg-gray-950 border border-white/10 rounded-xl py-3 ps-10 pe-4 text-xs text-white focus:outline-none focus:border-indigo-500" 
                   />
                 </div>
               </div>
@@ -1207,14 +1201,14 @@ export default function UltimateRestaurantPlatform() {
                 <div>
                   <label className="block text-[11px] font-bold text-gray-300 mb-1">{t('pass_confirm_label')}</label>
                   <div className="relative">
-                    <Lock className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                    <Lock className="absolute start-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
                     <input 
                       type="password" 
                       required 
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
                       placeholder="••••••••" 
-                      className="w-full bg-gray-950 border border-white/10 rounded-xl py-3 pr-10 pl-4 text-xs text-white focus:outline-none focus:border-indigo-500" 
+                      className="w-full bg-gray-950 border border-white/10 rounded-xl py-3 ps-10 pe-4 text-xs text-white focus:outline-none focus:border-indigo-500" 
                     />
                   </div>
                 </div>
