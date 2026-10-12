@@ -765,13 +765,66 @@ function AuthModal({ mode, setMode, lang, setLang, t }: { mode: Mode; setMode: (
           },
         });
         if (error) throw error;
-        if (!data.session) setSuccessKey('check_email');
-        else { setSuccessKey('success_signup'); setTimeout(() => { setMode('none'); router.push('/dashboard'); }, 800); }
+        
+        if (!data.session) {
+          setSuccessKey('check_email');
+        } else {
+          setSuccessKey('success_signup');
+          setMode('none'); // إغلاق النافذة المنبثقة مباشرة
+
+          if (accountType === 'restaurant' && data.user) {
+            // جلب معرّف المطعم الخاص بصاحب المطعم وتوجيهه إلى /restaurant/[id]
+            const { data: resto } = await supabase
+              .from('restaurants')
+              .select('id')
+              .eq('owner_id', data.user.id)
+              .single();
+            
+            if (resto?.id) {
+              router.push(`/restaurant/${resto.id}`);
+            } else {
+              router.push('/dashboard');
+            }
+          } else if (accountType === 'client') {
+            // توجيه الزبون إلى /client
+            router.push('/client');
+          } else {
+            router.push('/dashboard');
+          }
+        }
       } else if (mode === 'login') {
-        const { error } = await supabase.auth.signInWithPassword({ email, password });
+        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
         setSuccessKey('success_login');
-        setTimeout(() => { setMode('none'); router.push('/dashboard'); }, 700);
+        setMode('none'); // إغلاق النافذة المنبثقة مباشرة
+
+        if (data.user) {
+          // 1. فحص هل المستخدم صاحب مطعم
+          const { data: resto } = await supabase
+            .from('restaurants')
+            .select('id')
+            .eq('owner_id', data.user.id)
+            .single();
+
+          if (resto?.id) {
+            router.push(`/restaurant/${resto.id}`);
+          } else {
+            // 2. فحص هل المستخدم زبون
+            const { data: client } = await supabase
+              .from('clients')
+              .select('id')
+              .eq('user_id', data.user.id)
+              .single();
+
+            if (client || data.user.user_metadata?.account_type === 'client') {
+              router.push('/client');
+            } else {
+              router.push('/dashboard');
+            }
+          }
+        } else {
+          router.push('/dashboard');
+        }
       } else {
         const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: `${window.location.origin}/auth/reset` });
         if (error) throw error;
