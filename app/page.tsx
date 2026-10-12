@@ -72,6 +72,8 @@ const translations = {
     err_pass_mismatch: "Passwords do not match.", err_generic: "Something went wrong. Please try again.",
     success_signup: "Account created successfully!", success_login: "Logged in successfully!",
     copied: "Copied", copy: "Copy",
+    no_account_text: "Don't have an account?", create_one_link: "Create one",
+    have_account_text: "Already have an account?", login_here_link: "Login here",
     footer_text: "The all-in-one operating system for modern restaurants and franchises.",
     footer_rights: "All rights reserved.", footer_product: "Product", footer_company: "Company", footer_legal: "Legal",
   },
@@ -133,6 +135,8 @@ const translations = {
     err_pass_mismatch: "Les mots de passe ne correspondent pas.", err_generic: "Une erreur est survenue. Veuillez réessayer.",
     success_signup: "Compte créé avec succès !", success_login: "Connexion réussie !",
     copied: "Copié", copy: "Copier",
+    no_account_text: "Vous n'avez pas de compte ?", create_one_link: "Créer un compte",
+    have_account_text: "Vous avez déjà un compte ?", login_here_link: "Connectez-vous",
     footer_text: "Le système d'exploitation tout-en-un des restaurants et franchises modernes.",
     footer_rights: "Tous droits réservés.", footer_product: "Produit", footer_company: "Entreprise", footer_legal: "Légal",
   },
@@ -194,6 +198,8 @@ const translations = {
     err_pass_mismatch: "Пароли не совпадают.", err_generic: "Что-то пошло не так. Попробуйте снова.",
     success_signup: "Аккаунт успешно создан!", success_login: "Вход выполнен!",
     copied: "Скопировано", copy: "Копировать",
+    no_account_text: "Нет аккаунта?", create_one_link: "Создать",
+    have_account_text: "Уже есть аккаунт?", login_here_link: "Войти",
     footer_text: "Единая операционная система для современных ресторанов и сетей.",
     footer_rights: "Все права защищены.", footer_product: "Продукт", footer_company: "Компания", footer_legal: "Правовое",
   },
@@ -255,6 +261,8 @@ const translations = {
     err_pass_mismatch: "كلمتا المرور غير متطابقتين.", err_generic: "حدث خطأ ما. حاول مرة أخرى.",
     success_signup: "تم إنشاء الحساب بنجاح!", success_login: "تم تسجيل الدخول بنجاح!",
     copied: "تم النسخ", copy: "نسخ",
+    no_account_text: "ليس لديك حساب؟", create_one_link: "أنشئ حساباً",
+    have_account_text: "لديك حساب بالفعل؟", login_here_link: "سجل دخولك",
     footer_text: "نظام التشغيل المتكامل للمطاعم والسلاسل العصرية.",
     footer_rights: "جميع الحقوق محفوظة.", footer_product: "المنتج", footer_company: "الشركة", footer_legal: "قانوني",
   },
@@ -316,6 +324,8 @@ const translations = {
     err_pass_mismatch: "Las contraseñas no coinciden.", err_generic: "Algo salió mal. Inténtalo de nuevo.",
     success_signup: "¡Cuenta creada con éxito!", success_login: "¡Sesión iniciada!",
     copied: "Copiado", copy: "Copiar",
+    no_account_text: "¿No tienes cuenta?", create_one_link: "Crea una",
+    have_account_text: "¿Ya tienes cuenta?", login_here_link: "Inicia sesión",
     footer_text: "El sistema operativo integral para restaurantes y franquicias modernas.",
     footer_rights: "Todos los derechos reservados.", footer_product: "Producto", footer_company: "Empresa", footer_legal: "Legal",
   },
@@ -531,7 +541,7 @@ export default function AllInOneRestaurantPlatform() {
               )}
             </div>
 
-            {/* Login button - visible on all screens now */}
+            {/* Login button */}
             <button onClick={() => setAuthModal('login')}
               className="text-[11px] sm:text-xs font-bold text-gray-300 hover:text-white px-1.5 sm:px-2 py-2 cursor-pointer transition-colors shrink-0">
               {t('login')}
@@ -1019,6 +1029,27 @@ export default function AllInOneRestaurantPlatform() {
                 <span>{authModal === 'login' ? t('submit_login') : t('submit_signup')}</span>
               </button>
             </form>
+
+            {/* Toggle between Login and Signup */}
+            <div className="mt-5 text-center text-xs text-gray-400">
+              {authModal === 'login' ? (
+                <>
+                  {t('no_account_text')}{' '}
+                  <button type="button" onClick={() => setAuthModal('signup')}
+                    className="text-indigo-400 font-bold hover:underline cursor-pointer">
+                    {t('create_one_link')}
+                  </button>
+                </>
+              ) : (
+                <>
+                  {t('have_account_text')}{' '}
+                  <button type="button" onClick={() => setAuthModal('login')}
+                    className="text-indigo-400 font-bold hover:underline cursor-pointer">
+                    {t('login_here_link')}
+                  </button>
+                </>
+              )}
+            </div>
           </div>
         </div>
       )}
