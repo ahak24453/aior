@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useMemo, useCallback, type ReactNode, type
 import { createClient } from '@supabase/supabase-js';
 import { useRouter } from 'next/navigation';
 import {
-  Store, Sparkles, ArrowRight, Globe, CheckCircle2, X, Menu, Mail, Lock, User, Phone,
+  Store, ArrowRight, Globe, CheckCircle2, X, Menu, Mail, Lock, User, Phone,
   KeyRound, Copy, Check, Loader2, Monitor, Boxes, PieChart, Clock, Truck, Gift, Star, Quote,
   ShieldCheck, Zap, ChevronDown, Eye, EyeOff, Users, ChevronRight, Play, UtensilsCrossed,
   Smartphone, Moon, Sun, ArrowUp, Cookie, Plus, Minus, AlertCircle, ArrowLeft,
@@ -27,7 +27,6 @@ const en = {
   nav_features: "Modules", nav_platform: "Platform", nav_pricing: "Pricing", nav_faq: "FAQ",
   login: "Login", signup: "Start Free Trial", skip: "Skip to content",
 
-  hero_badge: "🚀 Next-Gen Platform for Modern Restaurants",
   hero_title_1: "Run your entire restaurant", hero_title_2: "from one powerful platform.",
   hero_desc: "POS, inventory, finance, staff, suppliers and live P&L — plus a beautiful guest app for menus, reservations and loyalty. Everything your venue needs, in one place.",
   hero_cta: "Start 30-day free trial", hero_demo: "Explore modules", hero_note: "No credit card required · Cancel anytime",
@@ -137,7 +136,6 @@ const fr: Shape = {
   brand_tag: "OS Tout-en-Un pour Restaurant",
   nav_features: "Modules", nav_platform: "Plateforme", nav_pricing: "Tarifs", nav_faq: "FAQ",
   login: "Connexion", signup: "Essai Gratuit", skip: "Aller au contenu",
-  hero_badge: "🚀 Plateforme nouvelle génération pour restaurants",
   hero_title_1: "Gérez tout votre restaurant", hero_title_2: "depuis une seule plateforme.",
   hero_desc: "POS, stocks, finances, personnel, fournisseurs et P&L en direct — avec une superbe app client pour menus, réservations et fidélité.",
   hero_cta: "Démarrer l'essai de 30 jours", hero_demo: "Explorer les modules", hero_note: "Aucune carte requise · Annulable à tout moment",
@@ -216,7 +214,6 @@ const ru: Shape = {
   brand_tag: "Все-в-одном ОС для ресторанов",
   nav_features: "Модули", nav_platform: "Платформа", nav_pricing: "Цены", nav_faq: "FAQ",
   login: "Войти", signup: "Пробный период", skip: "К контенту",
-  hero_badge: "🚀 Платформа нового поколения для ресторанов",
   hero_title_1: "Управляйте всем рестораном", hero_title_2: "с одной мощной платформы.",
   hero_desc: "POS, склад, финансы, персонал, поставщики и P&L в реальном времени — плюс приложение для гостей: меню, брони, лояльность.",
   hero_cta: "Начать 30 дней бесплатно", hero_demo: "Посмотреть модули", hero_note: "Без карты · Отмена в любой момент",
@@ -289,7 +286,6 @@ const ar: Shape = {
   brand_tag: "النظام الشامل لإدارة وتشغيل المطاعم",
   nav_features: "الوحدات", nav_platform: "المنصة", nav_pricing: "الأسعار", nav_faq: "الأسئلة",
   login: "تسجيل الدخول", signup: "ابدأ مجاناً", skip: "تخطَّ إلى المحتوى",
-  hero_badge: "🚀 منصة الجيل القادم لإدارة وتشغيل المطاعم الذكية",
   hero_title_1: "أدر مطعمك بالكامل", hero_title_2: "من منصة واحدة قوية.",
   hero_desc: "نقاط البيع، المخزون، المالية، الموظفون، الموردون وتحليلات الأرباح الفورية — مع تطبيق أنيق لزبائنك: المنيو، الحجوزات والولاء.",
   hero_cta: "ابدأ 30 يوماً مجاناً", hero_demo: "استكشف الوحدات", hero_note: "بدون بطاقة · إلغاء في أي وقت",
@@ -363,7 +359,6 @@ const es: Shape = {
   brand_tag: "SO Todo en Uno para Restaurantes",
   nav_features: "Módulos", nav_platform: "Plataforma", nav_pricing: "Precios", nav_faq: "FAQ",
   login: "Iniciar sesión", signup: "Prueba gratis", skip: "Ir al contenido",
-  hero_badge: "🚀 Plataforma de nueva generación para restaurantes",
   hero_title_1: "Administra todo tu restaurante", hero_title_2: "desde una sola plataforma.",
   hero_desc: "POS, inventario, finanzas, personal, proveedores y P&L en vivo — más una app para tus clientes: menú, reservas y lealtad.",
   hero_cta: "Iniciar prueba de 30 días", hero_demo: "Explorar módulos", hero_note: "Sin tarjeta · Cancela cuando quieras",
@@ -1102,18 +1097,13 @@ export default function AllInOneRestaurantPlatform() {
 
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <Reveal>
-            <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/25 px-4 py-2 rounded-full text-[11px] sm:text-xs font-bold text-indigo-500">
-              <Sparkles className="w-4 h-4 shrink-0" aria-hidden /><span>{t('hero_badge')}</span>
-            </div>
-          </Reveal>
-          <Reveal delay={80}>
-            <h1 className="mt-6 text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.08]">
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.08]">
               {t('hero_title_1')} <br />
               <span className="gradient-text bg-gradient-to-r from-indigo-500 via-violet-400 to-pink-500 bg-clip-text text-transparent">{t('hero_title_2')}</span>
             </h1>
           </Reveal>
-          <Reveal delay={160}><p className="mt-6 text-[rgb(var(--muted))] text-sm sm:text-base lg:text-lg max-w-2xl mx-auto font-medium leading-relaxed">{t('hero_desc')}</p></Reveal>
-          <Reveal delay={240}>
+          <Reveal delay={80}><p className="mt-6 text-[rgb(var(--muted))] text-sm sm:text-base lg:text-lg max-w-2xl mx-auto font-medium leading-relaxed">{t('hero_desc')}</p></Reveal>
+          <Reveal delay={160}>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-8">
               <button onClick={() => setMode('signup')} className="w-full sm:w-auto bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 active:scale-95 text-white px-8 py-4 rounded-2xl font-black text-sm shadow-xl shadow-indigo-600/30 transition flex items-center justify-center gap-2 cursor-pointer">
                 {t('hero_cta')} <ArrowRight className="w-4 h-4 rtl:rotate-180" aria-hidden />
@@ -1125,7 +1115,7 @@ export default function AllInOneRestaurantPlatform() {
             <p className="mt-4 text-[11px] text-[rgb(var(--muted))] font-semibold">{t('hero_note')}</p>
           </Reveal>
 
-          <Reveal delay={320}>
+          <Reveal delay={240}>
             <div className="relative mx-auto mt-16 max-w-4xl anim-float">
               <div className="absolute -inset-6 bg-gradient-to-r from-indigo-500/20 via-violet-500/20 to-amber-400/10 blur-3xl rounded-[2.5rem] pointer-events-none" />
               <div className="relative rounded-2xl border border-[rgb(var(--line)/0.12)] bg-[rgb(var(--panel))] shadow-2xl overflow-hidden">
@@ -1169,7 +1159,7 @@ export default function AllInOneRestaurantPlatform() {
               </div>
             </div>
           </Reveal>
-          <Reveal delay={380}><p className="mt-12 text-[11px] uppercase tracking-[0.2em] font-bold text-[rgb(var(--muted))]">{t('trust_label')}</p></Reveal>
+          <Reveal delay={300}><p className="mt-12 text-[11px] uppercase tracking-[0.2em] font-bold text-[rgb(var(--muted))]">{t('trust_label')}</p></Reveal>
         </div>
       </section>
 
