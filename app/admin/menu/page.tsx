@@ -1,138 +1,260 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import Link from 'next/link';
-import { Wrench, ArrowLeft, ArrowRight, ShieldAlert, Sparkles, Globe, ChevronDown } from 'lucide-react';
+import { Wrench, ArrowLeft, ShieldAlert, Sparkles, Globe, ChevronDown, Sun, Moon, Check } from 'lucide-react';
 
-export default function MaintenancePage() {
-  const [lang, setLang] = useState('en');
-  const [isLangOpen, setIsLangOpen] = useState(false);
+/* ============================================================
+   TRANSLATIONS — 5 languages
+   ============================================================ */
+const en = {
+  badge: "Under Maintenance",
+  title: "The Menu Builder is under maintenance",
+  desc: "We're applying scheduled improvements to this module. Please check back soon.",
+  backBtn: "Back to Dashboard",
+  support: "Need help? Contact our support team.",
+  themeLabel: "Toggle theme",
+  langLabel: "Change language",
+  close: "Close",
+} as const;
 
-  const languages = [
-    { code: 'en', label: 'English', flag: '🇺🇸' },
-    { code: 'ar', label: 'العربية', flag: '🇸🇦' },
-    { code: 'fr', label: 'Français', flag: '🇫🇷' },
-    { code: 'es', label: 'Español', flag: '🇪🇸' },
-  ];
+type Shape = Record<keyof typeof en, string>;
 
-  const selectedLanguage = languages.find(l => l.code === lang) || languages[0];
+const fr: Shape = {
+  badge: "En maintenance",
+  title: "Le constructeur de menu est en maintenance",
+  desc: "Nous appliquons des améliorations planifiées à ce module. Revenez bientôt.",
+  backBtn: "Retour au tableau de bord",
+  support: "Besoin d'aide ? Contactez notre support.",
+  themeLabel: "Changer de thème",
+  langLabel: "Changer de langue",
+  close: "Fermer",
+};
 
-  // نصوص الترجمة للغات الأربع
-  const translations = {
-    en: {
-      badge: "Under Maintenance",
-      title: "We are building something amazing for you!",
-      description: "This section of your restaurant management suite is currently undergoing scheduled enhancements and updates. We're working around the clock to bring you an extraordinary experience.",
-      backBtn: "Back to Dashboard",
-      support: "Need urgent assistance? Check our help center."
-    },
-    ar: {
-      badge: "تحت الصيانة",
-      title: "نحن نبني شيئاً مذهلاً لأجلك!",
-      description: "هذا القسم من نظام إدارة المطعم يخضع حالياً لتحسينات وتحديثات جدولية. نعمل بكل جهد لتقديم تجربة استثنائية قريباً.",
-      backBtn: "العودة إلى لوحة التحكم",
-      support: "تحتاج مساعدة عاجلة؟ تواصل مع مركز الدعم."
-    },
-    fr: {
-      badge: "En maintenance",
-      title: "Nous construisons quelque chose d'incroyable pour vous !",
-      description: "Cette section de votre suite de gestion de restaurant fait actuellement l'objet d'améliorations et de mises à jour planifiées. Nous travaillons sans relâche.",
-      backBtn: "Retour au tableau de bord",
-      support: "Besoin d'aide urgente ? Consultez notre centre d'aide."
-    },
-    es: {
-      badge: "En mantenimiento",
-      title: "¡Estamos construyendo algo increíble para ti!",
-      description: "Esta sección de su sistema de gestión de restaurantes está actualmente bajo mejoras y actualizaciones programadas. Trabajamos duro para ofrecerle lo mejor.",
-      backBtn: "Volver al tablero",
-      support: "¿Necesitas ayuda urgente? Visita nuestro centro de ayuda."
-    }
-  };
+const ru: Shape = {
+  badge: "На обслуживании",
+  title: "Конструктор меню на обслуживании",
+  desc: "Мы вносим плановые улучшения в этот модуль. Загляните позже.",
+  backBtn: "Назад в панель",
+  support: "Нужна помощь? Свяжитесь с поддержкой.",
+  themeLabel: "Сменить тему",
+  langLabel: "Сменить язык",
+  close: "Закрыть",
+};
 
-  const t = translations[lang as keyof typeof translations] || translations.en;
-  const isRtl = lang === 'ar';
+const ar: Shape = {
+  badge: "تحت الصيانة",
+  title: "قسم بناء المنيو تحت الصيانة",
+  desc: "نقوم بتحسينات مجدولة على هذه الوحدة. يرجى العودة قريباً.",
+  backBtn: "العودة إلى لوحة التحكم",
+  support: "تحتاج مساعدة؟ تواصل مع فريق الدعم.",
+  themeLabel: "تبديل المظهر",
+  langLabel: "تغيير اللغة",
+  close: "إغلاق",
+};
+
+const es: Shape = {
+  badge: "En mantenimiento",
+  title: "El constructor de menú está en mantenimiento",
+  desc: "Estamos aplicando mejoras programadas a este módulo. Vuelve pronto.",
+  backBtn: "Volver al panel",
+  support: "¿Necesitas ayuda? Contacta con soporte.",
+  themeLabel: "Cambiar tema",
+  langLabel: "Cambiar idioma",
+  close: "Cerrar",
+};
+
+const translations = { en, fr, ru, ar, es };
+type Language = keyof typeof translations;
+type TranslationKey = keyof typeof en;
+
+const LANGS: { code: Language; label: string; short: string; flag: string }[] = [
+  { code: 'en', label: 'English', short: 'EN', flag: '🇺🇸' },
+  { code: 'fr', label: 'Français', short: 'FR', flag: '🇫🇷' },
+  { code: 'ru', label: 'Русский', short: 'RU', flag: '🇷🇺' },
+  { code: 'ar', label: 'العربية', short: 'AR', flag: '🇸🇦' },
+  { code: 'es', label: 'Español', short: 'ES', flag: '🇪🇸' },
+];
+
+/* ============================================================
+   THEME
+   ============================================================ */
+function useTheme() {
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+  useEffect(() => {
+    const saved = (localStorage.getItem('theme') as 'light' | 'dark' | null) ?? 'dark';
+    setTheme(saved);
+    document.documentElement.classList.toggle('dark', saved === 'dark');
+  }, []);
+  const toggle = useCallback(() => {
+    setTheme((prev) => {
+      const next = prev === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', next);
+      document.documentElement.classList.toggle('dark', next === 'dark');
+      return next;
+    });
+  }, []);
+  return { theme, toggle };
+}
+
+/* ============================================================
+   LANGUAGE SWITCHER
+   ============================================================ */
+function LangSwitcher({ lang, setLang, t }: { lang: Language; setLang: (l: Language) => void; t: (k: TranslationKey) => string }) {
+  const [open, setOpen] = useState(false);
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const btnRef = useRef<HTMLButtonElement>(null);
+  const selected = LANGS.find((l) => l.code === lang) ?? LANGS[0];
+
+  useEffect(() => {
+    if (!open) return;
+    const onClick = (e: MouseEvent) => {
+      if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') { setOpen(false); btnRef.current?.focus(); }
+    };
+    document.addEventListener('mousedown', onClick);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('mousedown', onClick);
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [open]);
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center px-4" dir={isRtl ? 'rtl' : 'ltr'}>
-      <div className="max-w-2xl w-full bg-white border border-gray-100 rounded-[2.5rem] p-8 md:p-12 shadow-xl shadow-indigo-50/50 text-center relative overflow-hidden">
-        
-        {/* Language Switcher at Top Corner */}
-        <div className={`absolute top-6 ${isRtl ? 'left-6' : 'right-6'} z-20`}>
-          <div className="relative">
-            <button 
-              onClick={() => setIsLangOpen(!isLangOpen)}
-              className="flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-gray-50 border border-gray-200/60 text-xs font-bold text-gray-700 hover:bg-gray-100 transition-all cursor-pointer shadow-xs"
+    <div className="relative" ref={wrapRef}>
+      <button
+        ref={btnRef}
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        aria-haspopup="menu"
+        aria-label={t('langLabel')}
+        title={t('langLabel')}
+        className="flex items-center gap-1.5 bg-[rgb(var(--panel-2))] border border-[rgb(var(--line)/0.12)] text-[rgb(var(--fg))] text-xs font-bold rounded-xl px-2.5 py-2.5 hover:border-[rgb(var(--line)/0.3)] transition cursor-pointer"
+      >
+        <Globe className="w-3.5 h-3.5 opacity-60" aria-hidden />
+        <span aria-hidden>{selected.flag}</span>
+        <span>{selected.short}</span>
+        <ChevronDown className={`w-3 h-3 opacity-60 transition-transform ${open ? 'rotate-180' : ''}`} aria-hidden />
+      </button>
+
+      {open && (
+        <div role="menu" className="absolute end-0 mt-2 w-44 bg-[rgb(var(--panel))] border border-[rgb(var(--line)/0.12)] rounded-2xl p-1.5 shadow-2xl z-30">
+          {LANGS.map((l) => (
+            <button
+              key={l.code}
+              role="menuitemradio"
+              aria-checked={lang === l.code}
+              onClick={() => { setLang(l.code); setOpen(false); btnRef.current?.focus(); }}
+              className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold transition cursor-pointer ${
+                lang === l.code
+                  ? 'bg-indigo-500/15 text-indigo-500'
+                  : 'text-[rgb(var(--muted))] hover:bg-[rgb(var(--panel-2))] hover:text-[rgb(var(--fg))]'
+              }`}
             >
-              <Globe className="w-3.5 h-3.5 text-indigo-600" />
-              <span>{selectedLanguage.flag}</span>
-              <span className="hidden sm:inline">{selectedLanguage.label}</span>
-              <ChevronDown className="w-3 h-3 text-gray-400" />
+              <span className="text-sm" aria-hidden>{l.flag}</span>
+              <span>{l.label}</span>
+              {lang === l.code && <Check className="w-3.5 h-3.5 ms-auto" aria-hidden />}
             </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
-            {isLangOpen && (
-              <div className={`absolute ${isRtl ? 'left-0' : 'right-0'} mt-2 w-40 bg-white rounded-2xl border border-gray-100 shadow-xl py-2 z-30`}>
-                {languages.map((l) => (
-                  <button
-                    key={l.code}
-                    onClick={() => {
-                      setLang(l.code);
-                      setIsLangOpen(false);
-                    }}
-                    className={`w-full flex items-center gap-3 px-4 py-2 text-xs font-bold transition-all hover:bg-gray-50 ${lang === l.code ? 'text-indigo-600 bg-indigo-50/50' : 'text-gray-700'}`}
-                  >
-                    <span className="text-base">{l.flag}</span>
-                    <span>{l.label}</span>
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
+/* ============================================================
+   PAGE
+   ============================================================ */
+export default function MenuBuilderMaintenance({ backHref = '/dashboard' }: { backHref?: string }) {
+  const [lang, setLang] = useState<Language>('en');
+  const { theme, toggle } = useTheme();
+  const rtl = lang === 'ar';
+
+  const t = useMemo<(k: TranslationKey) => string>(
+    () => (k) => translations[lang][k] ?? translations.en[k],
+    [lang]
+  );
+
+  useEffect(() => {
+    document.documentElement.lang = lang;
+    document.documentElement.dir = rtl ? 'rtl' : 'ltr';
+  }, [lang, rtl]);
+
+  return (
+    <div
+      dir={rtl ? 'rtl' : 'ltr'}
+      className="min-h-screen flex items-center justify-center px-4 py-16 bg-[rgb(var(--bg))] text-[rgb(var(--fg))] overflow-x-clip"
+    >
+      <style>{`
+        :root { --bg:247 248 250; --panel:255 255 255; --panel-2:244 245 248; --fg:10 12 20; --muted:92 100 112; --line:0 0 0; }
+        .dark { --bg:5 6 10; --panel:11 13 20; --panel-2:15 17 25; --fg:243 244 246; --muted:156 163 175; --line:255 255 255; }
+        @keyframes softBounce { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-6px) } }
+        .soft-bounce { animation: softBounce 2.4s ease-in-out infinite; }
+        @media (prefers-reduced-motion: reduce) { .soft-bounce { animation: none !important; } }
+      `}</style>
+
+      <div className="relative w-full max-w-2xl bg-[rgb(var(--panel))] border border-[rgb(var(--line)/0.1)] rounded-[2.5rem] px-6 sm:px-8 md:px-12 pt-20 pb-10 md:pb-12 shadow-2xl text-center overflow-hidden">
+
+        {/* corner controls */}
+        <div className="absolute top-5 sm:top-6 end-5 sm:end-6 z-20 flex items-center gap-2">
+          <button
+            type="button"
+            onClick={toggle}
+            aria-label={t('themeLabel')}
+            title={t('themeLabel')}
+            className="w-9 h-9 flex items-center justify-center rounded-xl bg-[rgb(var(--panel-2))] border border-[rgb(var(--line)/0.12)] text-[rgb(var(--muted))] hover:text-[rgb(var(--fg))] transition cursor-pointer"
+          >
+            {theme === 'dark' ? <Sun className="w-4 h-4" aria-hidden /> : <Moon className="w-4 h-4" aria-hidden />}
+          </button>
+          <LangSwitcher lang={lang} setLang={setLang} t={t} />
         </div>
 
-        {/* Decorative background blur shapes */}
-        <div className="absolute -top-24 -right-24 w-48 h-48 bg-indigo-100 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
-        <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-purple-100 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
+        {/* decorative blurs */}
+        <div className="absolute -top-24 -end-24 w-48 h-48 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden />
+        <div className="absolute -bottom-24 -start-24 w-48 h-48 bg-violet-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden />
 
-        {/* Icon Header */}
-        <div className="relative mx-auto w-20 h-20 rounded-3xl bg-gradient-to-tr from-indigo-600 to-violet-500 text-white flex items-center justify-center shadow-lg shadow-indigo-500/30 mb-8 transform hover:scale-105 transition-transform duration-300">
-          <Wrench className="w-9 h-9 animate-bounce" />
-          <div className="absolute -bottom-1 -right-1 w-7 h-7 bg-amber-400 rounded-full border-2 border-white flex items-center justify-center text-white shadow-sm">
-            <Sparkles className="w-3.5 h-3.5" />
-          </div>
+        {/* icon */}
+        <div className="relative mx-auto w-20 h-20 rounded-3xl bg-gradient-to-tr from-indigo-600 to-violet-500 text-white flex items-center justify-center shadow-lg shadow-indigo-600/30 mb-8">
+          <Wrench className="w-9 h-9 soft-bounce" aria-hidden />
+          <span className="absolute -bottom-1 -end-1 w-7 h-7 bg-amber-400 rounded-full border-2 border-[rgb(var(--panel))] flex items-center justify-center text-white shadow-sm">
+            <Sparkles className="w-3.5 h-3.5" aria-hidden />
+          </span>
         </div>
 
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-black uppercase tracking-wider mb-4 border border-indigo-100/60">
-          <ShieldAlert className="w-3.5 h-3.5" />
-          <span>{t.badge}</span>
+        {/* badge */}
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 text-indigo-500 text-[11px] font-black uppercase tracking-wider mb-4 border border-indigo-500/20">
+          <ShieldAlert className="w-3.5 h-3.5" aria-hidden />
+          <span>{t('badge')}</span>
         </div>
 
-        {/* Title */}
-        <h1 className="text-2xl md:text-3xl font-black text-gray-900 tracking-tight mb-4">
-          {t.title}
+        {/* title */}
+        <h1 className="text-2xl md:text-3xl font-black tracking-tight mb-4">
+          {t('title')}
         </h1>
 
-        {/* Description */}
-        <p className="text-xs md:text-sm text-gray-500 font-bold leading-relaxed max-w-lg mx-auto mb-8">
-          {t.description}
+        {/* description */}
+        <p className="text-[13px] md:text-sm text-[rgb(var(--muted))] font-medium leading-relaxed max-w-lg mx-auto mb-8">
+          {t('desc')}
         </p>
 
-        {/* Action Button */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link 
-            href="/admin"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3.5 rounded-2xl text-xs font-black shadow-lg shadow-indigo-600/25 transition-all cursor-pointer hover:-translate-y-0.5"
+        {/* action */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <Link
+            href={backHref}
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 active:scale-95 text-white px-8 py-3.5 rounded-2xl text-sm font-black shadow-lg shadow-indigo-600/30 transition-all"
           >
-            {isRtl ? <ArrowRight className="w-4 h-4" /> : <ArrowLeft className="w-4 h-4" />}
-            <span>{t.backBtn}</span>
+            <ArrowLeft className="w-4 h-4 rtl:rotate-180" aria-hidden />
+            <span>{t('backBtn')}</span>
           </Link>
         </div>
 
-        {/* Footer info */}
-        <p className="text-[10px] text-gray-400 font-bold mt-10">
-          {t.support}
+        {/* footer */}
+        <p className="text-[11px] text-[rgb(var(--muted))] font-semibold mt-10">
+          {t('support')}
         </p>
-
       </div>
     </div>
   );
