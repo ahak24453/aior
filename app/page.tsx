@@ -27,7 +27,7 @@ const en = {
   nav_features: "Modules", nav_platform: "Platform", nav_pricing: "Pricing", nav_faq: "FAQ",
   login: "Login", signup: "Start Free Trial", skip: "Skip to content",
 
-  hero_badge: "The all-in-one operating system for modern restaurants",
+  hero_badge: "🚀 Next-Gen Platform for Modern Restaurants",
   hero_title_1: "Run your entire restaurant", hero_title_2: "from one powerful platform.",
   hero_desc: "POS, inventory, finance, staff, suppliers and live P&L — plus a beautiful guest app for menus, reservations and loyalty. Everything your venue needs, in one place.",
   hero_cta: "Start 30-day free trial", hero_demo: "Explore modules", hero_note: "No credit card required · Cancel anytime",
@@ -137,7 +137,7 @@ const fr: Shape = {
   brand_tag: "OS Tout-en-Un pour Restaurant",
   nav_features: "Modules", nav_platform: "Plateforme", nav_pricing: "Tarifs", nav_faq: "FAQ",
   login: "Connexion", signup: "Essai Gratuit", skip: "Aller au contenu",
-  hero_badge: "Le système d'exploitation tout-en-un des restaurants modernes",
+  hero_badge: "🚀 Plateforme nouvelle génération pour restaurants",
   hero_title_1: "Gérez tout votre restaurant", hero_title_2: "depuis une seule plateforme.",
   hero_desc: "POS, stocks, finances, personnel, fournisseurs et P&L en direct — avec une superbe app client pour menus, réservations et fidélité.",
   hero_cta: "Démarrer l'essai de 30 jours", hero_demo: "Explorer les modules", hero_note: "Aucune carte requise · Annulable à tout moment",
@@ -216,7 +216,7 @@ const ru: Shape = {
   brand_tag: "Все-в-одном ОС для ресторанов",
   nav_features: "Модули", nav_platform: "Платформа", nav_pricing: "Цены", nav_faq: "FAQ",
   login: "Войти", signup: "Пробный период", skip: "К контенту",
-  hero_badge: "Единая операционная система для современных ресторанов",
+  hero_badge: "🚀 Платформа нового поколения для ресторанов",
   hero_title_1: "Управляйте всем рестораном", hero_title_2: "с одной мощной платформы.",
   hero_desc: "POS, склад, финансы, персонал, поставщики и P&L в реальном времени — плюс приложение для гостей: меню, брони, лояльность.",
   hero_cta: "Начать 30 дней бесплатно", hero_demo: "Посмотреть модули", hero_note: "Без карты · Отмена в любой момент",
@@ -289,7 +289,7 @@ const ar: Shape = {
   brand_tag: "النظام الشامل لإدارة وتشغيل المطاعم",
   nav_features: "الوحدات", nav_platform: "المنصة", nav_pricing: "الأسعار", nav_faq: "الأسئلة",
   login: "تسجيل الدخول", signup: "ابدأ مجاناً", skip: "تخطَّ إلى المحتوى",
-  hero_badge: "نظام التشغيل المتكامل للمطاعم العصرية",
+  hero_badge: "🚀 منصة الجيل القادم لإدارة وتشغيل المطاعم الذكية",
   hero_title_1: "أدر مطعمك بالكامل", hero_title_2: "من منصة واحدة قوية.",
   hero_desc: "نقاط البيع، المخزون، المالية، الموظفون، الموردون وتحليلات الأرباح الفورية — مع تطبيق أنيق لزبائنك: المنيو، الحجوزات والولاء.",
   hero_cta: "ابدأ 30 يوماً مجاناً", hero_demo: "استكشف الوحدات", hero_note: "بدون بطاقة · إلغاء في أي وقت",
@@ -363,7 +363,7 @@ const es: Shape = {
   brand_tag: "SO Todo en Uno para Restaurantes",
   nav_features: "Módulos", nav_platform: "Plataforma", nav_pricing: "Precios", nav_faq: "FAQ",
   login: "Iniciar sesión", signup: "Prueba gratis", skip: "Ir al contenido",
-  hero_badge: "El sistema operativo integral para restaurantes modernos",
+  hero_badge: "🚀 Plataforma de nueva generación para restaurantes",
   hero_title_1: "Administra todo tu restaurante", hero_title_2: "desde una sola plataforma.",
   hero_desc: "POS, inventario, finanzas, personal, proveedores y P&L en vivo — más una app para tus clientes: menú, reservas y lealtad.",
   hero_cta: "Iniciar prueba de 30 días", hero_demo: "Explorar módulos", hero_note: "Sin tarjeta · Cancela cuando quieras",
@@ -1408,4 +1408,4 @@ export default function AllInOneRestaurantPlatform() {
       <AuthModal mode={mode} setMode={setMode} lang={lang} setLang={setLang} t={t} />
     </div>
   );
-                       }
+}
