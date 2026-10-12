@@ -7,7 +7,7 @@ import {
   Store, ArrowRight, Globe, CheckCircle2, X, Menu, Mail, Lock, User, Phone,
   KeyRound, Copy, Check, Loader2, Monitor, Boxes, PieChart, Clock, Truck, Gift, Star, Quote,
   ShieldCheck, Zap, ChevronDown, Eye, EyeOff, Users, ChevronRight, Play, UtensilsCrossed,
-  Smartphone, Moon, Sun, ArrowUp, Cookie, Plus, Minus, AlertCircle, ArrowLeft,
+  Smartphone, Moon, Sun, ArrowUp, Cookie, Plus, Minus, AlertCircle, ArrowLeft, Download,
 } from 'lucide-react';
 
 /* ============================================================
@@ -25,7 +25,7 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey, {
 const en = {
   brand_tag: "All-In-One Restaurant OS",
   nav_features: "Modules", nav_platform: "Platform", nav_pricing: "Pricing", nav_faq: "FAQ",
-  login: "Login", signup: "Start Free Trial", skip: "Skip to content",
+  login: "Login", signup: "Start Free Trial", skip: "Skip to content", install_app: "Install App",
 
   hero_title_1: "Run your entire restaurant", hero_title_2: "from one powerful platform.",
   hero_desc: "POS, inventory, finance, staff, suppliers and live P&L — plus a beautiful guest app for menus, reservations and loyalty. Everything your venue needs, in one place.",
@@ -135,7 +135,7 @@ type Shape = Record<keyof typeof en, string>;
 const fr: Shape = {
   brand_tag: "OS Tout-en-Un pour Restaurant",
   nav_features: "Modules", nav_platform: "Plateforme", nav_pricing: "Tarifs", nav_faq: "FAQ",
-  login: "Connexion", signup: "Essai Gratuit", skip: "Aller au contenu",
+  login: "Connexion", signup: "Essai Gratuit", skip: "Aller au contenu", install_app: "Installer l'App",
   hero_title_1: "Gérez tout votre restaurant", hero_title_2: "depuis une seule plateforme.",
   hero_desc: "POS, stocks, finances, personnel, fournisseurs et P&L en direct — avec une superbe app client pour menus, réservations et fidélité.",
   hero_cta: "Démarrer l'essai de 30 jours", hero_demo: "Explorer les modules", hero_note: "Aucune carte requise · Annulable à tout moment",
@@ -213,7 +213,7 @@ const fr: Shape = {
 const ru: Shape = {
   brand_tag: "Все-в-одном ОС для ресторанов",
   nav_features: "Модули", nav_platform: "Платформа", nav_pricing: "Цены", nav_faq: "FAQ",
-  login: "Войти", signup: "Пробный период", skip: "К контенту",
+  login: "Войти", signup: "Пробный период", skip: "К контенту", install_app: "Установить",
   hero_title_1: "Управляйте всем рестораном", hero_title_2: "с одной мощной платформы.",
   hero_desc: "POS, склад, финансы, персонал, поставщики и P&L в реальном времени — плюс приложение для гостей: меню, брони, лояльность.",
   hero_cta: "Начать 30 дней бесплатно", hero_demo: "Посмотреть модули", hero_note: "Без карты · Отмена в любой момент",
@@ -243,7 +243,7 @@ const ru: Shape = {
   roi_title: "Оцените экономию", roi_subtitle: "Двигайте ползунки.", roi_tables: "Столы", roi_ticket: "Средний чек", roi_days: "Дней / мес",
   roi_revenue: "Выручка в месяц", roi_saving: "Экономия в месяц", roi_note: "Средний прирост эффективности 8%.",
   pricing_title: "Один тариф. Всё включено.", pricing_subtitle: "30 дней бесплатно — без карты.",
-  popular: "Популярный", plan_name: "Все-в-одном Про", price_amount: "$99", per_month: "/ месяц после триала",
+  popular: "Популярный", plan_name: "Все-в-одном Про", plan_amount: "$99", plan_amount_alt: "", price_amount: "$99", per_month: "/ месяц после триала",
   plan_desc: "Полный доступ, неограниченные филиалы, поддержка 24/7.",
   feature_check: "POS, склад, финансы и P&L", plan_f2: "Неограниченные аккаунты", plan_f3: "Поставщики и закупки",
   plan_f4: "Кошелёк лояльности", plan_f5: "Приоритетная поддержка", select_plan: "Начать бесплатно",
@@ -285,7 +285,7 @@ const ru: Shape = {
 const ar: Shape = {
   brand_tag: "النظام الشامل لإدارة وتشغيل المطاعم",
   nav_features: "الوحدات", nav_platform: "المنصة", nav_pricing: "الأسعار", nav_faq: "الأسئلة",
-  login: "تسجيل الدخول", signup: "ابدأ مجاناً", skip: "تخطَّ إلى المحتوى",
+  login: "تسجيل الدخول", signup: "ابدأ مجاناً", skip: "تخطَّ إلى المحتوى", install_app: "تثبيت التطبيق",
   hero_title_1: "أدر مطعمك بالكامل", hero_title_2: "من منصة واحدة قوية.",
   hero_desc: "نقاط البيع، المخزون، المالية، الموظفون، الموردون وتحليلات الأرباح الفورية — مع تطبيق أنيق لزبائنك: المنيو، الحجوزات والولاء.",
   hero_cta: "ابدأ 30 يوماً مجاناً", hero_demo: "استكشف الوحدات", hero_note: "بدون بطاقة · إلغاء في أي وقت",
@@ -358,7 +358,7 @@ const ar: Shape = {
 const es: Shape = {
   brand_tag: "SO Todo en Uno para Restaurantes",
   nav_features: "Módulos", nav_platform: "Plataforma", nav_pricing: "Precios", nav_faq: "FAQ",
-  login: "Iniciar sesión", signup: "Prueba gratis", skip: "Ir al contenido",
+  login: "Iniciar sesión", signup: "Prueba gratis", skip: "Ir al contenido", install_app: "Instalar App",
   hero_title_1: "Administra todo tu restaurante", hero_title_2: "desde una sola plataforma.",
   hero_desc: "POS, inventario, finanzas, personal, proveedores y P&L en vivo — más una app para tus clientes: menú, reservas y lealtad.",
   hero_cta: "Iniciar prueba de 30 días", hero_demo: "Explorar módulos", hero_note: "Sin tarjeta · Cancela cuando quieras",
@@ -557,6 +557,46 @@ function passwordStrength(pw: string): 1 | 2 | 3 | 4 {
   if (/\d/.test(pw)) s++;
   if (/[^A-Za-z0-9]/.test(pw) && pw.length >= 10) s++;
   return Math.max(1, Math.min(s, 4)) as 1 | 2 | 3 | 4;
+}
+
+/* ============================================================
+   PWA INSTALL BUTTON COMPONENT
+   ============================================================ */
+function InstallPWAButton({ t }: { t: T }) {
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const handler = (e: any) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+      setVisible(true);
+    };
+    window.addEventListener('beforeinstallprompt', handler);
+    return () => window.removeEventListener('beforeinstallprompt', handler);
+  }, []);
+
+  const install = async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') {
+      setVisible(false);
+    }
+    setDeferredPrompt(null);
+  };
+
+  if (!visible) return null;
+
+  return (
+    <button
+      onClick={install}
+      className="flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white px-3 py-2 rounded-xl text-[11px] sm:text-xs font-bold transition shadow-md cursor-pointer shrink-0"
+    >
+      <Download className="w-3.5 h-3.5" aria-hidden />
+      <span>{t('install_app')}</span>
+    </button>
+  );
 }
 
 /* ============================================================
@@ -1071,6 +1111,7 @@ export default function AllInOneRestaurantPlatform() {
           </nav>
 
           <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+            <InstallPWAButton t={t} />
             <ThemeToggle label={t('theme_toggle')} />
             <LangSwitcher lang={lang} setLang={setLang} />
             <button onClick={() => setMode('login')} className="hidden sm:inline-block text-[11px] sm:text-xs font-bold text-[rgb(var(--muted))] hover:text-[rgb(var(--fg))] px-1.5 py-2 cursor-pointer">{t('login')}</button>
