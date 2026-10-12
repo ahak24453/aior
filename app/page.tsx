@@ -421,7 +421,6 @@ export default function AllInOneRestaurantPlatform() {
     setLoading(true);
     try {
       if (authModal === 'signup') {
-        // ✅ الـ trigger handle_new_user كيتكلف بإنشاء profiles + restaurants
         const { error } = await supabase.auth.signUp({
           email,
           password,
@@ -491,13 +490,13 @@ export default function AllInOneRestaurantPlatform() {
 
       {/* ============ HEADER ============ */}
       <header className="sticky top-0 z-40 border-b border-white/[0.06] bg-[#05060A]/80 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 flex items-center justify-between gap-4">
-          <a href="#" className="flex items-center gap-3 shrink-0">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center shadow-lg shadow-indigo-600/30">
-              <Store className="w-5 h-5 text-white" />
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-18 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
+          <a href="#" className="flex items-center gap-2 sm:gap-3 shrink-0">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center shadow-lg shadow-indigo-600/30">
+              <Store className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
             </div>
             <div className="leading-tight">
-              <span className="text-base sm:text-lg font-black tracking-tight text-white">All-In-One<span className="text-indigo-400">.Restaurant</span></span>
+              <span className="text-sm sm:text-lg font-black tracking-tight text-white">All-In-One<span className="text-indigo-400">.Restaurant</span></span>
               <span className="hidden sm:block text-[9px] text-gray-500 uppercase tracking-[0.2em] font-bold">{t('brand_tag')}</span>
             </div>
           </a>
@@ -508,11 +507,11 @@ export default function AllInOneRestaurantPlatform() {
             <a href="#pricing" className="hover:text-white transition-colors">{t('nav_pricing')}</a>
           </nav>
 
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
             {/* Lang dropdown */}
             <div className="relative" ref={langRef}>
               <button onClick={() => setLangOpen(!langOpen)}
-                className="flex items-center gap-1.5 bg-white/[0.04] border border-white/10 text-gray-200 text-xs font-bold rounded-xl px-2.5 py-2.5 hover:border-white/20 transition cursor-pointer">
+                className="flex items-center gap-1 bg-white/[0.04] border border-white/10 text-gray-200 text-[11px] sm:text-xs font-bold rounded-xl px-2 py-2 hover:border-white/20 transition cursor-pointer">
                 <Globe className="w-3.5 h-3.5 text-gray-400" />
                 <span>{LANGS.find(l => l.code === lang)?.short}</span>
                 <ChevronDown className={`w-3 h-3 text-gray-500 transition-transform ${langOpen ? 'rotate-180' : ''}`} />
@@ -532,17 +531,21 @@ export default function AllInOneRestaurantPlatform() {
               )}
             </div>
 
+            {/* Login button - visible on all screens now */}
             <button onClick={() => setAuthModal('login')}
-              className="hidden sm:inline-block text-xs font-bold text-gray-300 hover:text-white px-2 py-2 cursor-pointer transition-colors">
+              className="text-[11px] sm:text-xs font-bold text-gray-300 hover:text-white px-1.5 sm:px-2 py-2 cursor-pointer transition-colors shrink-0">
               {t('login')}
             </button>
+
+            {/* Signup button */}
             <button onClick={() => setAuthModal('signup')}
-              className="bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white px-3.5 sm:px-4 py-2.5 rounded-xl text-xs font-black shadow-lg shadow-indigo-600/25 transition-all cursor-pointer">
+              className="bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white px-2.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-[11px] sm:text-xs font-black shadow-lg shadow-indigo-600/25 transition-all cursor-pointer shrink-0">
               {t('signup')}
             </button>
+
             <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden bg-white/[0.04] border border-white/10 p-2.5 rounded-xl text-gray-300 hover:text-white cursor-pointer">
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              className="lg:hidden bg-white/[0.04] border border-white/10 p-2 rounded-xl text-gray-300 hover:text-white cursor-pointer shrink-0">
+              {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
             </button>
           </div>
         </div>
@@ -553,8 +556,6 @@ export default function AllInOneRestaurantPlatform() {
               <a key={h} href={h} onClick={() => setMobileMenuOpen(false)}
                 className="block text-sm font-bold text-gray-300 hover:text-white py-2">{t(k as TranslationKey)}</a>
             ))}
-            <button onClick={() => { setAuthModal('login'); setMobileMenuOpen(false); }}
-              className="block text-sm font-bold text-indigo-400 py-2">{t('login')}</button>
           </div>
         )}
       </header>
