@@ -5,7 +5,7 @@ import { createClient } from '@supabase/supabase-js';
 import { useRouter } from 'next/navigation';
 import {
   Store, ArrowRight, Globe, CheckCircle2, X, Menu, Mail, Lock, User, Phone,
-  KeyRound, Copy, Check, Loader2, Monitor, Boxes, PieChart, Clock, Truck, Gift, Star, Quote,
+  KeyRound, Copy, Check, Loader2, Monitor, Boxes, PieChart, Clock, Truck, Gift, Star,
   ShieldCheck, Zap, ChevronDown, Eye, EyeOff, Users, ChevronRight, Play, UtensilsCrossed,
   Smartphone, Moon, Sun, ArrowUp, Cookie, Plus, Minus, AlertCircle, ArrowLeft,
 } from 'lucide-react';
@@ -23,13 +23,13 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey, {
    TRANSLATIONS
    ============================================================ */
 const en = {
-  brand_tag: "All-In-One Restaurant OS",
+  brand_tag: "All-In-One Restaurant Operation System",
   nav_features: "Modules", nav_platform: "Platform", nav_pricing: "Pricing", nav_faq: "FAQ",
   login: "Login", signup: "Start Free Trial", skip: "Skip to content",
 
   hero_title_1: "Run your entire restaurant", hero_title_2: "from one powerful platform.",
   hero_desc: "POS, inventory, finance, staff, suppliers and live P&L — plus a beautiful guest app for menus, reservations and loyalty. Everything your venue needs, in one place.",
-  hero_cta: "Start 30-day free trial", hero_demo: "Explore modules", hero_note: "No credit card required · Cancel anytime",
+  hero_cta: "Start free trial", hero_demo: "Explore modules", hero_note: "No credit card required · Cancel anytime",
   trust_label: "Trusted by modern restaurants & cafés in 40+ countries",
 
   stat_1_label: "Active venues", stat_2_label: "Lower food costs", stat_3_label: "Uptime SLA", stat_4_label: "Human support",
@@ -56,14 +56,6 @@ const en = {
   how_2_title: "Add menu, team & suppliers", how_2_desc: "Import your menu, invite staff, and connect inventory and suppliers.",
   how_3_title: "Go live & grow", how_3_desc: "Start selling, watch live P&L, and turn guests into loyal regulars.",
 
-  testi_title: "Loved by operators worldwide",
-  testi_1_text: "We replaced five different apps with one. Our food cost dropped 40% in the first quarter.",
-  testi_1_name: "Sofia Marchetti", testi_1_role: "Owner · Osteria Nova",
-  testi_2_text: "The live P&L and inventory alerts changed how we run every single shift.",
-  testi_2_name: "Youssef El Amrani", testi_2_role: "GM · Dar Tajine",
-  testi_3_text: "Setup took an afternoon. Loyalty alone brought back 2,000 returning guests.",
-  testi_3_name: "Elena Petrova", testi_3_role: "Director · Nord Kitchen",
-
   compare_title: "Why teams switch to us",
   compare_col_feature: "Capability", compare_col_us: "All-In-One", compare_col_them: "Typical stack",
   compare_1: "POS, inventory & finance in one place", compare_2: "Team attendance & clock-in/out",
@@ -71,16 +63,17 @@ const en = {
   compare_5: "One login for the whole team",
 
   roi_title: "Estimate your monthly savings",
-  roi_subtitle: "Move the sliders to see how much a smarter operation is worth.",
-  roi_tables: "Tables", roi_ticket: "Avg. ticket", roi_days: "Open days / month",
+  roi_subtitle: "Configure your restaurant metrics to calculate precise operational savings.",
+  roi_tables: "Tables count", roi_ticket: "Avg. ticket ($)", roi_days: "Open days / month",
+  roi_hours: "Operating hours / day", roi_customers: "Customers per table", roi_time: "Avg. time per customer (min)",
   roi_revenue: "Est. monthly revenue", roi_saving: "Est. monthly savings",
-  roi_note: "Based on an average 8% efficiency gain. Illustrative only.",
+  roi_note: "Based on advanced throughput calculation & 8% operational efficiency gain.",
 
-  pricing_title: "One plan. Everything included.",
-  pricing_subtitle: "Start with 30 days free — no credit card, no commitment.",
-  popular: "Most popular", plan_name: "All-In-One Pro", price_amount: "$99",
-  per_month: "/ month after trial",
-  plan_desc: "Full access to every operations module, unlimited branches, and 24/7 support.",
+  pricing_title: "Free during platform completion",
+  pricing_subtitle: "Enjoy full access completely free until January 2027 while we finalize all modules.",
+  popular: "Special Offer", plan_name: "All-In-One Pro", price_amount: "Free",
+  per_month: "then $99 / month after Jan 2027",
+  plan_desc: "Full access to every operations module, unlimited branches, and 24/7 support during the buildout phase.",
   feature_check: "POS, Inventory, Finance & P&L", plan_f2: "Unlimited staff accounts",
   plan_f3: "Supplier & purchase management", plan_f4: "Automated loyalty wallet", plan_f5: "Priority 24/7 support",
   select_plan: "Start free trial now",
@@ -89,11 +82,11 @@ const en = {
   faq_1_q: "Do I need special hardware?", faq_1_a: "No. It runs in any browser on phones, tablets and computers.",
   faq_2_q: "Can each staff member have their own login?", faq_2_a: "Yes. Invite unlimited team members with roles, and they clock in and out from their own account.",
   faq_3_q: "Is there a guest-facing app?", faq_3_a: "Yes — every venue gets a public page with menu, hours, reservations and loyalty.",
-  faq_4_q: "How long is the free trial?", faq_4_a: "30 days, full access, no credit card required.",
+  faq_4_q: "How long is the free trial?", faq_4_a: "Completely free until January 2027 during our completion phase.",
   faq_5_q: "Can I cancel anytime?", faq_5_a: "Yes. Cancel in one click — no contracts.",
 
   cta_title: "Ready to run smarter?", cta_desc: "Join thousands of venues managing everything on one platform.",
-  cta_button: "Start free trial", cta_note: "30 days free · No credit card",
+  cta_button: "Start free trial", cta_note: "Free until Jan 2027 · No credit card",
 
   modal_login_title: "Welcome back", modal_signup_title: "Create your account",
   modal_login_sub: "Enter your credentials to access your dashboard.",
@@ -133,12 +126,12 @@ const en = {
 type Shape = Record<keyof typeof en, string>;
 
 const fr: Shape = {
-  brand_tag: "OS Tout-en-Un pour Restaurant",
+  brand_tag: "All-In-One Restaurant Operation System",
   nav_features: "Modules", nav_platform: "Plateforme", nav_pricing: "Tarifs", nav_faq: "FAQ",
   login: "Connexion", signup: "Essai Gratuit", skip: "Aller au contenu",
   hero_title_1: "Gérez tout votre restaurant", hero_title_2: "depuis une seule plateforme.",
   hero_desc: "POS, stocks, finances, personnel, fournisseurs et P&L en direct — avec une superbe app client pour menus, réservations et fidélité.",
-  hero_cta: "Démarrer l'essai de 30 jours", hero_demo: "Explorer les modules", hero_note: "Aucune carte requise · Annulable à tout moment",
+  hero_cta: "Démarrer l'essai", hero_demo: "Explorer les modules", hero_note: "Aucune carte requise · Annulable à tout moment",
   trust_label: "Adopté par des restaurants modernes dans plus de 40 pays",
   stat_1_label: "Établissements actifs", stat_2_label: "Coûts alimentaires réduits", stat_3_label: "Disponibilité SLA", stat_4_label: "Support humain",
   feat_title: "Une suite. Toutes vos opérations.", feat_subtitle: "Remplacez une dizaine d'outils par une seule plateforme élégante.",
@@ -155,37 +148,32 @@ const fr: Shape = {
   how_1_title: "Créez votre compte", how_1_desc: "Inscrivez-vous gratuitement en moins de deux minutes.",
   how_2_title: "Ajoutez menu, équipe & fournisseurs", how_2_desc: "Importez votre menu, invitez le personnel, connectez les stocks.",
   how_3_title: "Lancez-vous & développez", how_3_desc: "Vendez, suivez votre P&L et fidélisez vos clients.",
-  testi_title: "Adoré par les exploitants du monde entier",
-  testi_1_text: "Nous avons remplacé cinq applications par une seule. Notre coût alimentaire a chuté de 40%.",
-  testi_1_name: "Sofia Marchetti", testi_1_role: "Propriétaire · Osteria Nova",
-  testi_2_text: "Le P&L en direct et les alertes de stock ont changé chaque service.",
-  testi_2_name: "Youssef El Amrani", testi_2_role: "Directeur · Dar Tajine",
-  testi_3_text: "Configuration en un après-midi. La fidélité seule a ramené 2 000 clients.",
-  testi_3_name: "Elena Petrova", testi_3_role: "Directrice · Nord Kitchen",
   compare_title: "Pourquoi nous choisir", compare_col_feature: "Fonctionnalité", compare_col_us: "Tout-en-Un", compare_col_them: "Stack classique",
   compare_1: "POS, stocks & finances réunis", compare_2: "Présence & pointage de l'équipe", compare_3: "App client : menu, réservations & fidélité",
   compare_4: "P&L en direct sans tableurs", compare_5: "Un seul login pour toute l'équipe",
-  roi_title: "Estimez vos économies mensuelles", roi_subtitle: "Bougez les curseurs pour voir la valeur.",
-  roi_tables: "Tables", roi_ticket: "Ticket moyen", roi_days: "Jours / mois",
-  roi_revenue: "Revenu mensuel est.", roi_saving: "Économies mensuelles est.", roi_note: "Base : gain d'efficacité moyen de 8%.",
-  pricing_title: "Une offre. Tout inclus.", pricing_subtitle: "30 jours gratuits — sans carte, sans engagement.",
-  popular: "Le plus choisi", plan_name: "Tout-en-Un Pro", price_amount: "$99", per_month: "/ mois après l'essai",
+  roi_title: "Estimez vos économies mensuelles", roi_subtitle: "Configurez vos métriques pour calculer vos économies.",
+  roi_tables: "Nombre de tables", roi_ticket: "Ticket moyen ($)", roi_days: "Jours / mois",
+  roi_hours: "Heures d'ouverture / jour", roi_customers: "Clients par table", roi_time: "Temps moyen par client (min)",
+  roi_revenue: "Revenu mensuel est.", roi_saving: "Économies mensuelles est.", roi_note: "Basé sur un gain d'efficacité de 8%.",
+  pricing_title: "Gratuit pendant la finalisation",
+  pricing_subtitle: "Accès complet 100% gratuit jusqu'en janvier 2027 pendant que nous complétons le site.",
+  popular: "Offre Spéciale", plan_name: "Tout-en-Un Pro", price_amount: "Gratuit", per_month: "puis 99$ / mois après janv. 2027",
   plan_desc: "Accès complet à tous les modules, succursales illimitées et support 24/7.",
   feature_check: "POS, Stocks, Finances & P&L", plan_f2: "Comptes employés illimités", plan_f3: "Gestion fournisseurs & achats",
   plan_f4: "Portefeuille de fidélité automatisé", plan_f5: "Support prioritaire 24/7", select_plan: "Démarrer l'essai gratuit",
   faq_title: "Questions fréquentes",
-  faq_1_q: "Faut-il du matériel spécial ?", faq_1_a: "Non. Ça tourne dans tout navigateur, sur téléphone, tablette et ordinateur.",
-  faq_2_q: "Chaque employé a-t-il son login ?", faq_2_a: "Oui. Invitez un nombre illimité de membres avec rôles, et ils pointent depuis leur compte.",
-  faq_3_q: "Y a-t-il une app pour les clients ?", faq_3_a: "Oui — chaque établissement a une page publique avec menu, horaires, réservations et fidélité.",
-  faq_4_q: "Combien de temps dure l'essai ?", faq_4_a: "30 jours, accès complet, sans carte.",
-  faq_5_q: "Puis-je annuler ?", faq_5_a: "Oui, en un clic — sans engagement.",
-  cta_title: "Prêt à gérer plus intelligemment ?", cta_desc: "Rejoignez des milliers d'établissements sur une seule plateforme.",
-  cta_button: "Démarrer l'essai gratuit", cta_note: "30 jours gratuits · Sans carte",
+  faq_1_q: "Faut-il du matériel spécial ?", faq_1_a: "Non. Ça tourne dans tout navigateur.",
+  faq_2_q: "Chaque employé a-t-il son login ?", faq_2_a: "Oui. Invitez un nombre illimité de membres.",
+  faq_3_q: "Y a-t-il une app pour les clients ?", faq_3_a: "Oui — page publique avec menu, horaires et réservations.",
+  faq_4_q: "Combien de temps dure l'essai ?", faq_4_a: "Gratuit jusqu'en janvier 2027.",
+  faq_5_q: "Puis-je annuler ?", faq_5_a: "Oui, en un clic.",
+  cta_title: "Prêt à gérer plus intelligemment ?", cta_desc: "Rejoignez des milliers d'établissements.",
+  cta_button: "Démarrer l'essai gratuit", cta_note: "Gratuit jusqu'en janv. 2027 · Sans carte",
   modal_login_title: "Bon retour", modal_signup_title: "Créez votre compte",
   modal_login_sub: "Saisissez vos identifiants pour accéder au tableau de bord.",
   modal_signup_sub: "Remplissez vos informations pour créer votre compte.",
   forgot_title: "Réinitialiser le mot de passe", forgot_sub: "Nous vous enverrons un lien sécurisé.",
-  account_type_label: "Type de compte", type_restaurant: "Propriétaire", type_client: "Client / consommateur",
+  account_type_label: "Type de compte", type_restaurant: "Propriétaire", type_client: "Client",
   email_label: "Email", pass_label: "Mot de passe", pass_confirm_label: "Confirmer le mot de passe",
   name_label: "Nom du restaurant", fullname_label: "Nom complet", mobile_label: "Mobile",
   userid_label: "Votre identifiant unique", preferred_lang_label: "Langue préférée",
@@ -211,12 +199,12 @@ const fr: Shape = {
 };
 
 const ru: Shape = {
-  brand_tag: "Все-в-одном ОС для ресторанов",
+  brand_tag: "All-In-One Restaurant Operation System",
   nav_features: "Модули", nav_platform: "Платформа", nav_pricing: "Цены", nav_faq: "FAQ",
   login: "Войти", signup: "Пробный период", skip: "К контенту",
   hero_title_1: "Управляйте всем рестораном", hero_title_2: "с одной мощной платформы.",
   hero_desc: "POS, склад, финансы, персонал, поставщики и P&L в реальном времени — плюс приложение для гостей: меню, брони, лояльность.",
-  hero_cta: "Начать 30 дней бесплатно", hero_demo: "Посмотреть модули", hero_note: "Без карты · Отмена в любой момент",
+  hero_cta: "Начать бесплатно", hero_demo: "Посмотреть модули", hero_note: "Без карты · Отмена в любой момент",
   trust_label: "Нам доверяют рестораны в 40+ странах",
   stat_1_label: "Активных заведений", stat_2_label: "Снижение расходов", stat_3_label: "Доступность", stat_4_label: "Поддержка",
   feat_title: "Одна система. Все операции.", feat_subtitle: "Замените десяток сервисов одной платформой.",
@@ -233,28 +221,27 @@ const ru: Shape = {
   how_1_title: "Создайте аккаунт", how_1_desc: "Бесплатная регистрация за две минуты.",
   how_2_title: "Добавьте меню и команду", how_2_desc: "Импортируйте меню, пригласите сотрудников, подключите склад.",
   how_3_title: "Запускайтесь и растите", how_3_desc: "Продавайте, следите за P&L, удерживайте гостей.",
-  testi_title: "Нас любят рестораторы",
-  testi_1_text: "Мы заменили пять приложений одним. Расходы упали на 40%.", testi_1_name: "София Маркетти", testi_1_role: "Владелец · Osteria Nova",
-  testi_2_text: "Живой P&L и оповещения изменили каждую смену.", testi_2_name: "Юссеф Эль Амрани", testi_2_role: "Управляющий · Dar Tajine",
-  testi_3_text: "Настройка заняла вечер. Лояльность вернула 2000 гостей.", testi_3_name: "Елена Петрова", testi_3_role: "Директор · Nord Kitchen",
   compare_title: "Почему выбирают нас", compare_col_feature: "Возможность", compare_col_us: "Всё-в-одном", compare_col_them: "Обычный набор",
   compare_1: "POS, склад и финансы вместе", compare_2: "Учёт посещаемости", compare_3: "Приложение для гостей",
   compare_4: "P&L без таблиц", compare_5: "Один вход для команды",
-  roi_title: "Оцените экономию", roi_subtitle: "Двигайте ползунки.", roi_tables: "Столы", roi_ticket: "Средний чек", roi_days: "Дней / мес",
-  roi_revenue: "Выручка в месяц", roi_saving: "Экономия в месяц", roi_note: "Средний прирост эффективности 8%.",
-  pricing_title: "Один тариф. Всё включено.", pricing_subtitle: "30 дней бесплатно — без карты.",
-  popular: "Популярный", plan_name: "Все-в-одном Про", plan_amount: "$99", plan_amount_alt: "", price_amount: "$99", per_month: "/ месяц после триала",
-  plan_desc: "Полный доступ, неограниченные филиалы, поддержка 24/7.",
+  roi_title: "Оцените экономию", roi_subtitle: "Настройте параметры для точного расчёта.",
+  roi_tables: "Количество столов", roi_ticket: "Средний чек ($)", roi_days: "Дней / мес",
+  roi_hours: "Часов работы / день", roi_customers: "Гостей за столом", roi_time: "Время гостя (мин)",
+  roi_revenue: "Выручка в месяц", roi_saving: "Экономия в месяц", roi_note: "На основе точного расчёта и прироста эффективности 8%.",
+  pricing_title: "Бесплатно до завершения сайта",
+  pricing_subtitle: "Полный доступ абсолютно бесплатно до января 2027 года, пока мы дорабатываем платформу.",
+  popular: "Спецпредложение", plan_name: "Все-в-одном Про", price_amount: "Бесплатно", per_month: "далее $99 / мес после янв. 2027",
+  plan_desc: "Полный доступ, неограниченные филиалы, поддержка 24/7 в период разработки.",
   feature_check: "POS, склад, финансы и P&L", plan_f2: "Неограниченные аккаунты", plan_f3: "Поставщики и закупки",
   plan_f4: "Кошелёк лояльности", plan_f5: "Приоритетная поддержка", select_plan: "Начать бесплатно",
   faq_title: "Частые вопросы",
-  faq_1_q: "Нужно оборудование?", faq_1_a: "Нет. Работает в браузере на телефоне, планшете и ПК.",
-  faq_2_q: "У каждого сотрудника свой вход?", faq_2_a: "Да. Приглашайте команду и ведите учёт.",
-  faq_3_q: "Есть приложение для гостей?", faq_3_a: "Да — публичная страница с меню, часами, бронями.",
-  faq_4_q: "Сколько длится триал?", faq_4_a: "30 дней, полный доступ.",
+  faq_1_q: "Нужно оборудование?", faq_1_a: "Нет. Работает в браузере.",
+  faq_2_q: "У каждого сотрудника свой вход?", faq_2_a: "Да. Приглашайте команду.",
+  faq_3_q: "Есть приложение для гостей?", faq_3_a: "Да — публичная страница с меню и бронями.",
+  faq_4_q: "Сколько длится триал?", faq_4_a: "Бесплатно до января 2027 года.",
   faq_5_q: "Можно отменить?", faq_5_a: "Да, в один клик.",
   cta_title: "Готовы работать умнее?", cta_desc: "Присоединяйтесь к тысячам заведений.",
-  cta_button: "Начать бесплатно", cta_note: "30 дней · Без карты",
+  cta_button: "Начать бесплатно", cta_note: "Бесплатно до янв. 2027 · Без карты",
   modal_login_title: "С возвращением", modal_signup_title: "Создайте аккаунт",
   modal_login_sub: "Введите данные для входа.", modal_signup_sub: "Заполните данные.",
   forgot_title: "Сброс пароля", forgot_sub: "Пришлём ссылку для сброса.",
@@ -288,7 +275,7 @@ const ar: Shape = {
   login: "تسجيل الدخول", signup: "ابدأ مجاناً", skip: "تخطَّ إلى المحتوى",
   hero_title_1: "أدر مطعمك بالكامل", hero_title_2: "من منصة واحدة قوية.",
   hero_desc: "نقاط البيع، المخزون، المالية، الموظفون، الموردون وتحليلات الأرباح الفورية — مع تطبيق أنيق لزبائنك: المنيو، الحجوزات والولاء.",
-  hero_cta: "ابدأ 30 يوماً مجاناً", hero_demo: "استكشف الوحدات", hero_note: "بدون بطاقة · إلغاء في أي وقت",
+  hero_cta: "ابدأ التجربة المجانية", hero_demo: "استكشف الوحدات", hero_note: "بدون بطاقة · إلغاء في أي وقت",
   trust_label: "يثق بنا مطاعم ومقاهٍ في أكثر من 40 دولة",
   stat_1_label: "منشأة نشطة", stat_2_label: "انخفاض تكاليف الطعام", stat_3_label: "جهوزية النظام", stat_4_label: "دعم بشري",
   feat_title: "منظومة واحدة. كل العمليات.", feat_subtitle: "استغن عن عشرات الأدوات بمنصة واحدة أنيقة.",
@@ -305,28 +292,27 @@ const ar: Shape = {
   how_1_title: "أنشئ حسابك", how_1_desc: "سجّل مجاناً وأنشئ ملف مطعمك في دقيقتين.",
   how_2_title: "أضف المنيو والفريق", how_2_desc: "استورد منيوك، ادعُ موظفيك، واربط المخزون.",
   how_3_title: "انطلق وطوّر", how_3_desc: "ابدأ البيع وتابع أرباحك وحوّل الزوار لعملاء دائمين.",
-  testi_title: "محبوب من أصحاب المطاعم",
-  testi_1_text: "استبدلنا خمس تطبيقات بواحدة، وانخفضت تكلفة الطعام 40%.", testi_1_name: "صوفيا ماركيتي", testi_1_role: "مالكة · Osteria Nova",
-  testi_2_text: "تقارير الأرباح الفورية غيّرت طريقة إدارتنا لكل وردية.", testi_2_name: "يوسف العمراني", testi_2_role: "مدير عام · Dar Tajine",
-  testi_3_text: "الإعداد استغرق ظهيرة. الولاء وحده أعاد 2000 زبون.", testi_3_name: "إيلينا بتروفا", testi_3_role: "مديرة · Nord Kitchen",
   compare_title: "لماذا يختاروننا", compare_col_feature: "الميزة", compare_col_us: "الشامل", compare_col_them: "الأنظمة التقليدية",
   compare_1: "POS والمخزون والمالية معاً", compare_2: "حضور الفريق وتسجيل الدخول", compare_3: "تطبيق الزبون: منيو وحجوزات وولاء",
   compare_4: "أرباح فورية بلا جداول", compare_5: "دخول واحد لكل الفريق",
-  roi_title: "احسب وفرك الشهري", roi_subtitle: "حرّك المؤشرات لترى القيمة.", roi_tables: "الطاولات", roi_ticket: "متوسط الفاتورة", roi_days: "أيام العمل / شهر",
-  roi_revenue: "الإيراد الشهري المتوقع", roi_saving: "الوفر الشهري المتوقع", roi_note: "بناءً على تحسين كفاءة بنسبة 8% تقريباً.",
-  pricing_title: "باقة واحدة. كل شيء مشمول.", pricing_subtitle: "ابدأ بـ 30 يوماً مجاناً — بدون بطاقة.",
-  popular: "الأكثر اختياراً", plan_name: "الباقة الشاملة الاحترافية", price_amount: "$99", per_month: "/ شهرياً بعد التجربة",
-  plan_desc: "وصول كامل لجميع الوحدات، فروع غير محدودة، ودعم 24/7.",
+  roi_title: "احسب وفرك الشهري بدقة", roi_subtitle: "قم بضبط إعدادات مطعمك لحساب العائدات والوفر التشغيلي بدقة احترافية.",
+  roi_tables: "عدد الطاولات", roi_ticket: "متوسط الفاتورة ($)", roi_days: "أيام العمل / شهر",
+  roi_hours: "ساعات عمل المطعم / يوم", roi_customers: "عدد الزبناء لكل طاولة", roi_time: "الوقت الإجمالي لكل زبون (دقيقة)",
+  roi_revenue: "الإيراد الشهري المتوقع", roi_saving: "الوفر الشهري المتوقع", roi_note: "بناءً على حساب الطاقة الاستيعابية اليومية وتحسين كفاءة التشغيل بنسبة 8%.",
+  pricing_title: "مجاني خلال فترة استكمال الموقع",
+  pricing_subtitle: "استمتع بالوصول الكامل مجاناً بالكامل إلى غاية يناير 2027 بينما نعمل على إكمال جميع وحدات الموقع.",
+  popular: "عرض خاص", plan_name: "الباقة الشاملة الاحترافية", price_amount: "مجاناً", per_month: "ثم 99$ / شهرياً بعد يناير 2027",
+  plan_desc: "وصول كامل لجميع وحدات التشغيل، فروع غير محدودة، ودعم 24/7 طوال فترة التطوير.",
   feature_check: "نقاط البيع والمخزون والمالية", plan_f2: "حسابات موظفين غير محدودة", plan_f3: "إدارة الموردين والمشتريات",
   plan_f4: "محفظة ولاء تلقائية", plan_f5: "دعم ذو أولوية", select_plan: "ابدأ التجربة المجانية",
   faq_title: "الأسئلة الشائعة",
   faq_1_q: "هل أحتاج أجهزة خاصة؟", faq_1_a: "لا. يعمل في أي متصفح على الهاتف واللوحي والحاسوب.",
   faq_2_q: "هل لكل موظف حساب خاص؟", faq_2_a: "نعم. ادعُ فريقك بأدوار، ويسجلون حضورهم من حساباتهم.",
   faq_3_q: "هل هناك تطبيق للزبائن؟", faq_3_a: "نعم — صفحة عامة لكل مطعم فيها المنيو والأوقات والحجوزات والولاء.",
-  faq_4_q: "كم تدوم التجربة؟", faq_4_a: "30 يوماً بوصول كامل وبدون بطاقة.",
+  faq_4_q: "كم تدوم فترة المجاني؟", faq_4_a: "مجاني بالكامل لغاية يناير 2027 طوال مرحلة استكمال بناء المنصة.",
   faq_5_q: "هل يمكن الإلغاء؟", faq_5_a: "نعم، بنقرة واحدة وبدون التزام.",
   cta_title: "جاهز لإدارة أذكى؟", cta_desc: "انضم لآلاف المنشآت التي تدير كل شيء من منصة واحدة.",
-  cta_button: "ابدأ التجربة المجانية", cta_note: "30 يوماً مجاناً · بدون بطاقة",
+  cta_button: "ابدأ التجربة المجانية", cta_note: "مجاني لغاية يناير 2027 · بدون بطاقة",
   modal_login_title: "مرحباً بعودتك", modal_signup_title: "أنشئ حسابك",
   modal_login_sub: "أدخل بياناتك للدخول إلى لوحة التحكم.", modal_signup_sub: "املأ بياناتك لإنشاء حسابك.",
   forgot_title: "إعادة تعيين كلمة المرور", forgot_sub: "سنرسل لك رابطاً آمناً.",
@@ -356,12 +342,12 @@ const ar: Shape = {
 };
 
 const es: Shape = {
-  brand_tag: "SO Todo en Uno para Restaurantes",
+  brand_tag: "All-In-One Restaurant Operation System",
   nav_features: "Módulos", nav_platform: "Plataforma", nav_pricing: "Precios", nav_faq: "FAQ",
   login: "Iniciar sesión", signup: "Prueba gratis", skip: "Ir al contenido",
   hero_title_1: "Administra todo tu restaurante", hero_title_2: "desde una sola plataforma.",
   hero_desc: "POS, inventario, finanzas, personal, proveedores y P&L en vivo — más una app para tus clientes: menú, reservas y lealtad.",
-  hero_cta: "Iniciar prueba de 30 días", hero_demo: "Explorar módulos", hero_note: "Sin tarjeta · Cancela cuando quieras",
+  hero_cta: "Prueba gratis", hero_demo: "Explorar módulos", hero_note: "Sin tarjeta · Cancela cuando quieras",
   trust_label: "Con la confianza de restaurantes en más de 40 países",
   stat_1_label: "Locales activos", stat_2_label: "Menos costes", stat_3_label: "Disponibilidad", stat_4_label: "Soporte humano",
   feat_title: "Una suite. Todas tus operaciones.", feat_subtitle: "Reemplaza una docena de herramientas por una sola plataforma.",
@@ -378,28 +364,27 @@ const es: Shape = {
   how_1_title: "Crea tu cuenta", how_1_desc: "Regístrate gratis en menos de dos minutos.",
   how_2_title: "Añade menú y equipo", how_2_desc: "Importa tu menú, invita al personal, conecta inventario.",
   how_3_title: "Sal y crece", how_3_desc: "Vende, sigue tu P&L y fideliza clientes.",
-  testi_title: "Amado por operadores",
-  testi_1_text: "Reemplazamos cinco apps por una. El coste de comida cayó un 40%.", testi_1_name: "Sofia Marchetti", testi_1_role: "Propietaria · Osteria Nova",
-  testi_2_text: "El P&L en vivo cambió cada turno.", testi_2_name: "Youssef El Amrani", testi_2_role: "Gerente · Dar Tajine",
-  testi_3_text: "La configuración tomó una tarde. La lealtad trajo 2.000 clientes.", testi_3_name: "Elena Petrova", testi_3_role: "Directora · Nord Kitchen",
   compare_title: "Por qué nos eligen", compare_col_feature: "Capacidad", compare_col_us: "Todo en Uno", compare_col_them: "Stack típico",
   compare_1: "POS, inventario y finanzas juntos", compare_2: "Asistencia y fichaje", compare_3: "App de cliente: menú y reservas",
   compare_4: "P&L en vivo sin hojas", compare_5: "Un login para todo el equipo",
-  roi_title: "Estima tu ahorro", roi_subtitle: "Mueve los controles.", roi_tables: "Mesas", roi_ticket: "Ticket medio", roi_days: "Días / mes",
-  roi_revenue: "Ingreso mensual est.", roi_saving: "Ahorro mensual est.", roi_note: "Basado en un 8% de eficiencia.",
-  pricing_title: "Un plan. Todo incluido.", pricing_subtitle: "30 días gratis — sin tarjeta.",
-  popular: "Más popular", plan_name: "Todo en Uno Pro", price_amount: "$99", per_month: "/ mes tras la prueba",
-  plan_desc: "Acceso completo, sucursales ilimitadas y soporte 24/7.",
+  roi_title: "Estima tu ahorro mensual", roi_subtitle: "Configura las métricas de tu restaurante para un cálculo preciso.",
+  roi_tables: "Número de mesas", roi_ticket: "Ticket medio ($)", roi_days: "Días / mes",
+  roi_hours: "Horas de apertura / día", roi_customers: "Clientes por mesa", roi_time: "Tiempo por cliente (min)",
+  roi_revenue: "Ingreso mensual est.", roi_saving: "Ahorro mensual est.", roi_note: "Basado en cálculo de rendimiento y 8% de eficiencia.",
+  pricing_title: "Gratis durante el desarrollo",
+  pricing_subtitle: "Disfruta de acceso completo gratis hasta enero de 2027 mientras completamos la plataforma.",
+  popular: "Oferta Especial", plan_name: "Todo en Uno Pro", price_amount: "Gratis", per_month: "luego $99 / mes tras ene. 2027",
+  plan_desc: "Acceso completo a todos los módulos, sucursales ilimitadas y soporte 24/7.",
   feature_check: "POS, Inventario, Finanzas y P&L", plan_f2: "Cuentas ilimitadas", plan_f3: "Proveedores y compras",
   plan_f4: "Monedero de lealtad", plan_f5: "Soporte prioritario", select_plan: "Iniciar prueba gratis",
   faq_title: "Preguntas frecuentes",
   faq_1_q: "¿Necesito hardware?", faq_1_a: "No. Funciona en cualquier navegador.",
-  faq_2_q: "¿Cada empleado tiene login?", faq_2_a: "Sí. Invita a tu equipo con roles y fichan desde su cuenta.",
-  faq_3_q: "¿Hay app para clientes?", faq_3_a: "Sí — página pública con menú, horarios y reservas.",
-  faq_4_q: "¿Cuánto dura la prueba?", faq_4_a: "30 días, acceso completo.",
+  faq_2_q: "¿Cada empleado tiene login?", faq_2_a: "Sí. Invita a tu equipo con roles.",
+  faq_3_q: "¿Hay app para clientes?", faq_3_a: "Sí — página pública con menú y reservas.",
+  faq_4_q: "¿Cuánto dura la prueba?", faq_4_a: "Gratis hasta enero de 2027.",
   faq_5_q: "¿Puedo cancelar?", faq_5_a: "Sí, con un clic.",
   cta_title: "¿Listo para gestionar mejor?", cta_desc: "Únete a miles de locales.",
-  cta_button: "Iniciar prueba gratis", cta_note: "30 días gratis · Sin tarjeta",
+  cta_button: "Iniciar prueba gratis", cta_note: "Gratis hasta ene. 2027 · Sin tarjeta",
   modal_login_title: "Bienvenido", modal_signup_title: "Crea tu cuenta",
   modal_login_sub: "Introduce tus datos.", modal_signup_sub: "Completa tus datos.",
   forgot_title: "Restablecer contraseña", forgot_sub: "Te enviaremos un enlace.",
@@ -770,10 +755,9 @@ function AuthModal({ mode, setMode, lang, setLang, t }: { mode: Mode; setMode: (
           setSuccessKey('check_email');
         } else {
           setSuccessKey('success_signup');
-          setMode('none'); // إغلاق النافذة المنبثقة مباشرة
+          setMode('none');
 
           if (accountType === 'restaurant' && data.user) {
-            // جلب معرّف المطعم الخاص بصاحب المطعم وتوجيهه إلى /restaurant/[id]
             const { data: resto } = await supabase
               .from('restaurants')
               .select('id')
@@ -786,7 +770,6 @@ function AuthModal({ mode, setMode, lang, setLang, t }: { mode: Mode; setMode: (
               router.push('/dashboard');
             }
           } else if (accountType === 'client') {
-            // توجيه الزبون إلى /client
             router.push('/client');
           } else {
             router.push('/dashboard');
@@ -796,10 +779,9 @@ function AuthModal({ mode, setMode, lang, setLang, t }: { mode: Mode; setMode: (
         const { data, error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
         setSuccessKey('success_login');
-        setMode('none'); // إغلاق النافذة المنبثقة مباشرة
+        setMode('none');
 
         if (data.user) {
-          // 1. فحص هل المستخدم صاحب مطعم
           const { data: resto } = await supabase
             .from('restaurants')
             .select('id')
@@ -809,7 +791,6 @@ function AuthModal({ mode, setMode, lang, setLang, t }: { mode: Mode; setMode: (
           if (resto?.id) {
             router.push(`/restaurant/${resto.id}`);
           } else {
-            // 2. فحص هل المستخدم زبون
             const { data: client } = await supabase
               .from('clients')
               .select('id')
@@ -1046,10 +1027,18 @@ export default function AllInOneRestaurantPlatform() {
   const progress = useScrollProgress();
   const showBackTop = useScrolled(600);
 
+  // ROI Calculator Advanced States
   const [tables, setTables] = useState(20);
   const [ticket, setTicket] = useState(25);
   const [days, setDays] = useState(26);
-  const revenue = tables * ticket * 3 * days;
+  const [opHours, setOpHours] = useState(12);
+  const [customersPerTable, setCustomersPerTable] = useState(4);
+  const [avgTimeMin, setAvgTimeMin] = useState(60);
+
+  // Professional monthly revenue and savings calculations
+  const turnsPerDay = (opHours * 60) / Math.max(15, avgTimeMin);
+  const dailyRevenue = tables * customersPerTable * turnsPerDay * ticket;
+  const revenue = Math.round(dailyRevenue * days);
   const saving = Math.round(revenue * 0.08);
 
   useEffect(() => {
@@ -1111,8 +1100,8 @@ export default function AllInOneRestaurantPlatform() {
               <Store className="w-4 h-4 sm:w-5 sm:h-5 text-white" aria-hidden />
             </div>
             <div className="leading-tight">
-              <span className="text-sm sm:text-lg font-black tracking-tight">All-In-One<span className="text-indigo-500">.Restaurant</span></span>
-              <span className="hidden sm:block text-[9px] text-[rgb(var(--muted))] uppercase tracking-[0.2em] font-bold">{t('brand_tag')}</span>
+              <span className="text-xs sm:text-base font-black tracking-tight">All-In-One<span className="text-indigo-500"> Restaurant OS</span></span>
+              <span className="hidden sm:block text-[9px] text-[rgb(var(--muted))] uppercase tracking-[0.1em] font-bold">{t('brand_tag')}</span>
             </div>
           </a>
 
@@ -1295,42 +1284,20 @@ export default function AllInOneRestaurantPlatform() {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <section className="py-20 sm:py-28 px-4 bg-[rgb(var(--panel)/0.4)] border-y border-[rgb(var(--line)/0.08)]">
-        <div className="max-w-6xl mx-auto">
-          <Reveal className="text-center mb-14"><h2 className="text-3xl sm:text-4xl font-black tracking-tight">{t('testi_title')}</h2></Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {[1, 2, 3].map((n, i) => (
-              <Reveal key={n} delay={i * 90}>
-                <div className="h-full bg-[rgb(var(--panel))] border border-[rgb(var(--line)/0.1)] rounded-3xl p-6 flex flex-col">
-                  <Quote className="w-7 h-7 text-indigo-500/40 mb-4 rtl:-scale-x-100" aria-hidden />
-                  <div className="flex gap-0.5 mb-4">{[...Array(5)].map((_, k) => <Star key={k} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" aria-hidden />)}</div>
-                  <p className="text-[rgb(var(--muted))] text-sm leading-relaxed flex-1">{t(`testi_${n}_text` as TranslationKey)}</p>
-                  <div className="flex items-center gap-3 mt-6 pt-5 border-t border-[rgb(var(--line)/0.08)]">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white text-xs font-black">{t(`testi_${n}_name` as TranslationKey).split(' ').map((w) => w[0]).join('').slice(0, 2)}</div>
-                    <div className="text-start"><div className="text-xs font-bold">{t(`testi_${n}_name` as TranslationKey)}</div><div className="text-[10px] text-[rgb(var(--muted))]">{t(`testi_${n}_role` as TranslationKey)}</div></div>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* COMPARISON + ROI */}
-      <section className="py-20 sm:py-28 px-4">
+      <section className="py-20 sm:py-28 px-4 bg-[rgb(var(--panel)/0.3)] border-y border-[rgb(var(--line)/0.08)]">
         <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-10">
           <Reveal>
             <h2 className="text-2xl sm:text-3xl font-black tracking-tight mb-6">{t('compare_title')}</h2>
-            <div className="overflow-hidden rounded-2xl border border-[rgb(var(--line)/0.1)]">
+            <div className="overflow-hidden rounded-2xl border border-[rgb(var(--line)/0.1)] bg-[rgb(var(--panel))]">
               <div className="grid grid-cols-[1fr_auto_auto] text-[11px] font-black uppercase tracking-wide bg-[rgb(var(--panel-2))]">
                 <div className="p-3 text-[rgb(var(--muted))]">{t('compare_col_feature')}</div>
                 <div className="p-3 text-indigo-500 text-center">{t('compare_col_us')}</div>
                 <div className="p-3 text-[rgb(var(--muted))] text-center">{t('compare_col_them')}</div>
               </div>
               {[1, 2, 3, 4, 5].map((r) => (
-                <div key={r} className="grid grid-cols-[1fr_auto_auto] text-xs border-t border-[rgb(var(--line)/0.08)]">
-                  <div className="p-3 text-[rgb(var(--muted))]">{t(`compare_${r}` as TranslationKey)}</div>
+                <div key={r} className="grid grid-cols-[1fr_auto_auto] text-xs border-t border-[rgb(var(--line)/0.08)] items-center">
+                  <div className="p-3 text-[rgb(var(--muted))] font-medium">{t(`compare_${r}` as TranslationKey)}</div>
                   <div className="p-3 flex justify-center"><CheckCircle2 className="w-4 h-4 text-emerald-500" aria-hidden /></div>
                   <div className="p-3 flex justify-center"><X className="w-4 h-4 text-rose-500/70" aria-hidden /></div>
                 </div>
@@ -1341,22 +1308,25 @@ export default function AllInOneRestaurantPlatform() {
           <Reveal delay={120}>
             <h2 className="text-2xl sm:text-3xl font-black tracking-tight mb-2">{t('roi_title')}</h2>
             <p className="text-[rgb(var(--muted))] text-sm mb-6">{t('roi_subtitle')}</p>
-            <div className="space-y-5 bg-[rgb(var(--panel))] border border-[rgb(var(--line)/0.1)] rounded-2xl p-6">
+            <div className="space-y-4 bg-[rgb(var(--panel))] border border-[rgb(var(--line)/0.1)] rounded-2xl p-6">
               {[
                 { label: 'roi_tables', val: tables, set: setTables, min: 5, max: 120, suf: '' },
                 { label: 'roi_ticket', val: ticket, set: setTicket, min: 5, max: 200, suf: '$' },
                 { label: 'roi_days', val: days, set: setDays, min: 10, max: 31, suf: '' },
+                { label: 'roi_hours', val: opHours, set: setOpHours, min: 6, max: 24, suf: 'h' },
+                { label: 'roi_customers', val: customersPerTable, set: setCustomersPerTable, min: 1, max: 12, suf: '' },
+                { label: 'roi_time', val: avgTimeMin, set: setAvgTimeMin, min: 20, max: 180, suf: 'm' },
               ].map((s) => (
                 <div key={s.label}>
-                  <div className="flex justify-between text-xs font-bold mb-2"><label htmlFor={s.label}>{t(s.label as TranslationKey)}</label><span className="text-indigo-500">{s.suf}{s.val}</span></div>
+                  <div className="flex justify-between text-xs font-bold mb-1.5"><label htmlFor={s.label}>{t(s.label as TranslationKey)}</label><span className="text-indigo-500 font-mono">{s.val}{s.suf}</span></div>
                   <input id={s.label} type="range" min={s.min} max={s.max} value={s.val} onChange={(e) => s.set(Number(e.target.value))} className="w-full accent-indigo-600 cursor-pointer" />
                 </div>
               ))}
-              <div className="grid grid-cols-2 gap-3 pt-3 border-t border-[rgb(var(--line)/0.08)]">
-                <div><div className="text-[10px] text-[rgb(var(--muted))] font-bold uppercase">{t('roi_revenue')}</div><div className="text-lg font-black">${revenue.toLocaleString()}</div></div>
+              <div className="grid grid-cols-2 gap-3 pt-4 border-t border-[rgb(var(--line)/0.08)]">
+                <div><div className="text-[10px] text-[rgb(var(--muted))] font-bold uppercase">{t('roi_revenue')}</div><div className="text-lg font-black text-[rgb(var(--fg))]">${revenue.toLocaleString()}</div></div>
                 <div><div className="text-[10px] text-[rgb(var(--muted))] font-bold uppercase">{t('roi_saving')}</div><div className="text-lg font-black text-emerald-500">${saving.toLocaleString()}</div></div>
               </div>
-              <p className="text-[10px] text-[rgb(var(--muted))]">{t('roi_note')}</p>
+              <p className="text-[10px] text-[rgb(var(--muted))] leading-relaxed">{t('roi_note')}</p>
             </div>
           </Reveal>
         </div>
@@ -1366,13 +1336,13 @@ export default function AllInOneRestaurantPlatform() {
       <section id="pricing" className="py-20 sm:py-28 px-4 border-y border-[rgb(var(--line)/0.08)] bg-[rgb(var(--panel)/0.4)]">
         <Reveal className="max-w-7xl mx-auto text-center mb-14">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight">{t('pricing_title')}</h2>
-          <p className="text-[rgb(var(--muted))] text-sm mt-4">{t('pricing_subtitle')}</p>
+          <p className="text-[rgb(var(--muted))] text-sm mt-4 max-w-xl mx-auto">{t('pricing_subtitle')}</p>
         </Reveal>
         <Reveal delay={100} className="max-w-md mx-auto">
           <div className="relative bg-[rgb(var(--panel))] p-7 sm:p-8 rounded-3xl border-2 border-indigo-500/40 shadow-2xl overflow-hidden">
             <div className="absolute top-0 end-0 bg-indigo-500 text-white text-[10px] font-black px-4 py-1.5 rounded-es-2xl">{t('popular')}</div>
             <h3 className="text-xl font-black relative">{t('plan_name')}</h3>
-            <div className="my-6 relative"><span className="text-5xl font-black">{t('price_amount')}</span><span className="text-[rgb(var(--muted))] text-xs block mt-1">{t('per_month')}</span></div>
+            <div className="my-6 relative"><span className="text-4xl sm:text-5xl font-black text-indigo-500">{t('price_amount')}</span><span className="text-[rgb(var(--muted))] text-xs font-bold block mt-1.5">{t('per_month')}</span></div>
             <p className="text-[13px] text-[rgb(var(--muted))] mb-6 leading-relaxed relative">{t('plan_desc')}</p>
             <ul className="space-y-3 text-[13px] mb-8 border-t border-[rgb(var(--line)/0.1)] pt-6 relative">
               {['feature_check', 'plan_f2', 'plan_f3', 'plan_f4', 'plan_f5'].map((k) => (
@@ -1416,7 +1386,7 @@ export default function AllInOneRestaurantPlatform() {
             <div className="col-span-2">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center"><Store className="w-5 h-5 text-white" aria-hidden /></div>
-                <span className="font-black">All-In-One<span className="text-indigo-500">.Restaurant</span></span>
+                <span className="font-black">All-In-One<span className="text-indigo-500"> Restaurant OS</span></span>
               </div>
               <p className="text-xs text-[rgb(var(--muted))] leading-relaxed max-w-xs">{t('footer_text')}</p>
             </div>
